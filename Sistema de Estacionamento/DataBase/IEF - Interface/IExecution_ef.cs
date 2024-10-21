@@ -8,5 +8,10 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
 {
     internal interface IExecution_ef
     {
+
+        void Insert_EF() { }
+        void Delete_EF() { }
+
+        void
     }
 }

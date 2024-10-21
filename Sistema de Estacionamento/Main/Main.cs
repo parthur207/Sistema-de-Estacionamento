@@ -1,9 +1,11 @@
-﻿using Sistema_de_Estacionamento.Features___Execuções;
+﻿using Sistema_de_Estacionamento.DataBase.Connect_db;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
 
 namespace Sistema_de_Estacionamento.Main
 {
-    internal class Main
+    internal class Program
     {
         public static void Main(string[] args)
         {
@@ -11,7 +13,7 @@ namespace Sistema_de_Estacionamento.Main
             #region Instancições
             StorageClient aux_C = new StorageClient();
 
-            Connect_db conexao = new Connect_db();
+            MyDbContext conexao = new MyDbContext();
 
             StorageVehicle aux_V = new StorageVehicle();
 
@@ -21,9 +23,9 @@ namespace Sistema_de_Estacionamento.Main
             #endregion
 
             int op = 1;
-            conexao.Connection();
+           
 
-            while (conexao.validacao_conexao)
+            while (conexao.ValidarConexao)
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("Sistema de Estacionamento");
@@ -84,8 +86,6 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 8:
-
-                        conexao.ClosedConnection();
 
                         //Encerrar conexão com o db
 
