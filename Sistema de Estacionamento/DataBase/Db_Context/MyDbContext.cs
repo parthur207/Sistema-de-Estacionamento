@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.Db_Context
 {
-    internal class Class1
+    internal class MyDbContext
     {
     }
 }
