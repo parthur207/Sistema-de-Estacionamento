@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataBase\Db_Context\" />
     <Folder Include="DataBase\EF\" />
     <Folder Include="DataBase\IEF - Interface\" />
     <Folder Include="Features - Execuções\" />
