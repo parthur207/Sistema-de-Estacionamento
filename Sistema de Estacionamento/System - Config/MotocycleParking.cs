@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class CarParking
+    internal class MotocycleParking
     {
     }
 }
