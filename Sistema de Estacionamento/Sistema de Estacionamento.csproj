@@ -15,6 +15,7 @@
     <Folder Include="DataBase\IEF - Interface\" />
     <Folder Include="Features - Execuções\" />
     <Folder Include="IFeatures\" />
+    <Folder Include="IStorage - Interface\" />
     <Folder Include="Storage\" />
   </ItemGroup>
 
