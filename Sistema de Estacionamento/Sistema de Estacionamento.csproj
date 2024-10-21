@@ -14,6 +14,7 @@
     <Folder Include="DataBase\EF\" />
     <Folder Include="DataBase\Interface\" />
     <Folder Include="Features - Execuções\" />
+    <Folder Include="IFeatures\" />
   </ItemGroup>
 
 </Project>
