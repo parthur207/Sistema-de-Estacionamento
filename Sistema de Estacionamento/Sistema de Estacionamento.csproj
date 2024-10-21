@@ -12,9 +12,10 @@
     <Folder Include="Atributes\" />
     <Folder Include="DataBase\Db_Context\" />
     <Folder Include="DataBase\EF\" />
-    <Folder Include="DataBase\Interface\" />
+    <Folder Include="DataBase\Interface - EF\" />
     <Folder Include="Features - Execuções\" />
     <Folder Include="IFeatures\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
 
 </Project>
