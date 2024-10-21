@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features - Execuções\" />
     <Folder Include="IFeatures\" />
     <Folder Include="IStorage - Interface\" />
     <Folder Include="System - Config\" />
