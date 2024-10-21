@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IStorage - Interface\" />
     <Folder Include="System - Config\" />
     <Folder Include="Storage\" />
   </ItemGroup>
