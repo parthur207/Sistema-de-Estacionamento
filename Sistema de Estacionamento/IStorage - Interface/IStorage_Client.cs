@@ -8,5 +8,8 @@ namespace Sistema_de_Estacionamento.IStorage___Interface
 {
     internal interface IStorage_Client
     {
+        void S_Name() { }
+        void S_CheckIn() { }
+        void S_CheckOut() { }
     }
 }
