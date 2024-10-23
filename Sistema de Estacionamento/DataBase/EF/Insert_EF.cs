@@ -22,10 +22,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             Saida = S_CheckOut();
             Periodo = CheckOut(Entrada, Saida);
 
+           
             try
             {
                 using (var contexto_ins = new MyDbContext())
-                {
+                { 
+                    
+                    var NovoCliente = new Tabela_();
                     contexto_ins.Tabela_Clientes.Add(Nome_Cliente, Entrada, Credencial_Acesso, Saida, Periodo);
                 }
             }
