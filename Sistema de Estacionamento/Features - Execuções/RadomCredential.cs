@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class RandomCredential : StorageClient, IFeature_Parking
+    internal class RandomCredential : VehicleCheckOut, IFeature_Parking
     {
-        public string[] C_Radom()
+        public string C_Radom()
         {
-            string[] Credencial = new string[6];
+            string Credencial=string.Empty;
             bool random = true;
 
             while (random)
@@ -23,16 +23,16 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 for (int i = 0; i < 3; i++)
                 {
                     char letraAleatoria = (char)Letter.Next(65, 91);//ASCII
-                    Credencial[i] = letraAleatoria.ToString();
+                    Credencial += letraAleatoria.ToString();
                 }
                 Random Number = new Random();
-                for (int i = 3; i < Credencial.Length; i++)
+                for (int i = 3; i < 6; i++)
                 {
                     int numeroAleatorio = Number.Next(0, 10);// 0 A 9
-                    Credencial[i] = numeroAleatorio.ToString();
+                    Credencial += numeroAleatorio.ToString();
                 }
 
-                //Incremento de método que irá verificar se ja existe alguma credencial parecida com a gerada, se sim, será realizado uma nova
+                //Incremento de método que irá verificar se ja existe alguma credencial identica com a gerada, se sim, será realizado uma nova
                 if ()
                 {
 

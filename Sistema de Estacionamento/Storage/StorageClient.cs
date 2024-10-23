@@ -1,6 +1,7 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.IStorage___Interface;
+using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,35 +14,37 @@ namespace Sistema_de_Estacionamento.Storage
     {
         VehicleCheckOut aux_co = new VehicleCheckOut();
 
-        public void S_Name()
+        public string S_Name()
         {
             bool aux1 = true;
             while (aux1)
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("\nDigite o nome do cliente:");
-                Nome = Console.ReadLine().TrimStart().TrimEnd();
+                Nome_Cliente = Console.ReadLine().TrimStart().TrimEnd();
 
-                if (string.IsNullOrEmpty(Nome))
+                if (string.IsNullOrEmpty(Nome_Cliente))
                 {
                     Console.WriteLine("\nO nome do cliente não pode ser nulo.");
                 }
                 else
                 {
                     aux1 = false;
-                    //Incremento de repasse do dado colhido
                 }
             }
+            return Nome_Cliente;
         }
 
-        public void S_CheckIn()
+        public DateTime S_CheckIn()
         {
             Entrada = DateTime.Now;
-            //CREDENCIAL DE ACESSO GERADA
-
+           
+            return Entrada;
         }
 
-        public void S_CheckOut()
+        
+
+        public DateTime  S_CheckOut()
         {
 
             bool validacao1 = true;
@@ -49,10 +52,10 @@ namespace Sistema_de_Estacionamento.Storage
 
             while (validacao1)
             {
-                Console.WriteLine("\nInforme o nome do cliente, ou sua credencial:");
-                string N_C = Console.ReadLine().TrimStart().TrimEnd();
+                Console.WriteLine("\nInforme a credencial do cliente:");
+                string Credencial = Console.ReadLine().TrimStart().TrimEnd();
 
-                if (string.IsNullOrEmpty(N_C))
+                if (string.IsNullOrEmpty(Credencial))
                 {
                     Console.WriteLine("\nO valor informado não pode ser nulo.");
                 }
@@ -60,7 +63,7 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-                    //Query para verificar a existência do nome do usuário e se essa query encontrar o nome, irá validar a variavel "validacao2".
+                    //Query para verificar a existência da credencial/ nome do usuário e se essa query encontrar o nome, irá validar a variavel "validacao2".
                 }
             }
             while (validacao2)
@@ -87,7 +90,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                     Saida = DateTime.Now;
 
-                    aux_co.CheckOut(Entrada, Saida);// Segunda etapa do processo de Check-Out
+                  ;// Segunda etapa do processo de Check-Out
 
                 }
                 else if (op.Equals(2))
@@ -98,6 +101,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 }
             }
+            return Saida;
         }
     }
 }

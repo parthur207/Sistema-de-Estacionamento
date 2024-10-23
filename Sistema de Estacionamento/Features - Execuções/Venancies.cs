@@ -24,7 +24,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             {
                 ExibirNumeroVagas(Tipo_Veiculo.Moto);
             }
-            Main.Main.Main(AtributesClient.ref_args);
+           Program.Main(AtributesClient.ref_args);
         }
     }
 }

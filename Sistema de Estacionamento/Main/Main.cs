@@ -23,9 +23,9 @@ namespace Sistema_de_Estacionamento.Main
             #endregion
 
             int op = 1;
-           
 
-            while (conexao.ValidarConexao)
+            bool validacao = conexao.ValidarConexao();
+            while (validacao)
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("Sistema de Estacionamento");
@@ -57,7 +57,6 @@ namespace Sistema_de_Estacionamento.Main
 
 
                         aux_C.S_CheckIn();
-                        aux_R.C_Radom(); // 
 
                         break;
 

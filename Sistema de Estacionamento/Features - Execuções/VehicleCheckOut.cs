@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class VehicleCheckOut : StorageClient, IFeature_Parking
+    internal class VehicleCheckOut : StorageVehicle, IFeature_Parking
     {
         protected TimeSpan PeriodoEstadia { get; private set; }
         public TimeSpan CheckOut(DateTime Inicio, DateTime Final)

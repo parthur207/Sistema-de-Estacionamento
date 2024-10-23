@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Sistema_de_Estacionamento.Atributes
     {
         public static string[] ref_args { get; private set; }//Parâmetro de referência ao método Main
 
+        [Key]
         [Column("Credencial_Acesso")]
         protected string Credencial_Acesso { get; set; }
 
@@ -25,6 +27,6 @@ namespace Sistema_de_Estacionamento.Atributes
         protected DateTime Saida { get; set; }
 
         [Column("Periodo")]
-        protected DateTime Periodo { get; set; }
+        protected TimeSpan Periodo { get; set; }
     }
 }

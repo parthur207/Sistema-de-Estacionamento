@@ -17,7 +17,7 @@ namespace Sistema_de_Estacionamento.IFeatures
 
         void Exibition_Venancies(Tipo_Veiculo veiculo) { }
 
-        void C_Radom() { }
+        string C_Radom() { return string.Empty; }
 
         decimal Pagamento() { return 0; }
     }

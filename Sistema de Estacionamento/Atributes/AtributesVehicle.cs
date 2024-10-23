@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Veiculos")]
-    internal class AtributesVehicle
+    internal class AtributesVehicle : MyDbContext
     {
         [Column("Tipo_Veiculo")]
         public Tipo_Veiculo TipoVeiculo { get; set; }

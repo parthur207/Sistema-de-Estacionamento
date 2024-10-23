@@ -8,8 +8,8 @@ namespace Sistema_de_Estacionamento.IStorage___Interface
 {
     internal interface IStorage_Client
     {
-        void S_Name() { }
-        void S_CheckIn() { }
-        void S_CheckOut() { }
+        string S_Name() { return string.Empty; }
+        string S_CheckIn() { return string.Empty; }
+        DateTime S_CheckOut() { return DateTime.Now; }
     }
 }
