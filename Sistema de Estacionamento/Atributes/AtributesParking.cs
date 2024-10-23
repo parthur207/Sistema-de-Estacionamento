@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Atributes
 {
+    
     internal abstract class AttributesParking
     {
         protected abstract int NumeroVagas { get; set; }

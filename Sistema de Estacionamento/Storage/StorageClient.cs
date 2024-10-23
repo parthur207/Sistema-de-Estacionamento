@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.IStorage___Interface;
 using Sistema_de_Estacionamento.Main;
@@ -13,6 +14,7 @@ namespace Sistema_de_Estacionamento.Storage
     internal class StorageClient : AtributesClient, IStorage_Client
     {
         VehicleCheckOut aux_co = new VehicleCheckOut();
+        QueryCredendital aux_Q = new QueryCredendital();
 
         public string S_Name()
         {
@@ -64,7 +66,9 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-                    //Query para verificar a existência da credencial/ nome do usuário e se essa query encontrar o nome, irá validar a variavel "validacao2".
+
+                    aux_Q.QueryCredencial_EF(Credencial);
+                    
                 }
             }
             while (validacao2)
