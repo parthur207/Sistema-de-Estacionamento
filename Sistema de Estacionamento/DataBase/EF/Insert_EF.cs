@@ -22,10 +22,15 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string credencialAcesso = C_Radom();
             DateTime saida = S_CheckOut();
             TimeSpan periodo = CheckOut(entrada, saida);
-            
+
+            Tipo_Veiculo tipoVeiculo = S_VehicleType();
+            string nomeVeiculo=S_VehicleName();
+            string cor= S_VehicleColor();
+            string placa= S_VehiclePlate();
+
             try
             {
-                using (var contexto_ins = new MyDbContext())
+                using (var contextoIns_C = new MyDbContext())
                 {
 
                     var novoCliente = new AtributesClient
@@ -36,9 +41,23 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Saida = saida,
                         Periodo= periodo,
                     };
-                    contexto_ins.Tabela_Clientes.Add(novoCliente);
-                    contexto_ins.SaveChanges();
+                    contextoIns_C.Tabela_Clientes.Add(novoCliente);
+                    contextoIns_C.SaveChanges();
                 }
+                using (var contextoIns_V = new MyDbContext())
+                {
+                    var novoVeiculo = new AtributesVehicle
+                    {
+                        TipoVeiculo = tipoVeiculo,
+                        Nome_Veiculo= nomeVeiculo,
+                        Cor= cor,
+                        Placa= placa,
+                    };
+
+                    contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
+                    contextoIns_V.SaveChanges();
+                }
+                Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
             }
             catch (Exception ex)
             {
