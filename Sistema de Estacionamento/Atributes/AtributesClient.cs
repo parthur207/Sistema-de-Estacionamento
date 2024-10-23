@@ -15,18 +15,18 @@ namespace Sistema_de_Estacionamento.Atributes
 
         [Key]
         [Column("Credencial_Acesso")]
-        protected string Credencial_Acesso { get; set; }
+        public string Credencial_Acesso { get; set; }
 
         [Column("Nome_Cliente")]
-        protected string Nome_Cliente { get; set; }
+        public string Nome_Cliente { get; set; }
 
         [Column("Entrada")]
-        protected DateTime Entrada { get; set; }
+        public DateTime Entrada { get; set; }
 
         [Column("Saida")]
-        protected DateTime Saida { get; set; }
+        public DateTime Saida { get; set; }
 
         [Column("Periodo")]
-        protected TimeSpan Periodo { get; set; }
+        public TimeSpan Periodo { get; set; }
     }
 }

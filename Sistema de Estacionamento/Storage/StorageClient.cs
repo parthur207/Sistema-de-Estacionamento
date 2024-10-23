@@ -17,11 +17,12 @@ namespace Sistema_de_Estacionamento.Storage
         public string S_Name()
         {
             bool aux1 = true;
+            string nomeCliente=string.Empty;
             while (aux1)
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("\nDigite o nome do cliente:");
-                Nome_Cliente = Console.ReadLine().TrimStart().TrimEnd();
+                 nomeCliente = Console.ReadLine().TrimStart().TrimEnd();
 
                 if (string.IsNullOrEmpty(Nome_Cliente))
                 {
@@ -32,24 +33,24 @@ namespace Sistema_de_Estacionamento.Storage
                     aux1 = false;
                 }
             }
-            return Nome_Cliente;
+            return nomeCliente;
         }
 
         public DateTime S_CheckIn()
         {
-            Entrada = DateTime.Now;
+            DateTime entrada = DateTime.Now;
            
-            return Entrada;
+            return entrada;
         }
 
         
 
-        public DateTime  S_CheckOut()
+        public DateTime S_CheckOut()
         {
 
             bool validacao1 = true;
             bool validacao2 = false;
-
+            DateTime saida=DateTime.Now;
             while (validacao1)
             {
                 Console.WriteLine("\nInforme a credencial do cliente:");
@@ -88,9 +89,7 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao2 = false;
 
-                    Saida = DateTime.Now;
-
-                  ;// Segunda etapa do processo de Check-Out
+                    saida = DateTime.Now;
 
                 }
                 else if (op.Equals(2))
@@ -101,7 +100,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 }
             }
-            return Saida;
+            return saida;
         }
     }
 }
