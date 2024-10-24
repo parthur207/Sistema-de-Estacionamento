@@ -20,8 +20,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
             string credencialAcesso = C_Radom();
-            DateTime saida = S_CheckOut();
-            TimeSpan periodo = CheckOut(entrada, saida);
+            //DateTime saida = S_CheckOut();
+            //TimeSpan periodo = CheckOut(entrada, saida);
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
             string nomeVeiculo=S_VehicleName();
@@ -38,8 +38,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Nome_Cliente = nomeCliente,
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
-                        Saida = saida,
-                        Periodo= periodo,
+                        //Saida = saida,
+                        //Periodo= periodo,
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();

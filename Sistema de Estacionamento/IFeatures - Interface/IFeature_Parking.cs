@@ -11,8 +11,8 @@ namespace Sistema_de_Estacionamento.IFeatures
     {
         TimeSpan CheckOut(DateTime Entrada, DateTime Saida)
         {
-            TimeSpan Periodo_Estacionamento = Entrada - Saida;
-            return Periodo_Estacionamento;
+          
+            return TimeSpan.MaxValue;
         }
 
         void Exibition_Venancies(Tipo_Veiculo veiculo) { }

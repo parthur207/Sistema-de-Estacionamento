@@ -14,9 +14,10 @@ namespace Sistema_de_Estacionamento.Storage
 {
     internal class StorageClient : AtributesClient, IStorage_Client
     {
-        VehicleCheckOut aux_co = new VehicleCheckOut();
+        Period_CheckOut_ aux_CO = new Period_CheckOut_();
         QueryCredential aux_Q = new QueryCredential();
-        ValidacaoCredendital Aux_val= new ValidacaoCredendital();
+        ValidacaoCredendital aux_VAL= new ValidacaoCredendital();
+        FinalValue aux_PG = new FinalValue();
         public string S_Name()
         {
             bool aux1 = true;
@@ -46,11 +47,8 @@ namespace Sistema_de_Estacionamento.Storage
             return entrada;
         }
 
-        
-
         public DateTime S_CheckOut()
         {
-
             bool validacao1 = true;
             bool validacao2 = false;
             DateTime saida=DateTime.Now;
@@ -69,7 +67,7 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-                    bool val=Aux_val.ValidacaoCredencial_EF(Credencial);
+                    bool val= aux_VAL.ValidacaoCredencial_EF(Credencial);
                     if (val == true)
                     {
                         validacao2 = true;
@@ -93,11 +91,10 @@ namespace Sistema_de_Estacionamento.Storage
                 var cliente = Atributos_cliente.FirstOrDefault();
                 Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
-                Console.WriteLine($"Introdução da estadia: {cliente.Entrada}");
                 Console.WriteLine($"Entrada: {cliente.Entrada}");
                
                 var cliente_v=Atributos_Veiculo.FirstOrDefault();
-                Console.WriteLine($"Nome do cliente: {cliente_v.Nome_Veiculo}");
+                Console.WriteLine($"Nome do veículo: {cliente_v.Nome_Veiculo}");
                 Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
                 Console.WriteLine($"Placa: {cliente_v.Placa}");
                 Console.WriteLine($"Cor: {cliente_v.Cor}");
@@ -117,7 +114,6 @@ namespace Sistema_de_Estacionamento.Storage
                     validacao2 = false;
 
                     saida = DateTime.Now;
-
                 }
                 else if (op.Equals(2))
                 {
@@ -126,6 +122,10 @@ namespace Sistema_de_Estacionamento.Storage
                     Program.Main(ref_args);
 
                 }
+                TimeSpan periodo= aux_CO.Period_CheckOut(cliente.Entrada, saida);
+
+                double Preco=aux_PG.Pagamento(periodo);
+                //Método de insert com os dados checkout (saída, periodo, pagamento);
             }
             return saida;
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class RandomCredential : VehicleCheckOut, IFeature_Parking
+    internal class RandomCredential : Period_CheckOut_, IFeature_Parking
     {
         public string C_Radom()
         {
