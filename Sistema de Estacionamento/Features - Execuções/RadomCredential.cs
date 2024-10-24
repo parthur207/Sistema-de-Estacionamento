@@ -33,14 +33,14 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 }
 
                 //Incremento de método que irá verificar se ja existe alguma credencial identica com a gerada, se sim, será realizado uma nova
-                if ()
+                /*if ()
                 {
 
                 }
                 else
                 {
                     random = false;
-                }
+                }*/
             }
             return Credencial;
         }

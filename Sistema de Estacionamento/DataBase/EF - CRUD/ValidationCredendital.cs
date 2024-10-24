@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF
 {
-    internal class QueryCredendital : Insert_ef, IExecution_ef
+    internal class ValidacaoCredendital : Insert_ef, IExecution_ef
     {
-        public bool QueryCredencial_EF(string Credencial)
+        public bool ValidacaoCredencial_EF(string Credencial)
         {
             bool validacao = false;
             try
             {
-                using (var contextoQuery_credential = new MyDbContext())
+                using (var contextoValidacao_credential = new MyDbContext())
                 {
-                    var credencialExiste = contextoQuery_credential.Tabela_Clientes.Any(x => x.Credencial_Acesso.Equals(Credencial));
+                    var credencialExiste = contextoValidacao_credential.Tabela_Clientes.Any(x => x.Credencial_Acesso.Equals(Credencial));
                     if (credencialExiste == true)
                     {
                         validacao = true;

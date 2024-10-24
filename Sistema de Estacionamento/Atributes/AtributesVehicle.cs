@@ -1,6 +1,7 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Placa")]
         public string Placa { get; set; }
 
+        [ForeignKey("Credencial_Acesso")]
+        public string Credencial_Acesso { get; set; }
     }
 
     public enum Tipo_Veiculo

@@ -12,9 +12,9 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
         void Insert_EF() { }
         void Delete_EF() { }
 
-        bool QueryCredencial_EF(string Credencial) { return true; }
+        bool ValidacaoCredencial_EF(string Credencial) { return true; }
 
-        void QueryNome_EF() { }
+        void QueryCredential_EF() { }
 
         void Update_EF() { }
 

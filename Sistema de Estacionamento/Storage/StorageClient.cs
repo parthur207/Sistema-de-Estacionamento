@@ -1,5 +1,6 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using Sistema_de_Estacionamento.DataBase.EF;
+using Sistema_de_Estacionamento.DataBase.EF___CRUD;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.IStorage___Interface;
 using Sistema_de_Estacionamento.Main;
@@ -14,8 +15,8 @@ namespace Sistema_de_Estacionamento.Storage
     internal class StorageClient : AtributesClient, IStorage_Client
     {
         VehicleCheckOut aux_co = new VehicleCheckOut();
-        QueryCredendital aux_Q = new QueryCredendital();
-
+        QueryCredential aux_Q = new QueryCredential();
+        ValidacaoCredendital Aux_val= new ValidacaoCredendital();
         public string S_Name()
         {
             bool aux1 = true;
@@ -26,7 +27,7 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine("\nDigite o nome do cliente:");
                  nomeCliente = Console.ReadLine().TrimStart().TrimEnd();
 
-                if (string.IsNullOrEmpty(Nome_Cliente))
+                if (string.IsNullOrEmpty(nomeCliente))
                 {
                     Console.WriteLine("\nO nome do cliente não pode ser nulo.");
                 }
@@ -53,10 +54,12 @@ namespace Sistema_de_Estacionamento.Storage
             bool validacao1 = true;
             bool validacao2 = false;
             DateTime saida=DateTime.Now;
+            string Credencial=string.Empty;
+
             while (validacao1)
             {
                 Console.WriteLine("\nInforme a credencial do cliente:");
-                string Credencial = Console.ReadLine().TrimStart().TrimEnd();
+              Credencial = Console.ReadLine().TrimStart().TrimEnd();
 
                 if (string.IsNullOrEmpty(Credencial))
                 {
@@ -66,7 +69,7 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-                    bool val=aux_Q.QueryCredencial_EF(Credencial);
+                    bool val=Aux_val.ValidacaoCredencial_EF(Credencial);
                     if (val == true)
                     {
                         validacao2 = true;
@@ -74,6 +77,7 @@ namespace Sistema_de_Estacionamento.Storage
                     else 
                     {
                         validacao2 = false;
+                        Console.WriteLine("\nA credencial não foi encontrada.");
                     }
                 }
             }
@@ -82,16 +86,29 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine("\nDados do cliente e veículo:");
                 Console.WriteLine("============================================");
 
+                aux_Q.QueryCredential_EF(Credencial);
+                var Atributos_cliente=aux_Q.dadosQuery_c;
+                var Atributos_Veiculo = aux_Q.dadosQuery_v;
 
-                //Incrementar uma funcionalidade irá realizar a query conforme o nome do cliente, exibir os dados do veículo de vinculação e o check-in de entrada ao estacionamento
+                var cliente = Atributos_cliente.FirstOrDefault();
+                Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
+                Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
+                Console.WriteLine($"Introdução da estadia: {cliente.Entrada}");
+                Console.WriteLine($"Entrada: {cliente.Entrada}");
+               
+                var cliente_v=Atributos_Veiculo.FirstOrDefault();
+                Console.WriteLine($"Nome do cliente: {cliente_v.Nome_Veiculo}");
+                Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
+                Console.WriteLine($"Placa: {cliente_v.Placa}");
+                Console.WriteLine($"Cor: {cliente_v.Cor}");
 
-
+                
                 Console.WriteLine("============================================");
                 Console.WriteLine("\nDeseja confirmar o check-out? ");
                 Console.WriteLine("\n1. Sim");
                 Console.WriteLine("2. Não");
                 Console.WriteLine("============================================");
-                if (int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
+                if (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
                 {
                     Console.WriteLine("\nOpção inválida. Digite (1) para 'Sim' ou (2) para 'Não'.");
                 }
