@@ -66,9 +66,15 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-
-                    aux_Q.QueryCredencial_EF(Credencial);
-                    
+                    bool val=aux_Q.QueryCredencial_EF(Credencial);
+                    if (val == true)
+                    {
+                        validacao2 = true;
+                    }
+                    else 
+                    {
+                        validacao2 = false;
+                    }
                 }
             }
             while (validacao2)
