@@ -10,6 +10,6 @@ namespace Sistema_de_Estacionamento.IStorage___Interface
     {
         string S_Name() { return string.Empty; }
         DateTime S_CheckIn() { return DateTime.Now; }
-        DateTime S_CheckOut() { return DateTime.Now; }
+        (DateTime,DateTime) S_CheckOut() { return (DateTime.Now,DateTime.Now); }//TUPLA
     }
 }

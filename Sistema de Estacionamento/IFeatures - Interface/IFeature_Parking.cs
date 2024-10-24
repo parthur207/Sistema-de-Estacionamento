@@ -9,7 +9,7 @@ namespace Sistema_de_Estacionamento.IFeatures
 {
     internal interface IFeature_Parking
     {
-        TimeSpan CheckOut(DateTime Entrada, DateTime Saida)
+        TimeSpan Period_CheckOut(DateTime Entrada, DateTime Saida)
         {
           
             return TimeSpan.MaxValue;
@@ -19,6 +19,6 @@ namespace Sistema_de_Estacionamento.IFeatures
 
         string C_Radom() { return string.Empty; }
 
-        decimal Pagamento() { return 0; }
+        double Pagamento(TimeSpan Periodo) { return 0; }
     }
 }

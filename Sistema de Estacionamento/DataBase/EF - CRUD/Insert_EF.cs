@@ -65,5 +65,16 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 Program.Main(ref_args);
             }
         }
+
+        public void Insert_CheckOut(DateTime Inicio ) 
+        {
+            FinalValue auxPg= new FinalValue();
+
+            DateTime Saida = S_CheckOut();
+            TimeSpan Periodo = Period_CheckOut(Inicio,Saida);
+            double Preco = auxPg.Pagamento(Periodo);
+
+            //Incremento da inserção
+        }
     }
 }

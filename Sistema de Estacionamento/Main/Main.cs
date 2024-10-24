@@ -55,7 +55,7 @@ namespace Sistema_de_Estacionamento.Main
                         aux_V.S_VehicleColor();
 
 
-                        aux_C.S_CheckIn();
+                        aux_C.S_CheckIn();//Credencial é gerada dentro do checkin
 
                         break;
 

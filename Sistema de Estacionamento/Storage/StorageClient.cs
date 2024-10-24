@@ -47,12 +47,13 @@ namespace Sistema_de_Estacionamento.Storage
             return entrada;
         }
 
-        public DateTime S_CheckOut()
+        public (DateTime,DateTime) S_CheckOut()
         {
             bool validacao1 = true;
             bool validacao2 = false;
             DateTime saida=DateTime.Now;
             string Credencial=string.Empty;
+            DateTime _Entrada=DateTime.Now;
 
             while (validacao1)
             {
@@ -68,17 +69,19 @@ namespace Sistema_de_Estacionamento.Storage
                     validacao1 = false;
 
                     bool val= aux_VAL.ValidacaoCredencial_EF(Credencial);
-                    if (val == true)
+                    if (val == false)
                     {
-                        validacao2 = true;
+                        validacao2 = false;
+                        Console.WriteLine("\nA credencial não foi encontrada."); 
+                        Program.Main(ref_args);
                     }
                     else 
                     {
-                        validacao2 = false;
-                        Console.WriteLine("\nA credencial não foi encontrada.");
+                        validacao2 = true;
                     }
                 }
             }
+
             while (validacao2)
             {
                 Console.WriteLine("\nDados do cliente e veículo:");
@@ -92,7 +95,7 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
                 Console.WriteLine($"Entrada: {cliente.Entrada}");
-               
+                _Entrada = cliente.Entrada;
                 var cliente_v=Atributos_Veiculo.FirstOrDefault();
                 Console.WriteLine($"Nome do veículo: {cliente_v.Nome_Veiculo}");
                 Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
@@ -121,13 +124,9 @@ namespace Sistema_de_Estacionamento.Storage
 
                     Program.Main(ref_args);
 
-                }
-                TimeSpan periodo= aux_CO.Period_CheckOut(cliente.Entrada, saida);
-
-                double Preco=aux_PG.Pagamento(periodo);
-                //Método de insert com os dados checkout (saída, periodo, pagamento);
+                }   
             }
-            return saida;
+            return (_Entrada, saida);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
     {
 
         void Insert_EF() { }
-        void Insert_CheckOut() { }
+        void Insert_CheckOut(DateTime Inicio) { }
         void Delete_EF() { }
 
         bool ValidacaoCredencial_EF(string Credencial) { return true; }
