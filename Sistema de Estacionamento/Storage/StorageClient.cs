@@ -47,7 +47,7 @@ namespace Sistema_de_Estacionamento.Storage
             return entrada;
         }
 
-        public (DateTime,DateTime) S_CheckOut()
+        public (DateTime,DateTime, string) S_CheckOut()
         {
             bool validacao1 = true;
             bool validacao2 = false;
@@ -95,7 +95,9 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
                 Console.WriteLine($"Entrada: {cliente.Entrada}");
+
                 _Entrada = cliente.Entrada;
+
                 var cliente_v=Atributos_Veiculo.FirstOrDefault();
                 Console.WriteLine($"Nome do veículo: {cliente_v.Nome_Veiculo}");
                 Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
@@ -126,7 +128,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 }   
             }
-            return (_Entrada, saida);
+            return (_Entrada, saida, Credencial);
         }
     }
 }

@@ -70,11 +70,14 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         {
             FinalValue auxPg= new FinalValue();
 
-            DateTime Saida = S_CheckOut();
-            TimeSpan Periodo = Period_CheckOut(Inicio,Saida);
+            var Resultado = S_CheckOut();//Resultado.Item1= INICIO |  Resultado.Item2= FINAL |  Resultado.Item3=CREDENCIAL
+            TimeSpan Periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
             double Preco = auxPg.Pagamento(Periodo);
 
-            //Incremento da inserção
+            using (var contextoIns_checkout = new MyDbContext())
+            {
+
+            }
         }
     }
 }
