@@ -12,7 +12,7 @@ namespace Sistema_de_Estacionamento.Atributes
     {
         protected abstract int NumeroVagas { get; set; }
         protected abstract List<bool> Vagas { get; set; }
-
+        [Table("Tabela_Estacionamento")]
         public AttributesParking(int numeroVagas)
         {
             NumeroVagas = numeroVagas;

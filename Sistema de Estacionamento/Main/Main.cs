@@ -66,28 +66,26 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 3:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 4:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 5:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 6:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 7:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 8:
-
-                        //Encerrar conexão com o db
 
                         //encerrar todas as reservas de veículos.
                         return;

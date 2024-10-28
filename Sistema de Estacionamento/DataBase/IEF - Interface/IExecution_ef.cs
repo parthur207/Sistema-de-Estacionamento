@@ -15,7 +15,7 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
 
         bool ValidacaoCredencial_EF(string Credencial) { return true; }
 
-        void QueryCredential_EF() { }
+        void QueryCredential_EF(string Credencial) { }
 
         void Update_EF() { }
 
