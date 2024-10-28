@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
 
@@ -18,7 +19,7 @@ namespace Sistema_de_Estacionamento.Main
 
             RandomCredential aux_R = new RandomCredential();
 
-
+            Insert_ef aux_ins=new Insert_ef();
             #endregion
 
             int op = 1;
@@ -61,6 +62,7 @@ namespace Sistema_de_Estacionamento.Main
 
                     case 2:
                         aux_C.S_CheckOut();
+                        aux_ins.Insert_CheckOut();
                         break;
 
                     case 3:

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,17 +67,37 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             }
         }
 
-        public void Insert_CheckOut(DateTime Inicio ) 
+        public void Insert_CheckOut() 
         {
             FinalValue auxPg= new FinalValue();
 
             var Resultado = S_CheckOut();//Resultado.Item1= INICIO |  Resultado.Item2= FINAL |  Resultado.Item3=CREDENCIAL
-            TimeSpan Periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-            double Preco = auxPg.Pagamento(Periodo);
+            TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
+            double preco = auxPg.Pagamento(periodo);
 
-            using (var contextoIns_checkout = new MyDbContext())
+            try
             {
+                using (var contextoIns_checkout = new MyDbContext())
+                {
+                    var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
 
+                    if (cliente != null)
+                    {
+                        cliente.Final = Resultado.Item2;
+                        cliente.Periodo = periodo;
+                        cliente.Preco = preco;
+
+                        contextoIns_checkout.SaveChanges();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nRegistro não encontrado para a credencial especificada.");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}");
             }
         }
     }
