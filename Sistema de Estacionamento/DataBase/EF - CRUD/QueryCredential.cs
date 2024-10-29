@@ -22,8 +22,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             try {
                 using (var contextoQuery_Credential=new MyDbContext())
                 {
-                     dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Credencial));
-                     dadosQuery_v = contextoQuery_Credential.Tabela_Veiculos.Where(x=>x.Credencial_Acesso.Equals(Credencial));
+                     dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
+                     dadosQuery_v = contextoQuery_Credential.Tabela_Veiculos.Where(x=>x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
                 }
             }
             catch (Exception ex) 

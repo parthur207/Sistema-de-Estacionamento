@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         {   
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
+<<<<<<< HEAD
             string credencialAcesso = CredentialRadom();
+=======
+            string credencialAcesso = C_Radom();
+>>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
             string nomeVeiculo=S_VehicleName();
@@ -36,8 +41,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Nome_Cliente = nomeCliente,
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
-                        //Saida = saida,
-                        //Periodo= periodo,
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -50,6 +53,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Nome_Veiculo= nomeVeiculo,
                         Cor= cor,
                         Placa= placa,
+                        Credencial_Acesso= credencialAcesso,
                     };
 
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
@@ -59,22 +63,59 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados. \nErro: {ex.Message}");
+                Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
                 Program.Main(ref_args);
             }
         }
 
-        public void Insert_CheckOut(DateTime Inicio ) 
+        public void Insert_CheckOut() 
         {
             FinalValue auxPg= new FinalValue();
 
             var Resultado = S_CheckOut();//Resultado.Item1= INICIO |  Resultado.Item2= FINAL |  Resultado.Item3=CREDENCIAL
-            TimeSpan Periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-            double Preco = auxPg.Pagamento(Periodo);
+            TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
+            double preco = auxPg.Pagamento(periodo);
 
-            using (var contextoIns_checkout = new MyDbContext())
+            try
             {
+<<<<<<< HEAD
                 var cliente = contextoIns_checkout.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Resultado.Item3)).FirstOrDefault();
+=======
+                using (var contextoIns_checkout = new MyDbContext())
+                {
+                    var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
+
+                    var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
+                    
+                    if (cliente != null && carro!=null)
+                    {
+                        cliente.Final = Resultado.Item2;
+                        cliente.Periodo = periodo;
+                        cliente.Preco = preco;
+                        cliente.Estacionado = false;
+
+                        contextoIns_checkout.SaveChanges();
+                        Console.WriteLine("\nCheckOut:");
+                        Console.WriteLine("============================================");
+                        Console.WriteLine("Dados do cliente:");
+                        Console.WriteLine($"Nome do cliente: {cliente.Nome_Cliente} | Credencial: {cliente.Credencial_Acesso} | Entrada: {cliente.Entrada} | Saida: {cliente.Saida} | Periodo: {cliente.Periodo}");
+                        Console.WriteLine("\nDados do veículo:");
+                        Console.WriteLine($"Nome do veículo: {veiculo.Nome_Veiculo} | Tipo de veículo: {veiculo.TipoVeiculo} | Cor: {veiculo.Cor} | Placa: {veiculo.Placa}");
+
+                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}")
+                        Console.WriteLine("============================================");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nRegistro não encontrado para a credencial especificada.");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}");
+                Program.Main(ref_args); 
+>>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
             }
         }
     }

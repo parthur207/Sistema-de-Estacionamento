@@ -19,9 +19,13 @@ namespace Sistema_de_Estacionamento.Main
 
             RandomCredential aux_R = new RandomCredential();
 
+<<<<<<< HEAD
             Insert_ef Aux_ins = new Insert_ef();
 
 
+=======
+            Insert_ef aux_ins=new Insert_ef();
+>>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
             #endregion
 
             int op = 1;
@@ -61,31 +65,30 @@ namespace Sistema_de_Estacionamento.Main
 
                     case 2:
                         aux_C.S_CheckOut();
+                        aux_ins.Insert_CheckOut();
                         break;
 
                     case 3:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 4:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 5:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 6:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 7:
-                        //implemento de direicionamento ao método
+                        //Incremento de direcionamento ao método
                         break;
 
                     case 8:
-
-                        //Encerrar conexão com o db
 
                         //encerrar todas as reservas de veículos.
                         return;

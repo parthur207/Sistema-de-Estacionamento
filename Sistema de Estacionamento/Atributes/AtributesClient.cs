@@ -29,6 +29,9 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Periodo")]
         public TimeSpan Periodo { get; set; }
 
+        [Column("Valor")]
+        public double Valor { get; set; }
+
         [Column("Estacionado")]
         public bool Estacionado { get; set; }
     }
