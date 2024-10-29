@@ -1,4 +1,5 @@
-﻿using Sistema_de_Estacionamento.IFeatures;
+﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.IFeatures;
 using Sistema_de_Estacionamento.System___Config;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace Sistema_de_Estacionamento.Features___Execuções
     {
         public QueryVenancies(int numeroVagas) : base(numeroVagas) { }
 
-
-
+        public override void ExibirNumeroVagas(Tipo_Veiculo tipo)
+        {
+            base.ExibirNumeroVagas(tipo);
+        }
     }
 }

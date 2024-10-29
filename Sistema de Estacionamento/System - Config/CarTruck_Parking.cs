@@ -1,6 +1,7 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,12 @@ namespace Sistema_de_Estacionamento.System___Config
 {
     internal class CarTruck_Parking : AttributesParking
     {
-
+        [Column("Vagas_Carros_Caminhoes")]
         protected override int NumeroVagas { get; set; }
-        protected override List<bool> Vagas { get; set; }
-
+        protected override Tipo_Veiculo TipoVeiculo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public CarTruck_Parking(int numeroVagas) : base(numeroVagas)
         {
             NumeroVagas = numeroVagas;
-            Vagas = new List<bool>(new bool[NumeroVagas]);
         }
 
 

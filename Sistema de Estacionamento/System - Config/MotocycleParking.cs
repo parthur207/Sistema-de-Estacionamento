@@ -1,6 +1,7 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,12 @@ namespace Sistema_de_Estacionamento.System___Config
 {
     internal class MotocycleParking : AttributesParking
     {
-        protected override List<bool> Vagas { get; set; }
+        
+        [Column("Vagas_Motos")]
         protected override int NumeroVagas { get; set; }
+        protected override List<bool> Vagas { get; set; }
+
+        
 
 
         public MotocycleParking(int numeroVagas) : base(numeroVagas)

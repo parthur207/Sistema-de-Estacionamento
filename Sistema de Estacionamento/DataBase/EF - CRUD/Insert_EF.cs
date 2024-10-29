@@ -19,9 +19,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         {   
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
-            string credencialAcesso = C_Radom();
-            //DateTime saida = S_CheckOut();
-            //TimeSpan periodo = CheckOut(entrada, saida);
+            string credencialAcesso = CredentialRadom();
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
             string nomeVeiculo=S_VehicleName();
@@ -76,7 +74,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
             using (var contextoIns_checkout = new MyDbContext())
             {
-
+                var cliente = contextoIns_checkout.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Resultado.Item3)).FirstOrDefault();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Sistema_de_Estacionamento.IFeatures;
+﻿using Sistema_de_Estacionamento.DataBase.EF;
+using Sistema_de_Estacionamento.IFeatures;
 using Sistema_de_Estacionamento.Storage;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class RandomCredential : Period_CheckOut_, IFeature_Parking
     {
-        public string C_Radom()
+
+        private readonly Random Aux_random = new Random();
+        public string CredentialRadom()
         {
             string Credencial=string.Empty;
             bool random = true;
@@ -18,29 +21,31 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             while (random)
             {
 
-                Random Letter = new Random();
-
                 for (int i = 0; i < 3; i++)
                 {
-                    char letraAleatoria = (char)Letter.Next(65, 91);//ASCII
+                    char letraAleatoria = (char)Aux_random.Next(65, 91);//ASCII
                     Credencial += letraAleatoria.ToString();
                 }
-                Random Number = new Random();
+               
                 for (int i = 3; i < 6; i++)
                 {
-                    int numeroAleatorio = Number.Next(0, 10);// 0 A 9
+                    int numeroAleatorio = Aux_random.Next(0, 10);// 0 A 9
                     Credencial += numeroAleatorio.ToString();
                 }
+                ValidacaoCredendital Val_Credential= new ValidacaoCredendital();
 
-                //Incremento de método que irá verificar se ja existe alguma credencial identica com a gerada, se sim, será realizado uma nova
-                /*if ()
+                bool validacao=Val_Credential.ValidacaoCredencial_EF(Credencial);
+
+                if (validacao==true)
                 {
-
+                    
+                    return CredentialRadom();
                 }
                 else
                 {
-                    random = false;
-                }*/
+                    random = false;   
+                    
+                }
             }
             return Credencial;
         }

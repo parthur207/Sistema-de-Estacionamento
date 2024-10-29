@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
 
@@ -17,6 +18,8 @@ namespace Sistema_de_Estacionamento.Main
             StorageVehicle aux_V = new StorageVehicle();
 
             RandomCredential aux_R = new RandomCredential();
+
+            Insert_ef Aux_ins = new Insert_ef();
 
 
             #endregion
@@ -48,15 +51,12 @@ namespace Sistema_de_Estacionamento.Main
                 {
                     case 1:
                         aux_C.S_Name();
-
                         aux_V.S_VehicleType();
                         aux_V.S_VehicleName();
                         aux_V.S_VehiclePlate();
                         aux_V.S_VehicleColor();
-
-
-                        aux_C.S_CheckIn();//Credencial é gerada dentro do checkin
-
+                        aux_C.S_CheckIn();
+                        Aux_ins.Insert_EF();
                         break;
 
                     case 2:
