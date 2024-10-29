@@ -11,11 +11,9 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class QueryVenancies : CarTruck_Parking, IFeature_Parking
     {
-        public QueryVenancies(int numeroVagas) : base(numeroVagas) { }
-
-        public override void ExibirNumeroVagas(Tipo_Veiculo tipo)
+        
+        public override void ExibirNumeroVagas_Disp()
         {
-            base.ExibirNumeroVagas(tipo);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Sistema_de_Estacionamento.Atributes
     [Table("Clientes")]
     internal class AtributesClient : AtributesVehicle
     {
-        public static string[] ref_args { get; private set; }//Parâmetro de referência ao método Main
+        public static string[] ref_args { get; private set; }
 
         [Key]
         [Column("Credencial_Acesso")]

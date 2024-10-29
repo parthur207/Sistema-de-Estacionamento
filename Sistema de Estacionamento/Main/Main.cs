@@ -19,13 +19,10 @@ namespace Sistema_de_Estacionamento.Main
 
             RandomCredential aux_R = new RandomCredential();
 
-<<<<<<< HEAD
             Insert_ef Aux_ins = new Insert_ef();
 
+            QueryVenancies Aux_q = new QueryVenancies();
 
-=======
-            Insert_ef aux_ins=new Insert_ef();
->>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
             #endregion
 
             int op = 1;
@@ -65,11 +62,11 @@ namespace Sistema_de_Estacionamento.Main
 
                     case 2:
                         aux_C.S_CheckOut();
-                        aux_ins.Insert_CheckOut();
+                        Aux_ins.Insert_CheckOut();
                         break;
 
                     case 3:
-                        //Incremento de direcionamento ao método
+                        Aux_q.ExibirNumeroVagas_Disp();
                         break;
 
                     case 4:

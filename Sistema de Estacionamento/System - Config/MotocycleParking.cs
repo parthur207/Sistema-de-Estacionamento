@@ -11,16 +11,8 @@ namespace Sistema_de_Estacionamento.System___Config
 {
     internal class MotocycleParking : AttributesParking
     {
-<<<<<<< HEAD
         
-        [Column("Vagas_Motos")]
-=======
-        [Column("NumeroVagasMoto")]
->>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
         protected override int NumeroVagas { get; set; }
-        protected override List<bool> Vagas { get; set; }
-
-        
 
         [Column("VagasMoto")]
         protected override List<bool> Vagas { get; set; }

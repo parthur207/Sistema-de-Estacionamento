@@ -20,11 +20,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         {   
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
-<<<<<<< HEAD
+
             string credencialAcesso = CredentialRadom();
-=======
-            string credencialAcesso = C_Radom();
->>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
             string nomeVeiculo=S_VehicleName();
@@ -41,6 +38,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Nome_Cliente = nomeCliente,
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
+                        Estacionado = true
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -78,20 +76,17 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
             try
             {
-<<<<<<< HEAD
-                var cliente = contextoIns_checkout.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Resultado.Item3)).FirstOrDefault();
-=======
                 using (var contextoIns_checkout = new MyDbContext())
                 {
                     var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
 
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                     
-                    if (cliente != null && carro!=null)
+                    if (cliente != null && veiculo != null)
                     {
-                        cliente.Final = Resultado.Item2;
+                        cliente.Saida = Resultado.Item2;
                         cliente.Periodo = periodo;
-                        cliente.Preco = preco;
+                        cliente.Valor = preco;
                         cliente.Estacionado = false;
 
                         contextoIns_checkout.SaveChanges();
@@ -102,20 +97,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Console.WriteLine("\nDados do veículo:");
                         Console.WriteLine($"Nome do veículo: {veiculo.Nome_Veiculo} | Tipo de veículo: {veiculo.TipoVeiculo} | Cor: {veiculo.Cor} | Placa: {veiculo.Placa}");
 
-                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}")
+                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
                         Console.WriteLine("============================================");
                     }
                     else
                     {
                         Console.WriteLine("\nRegistro não encontrado para a credencial especificada.");
-                    }
-                }
+                    } 
+                } 
+                Program.Main(ref_args);
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}");
-                Program.Main(ref_args); 
->>>>>>> 822f63bd43480db25cd87ea5f044bec0fbcfaa7a
+                Program.Main(ref_args);
+                
             }
         }
     }

@@ -10,7 +10,6 @@ namespace Sistema_de_Estacionamento.DataBase.Db_Context
 {
     internal class MyDbContext : DbContext
     {
-
         public DbSet<AtributesClient> Tabela_Clientes { get; set; }
 
         public DbSet<AtributesVehicle> Tabela_Veiculos { get; set; }
@@ -24,14 +23,12 @@ namespace Sistema_de_Estacionamento.DataBase.Db_Context
         {
             try
             {
-                // Tenta abrir a conexão com o banco de dados
                 this.Database.OpenConnection();
-                this.Database.CloseConnection(); // Fecha a conexão após validação
-                return true; // Conexão bem-sucedida
+                this.Database.CloseConnection();
+                return true; 
             }
             catch (Exception ex)
             {
-                // Se houver erro na conexão, captura e retorna falso
                 Console.WriteLine($"Erro ao conectar ao banco de dados: {ex.Message}");
                 return false;
             }
