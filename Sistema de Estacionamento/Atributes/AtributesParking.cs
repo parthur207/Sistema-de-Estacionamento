@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Atributes
 {
-    
+    [Table("Estacionamento")]
     internal abstract class AttributesParking
     {
         protected abstract int NumeroVagas { get; set; }
