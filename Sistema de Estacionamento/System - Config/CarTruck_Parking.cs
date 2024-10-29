@@ -14,6 +14,8 @@ namespace Sistema_de_Estacionamento.System___Config
 
         [Column("Vagas_Carros_Caminhoes")]
         protected override int NumeroVagas { get; set; }
+        [Column ("Vagas_Disponíveis_C")]
+        protected override int NumeroVgasDisp { get; set; }
         protected override Tipo_Veiculo Tipo { get; } = Tipo_Veiculo.Carro;
 
       
