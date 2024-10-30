@@ -11,29 +11,28 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Estacionamento")]
-    internal abstract class AttributesParking
+    internal abstract class AtributesParking
     {
         [Column("Id")]
-        protected int Id { get; set; }
-        protected abstract int NumeroVagas { get; set; }
-        protected abstract int NumeroVgasDisp { get; set; }
-        protected abstract Tipo_Veiculo Tipo { get;}
+        public int Id { get; set; } // 1 ou 2
+        public abstract int NumeroVagas { get; set; }
+        public abstract int NumeroVagasDisp { get; set; }
     
-        public virtual void AlterarNumeroVagas(int novoNumero)
-
+        public virtual void AlterarNumeroVagas(int novoNumero, int id)
         {
             try 
             {
                 using (var contexto_update=new MyDbContext()) 
-                { 
-                var Contexto_Parking=contexto_update.Database
+                {
+                    var Parking = contexto_update.Estacionamento.Where(x => x.Id.Equals(id)).FirstOrDefault();
+
+                    Parking.NumeroVagas= novoNumero;
+
+                    contexto_update.SaveChanges();
                 }
             }
             catch (Exception ex) { Console.WriteLine($"Ocorreu um erro inesperado: \n{ex.Message}"); }
-
         }
-        public virtual void ExibirNumeroVagas_Disp()
-        {
-        }
+        public virtual void ExibirNumeroVagas_Disp(){}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using Sistema_de_Estacionamento.Features___Execuções;
+using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,19 +10,26 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class CarTruck_Parking : AttributesParking 
+    internal class CarTruck_Parking : AtributesParking 
     {
 
-        [Column("Vagas_Carros_Caminhoes")]
-        protected override int NumeroVagas { get; set; }
-        [Column ("Vagas_Disponíveis_C")]
-        protected override int NumeroVgasDisp { get; set; }
-        protected override Tipo_Veiculo Tipo { get; } = Tipo_Veiculo.Carro;
+        [Column("Numero_Vagas_C")]
+        public override int NumeroVagas { get; set; }
 
+        [Column ("Vagas_Disponíveis_C")]
+        public override int NumeroVagasDisp { get; set; }
       
-        public override void AlterarNumeroVagas(int novoNumero)
+        public override void AlterarNumeroVagas(int novoNumero, int id)
         {
-            base.AlterarNumeroVagas(novoNumero);
+            Console.WriteLine($"\nDigite o novo numero de vagas para o estacionamento de Motos:");
+            if (!int.TryParse(Console.ReadLine(), out novoNumero) || novoNumero <)
+            {
+                Console.WriteLine("\nValor fornecido deve");
+            }
+
+            AtributesClient aux= new AtributesClient();
+            Program.Main(aux.ref);
+
             Console.WriteLine($"Número de vagas para carros ajustado para: {NumeroVagas}");
         }
     }

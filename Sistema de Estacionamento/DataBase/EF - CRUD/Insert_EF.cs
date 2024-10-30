@@ -4,6 +4,7 @@ using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Main;
 using Sistema_de_Estacionamento.Storage;
+using Sistema_de_Estacionamento.System___Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF
     internal class Insert_ef: RandomCredential, IExecution_ef
     {
         public void Insert_EF()
-        {   
+        {
+            int id_vehicle;
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
 
@@ -28,6 +30,15 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string cor= S_VehicleColor();
             string placa= S_VehiclePlate();
 
+            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo== Tipo_Veiculo.Caminhão)
+            {
+                id_vehicle = 1;
+            }
+            else
+            {
+                id_vehicle = 2;
+            }
+            
             try
             {
                 using (var contextoIns_C = new MyDbContext())
@@ -56,6 +67,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
                     contextoIns_V.SaveChanges();
+                    
+                    var vaga=contextoIns_V.Estacionamento.FirstOrDefault(x=>x.Id.Equals(id_vehicle));
+                    CarTruck_Parking aux=new CarTruck_Parking();
+                    var aux1=aux.NumeroVagasDisp; 
+                    vaga.NumeroVagasDisp -= 1;
                 }
                 Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
             }
@@ -82,6 +98,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                     
+                    var vaga= contextoIns_checkout.Estacionamento.FirstOrDefault(x=>x.)
                     if (cliente != null && veiculo != null)
                     {
                         cliente.Saida = Resultado.Item2;

@@ -21,7 +21,7 @@ namespace Sistema_de_Estacionamento.Main
 
             Insert_ef Aux_ins = new Insert_ef();
 
-            QueryVenancies Aux_q = new QueryVenancies();
+            QueryVenancies_D Aux_q = new QueryVenancies_D();
 
             #endregion
 

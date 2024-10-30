@@ -9,24 +9,25 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class MotocycleParking : AttributesParking
+    internal class MotocycleParking : AtributesParking
     {
-        
-        protected override int NumeroVagas { get; set; }
+        [Column("Numero_Vagas_M")]
+        public override int NumeroVagas { get; set; }
 
-        [Column("VagasMoto")]
-        protected override List<bool> Vagas { get; set; }
+        [Column("Vagas_Disponíveis_M")]
+        public override int NumeroVagasDisp { get; set; }
+  
 
-        public MotocycleParking(int numeroVagas) : base(numeroVagas)
+        public override void AlterarNumeroVagas(int novoNumero, int id)
         {
-            NumeroVagas = numeroVagas;
-            Vagas = new List<bool>(new bool[NumeroVagas]);
-        }
+           
+            Console.WriteLine($"\nDigite o novo numero de vagas para o estacionamento de Motos:");
+            if (!int.TryParse(Console.ReadLine(), out novoNumero)|| novoNumero<)
+            {
+                Console.WriteLine("\nValor fornecido deve");
+            }
 
-        public override void AlterarNumeroVagas(int novoNumero)
-        {
-            base.AlterarNumeroVagas(novoNumero);
-            Console.WriteLine($"Número de vagas para motos ajustado para ({NumeroVagas}).");
+
             Program.Main(ref_args);
         }
     }
