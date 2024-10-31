@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
@@ -12,23 +13,30 @@ namespace Sistema_de_Estacionamento.System___Config
     internal class MotocycleParking : AtributesParking
     {
         [Column("Numero_Vagas_M")]
-        public override int NumeroVagas { get; set; }
-
+        private int _numeroVagasMotos;
         [Column("Vagas_Disponíveis_M")]
-        public override int NumeroVagasDisp { get; set; }
-  
+        private int _numeroVagasDisponiveisMotos;
 
-        public override void AlterarNumeroVagas(int novoNumero, int id)
+        public override int NumeroVagas
+        { 
+            get => _numeroVagasMotos;
+            set => _numeroVagasDisponiveisMotos = value;
+        }
+        public override int NumeroVagasDisp
         {
-           
-            Console.WriteLine($"\nDigite o novo numero de vagas para o estacionamento de Motos:");
-            if (!int.TryParse(Console.ReadLine(), out novoNumero)|| novoNumero<)
+            get => _numeroVagasDisponiveisMotos;
+            set=> _numeroVagasDisponiveisMotos=value;
+        }
+
+        public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)
+        {
+            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == this.Id);
+
+            if (estacionamento != null)
             {
-                Console.WriteLine("\nValor fornecido deve");
+                estacionamento.NumeroVagas = novoNumero;
+                contexto.SaveChanges();
             }
-
-
-            Program.Main(ref_args);
         }
     }
 }

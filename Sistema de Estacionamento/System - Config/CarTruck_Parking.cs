@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Main;
 using System;
@@ -10,27 +11,38 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class CarTruck_Parking : AtributesParking 
+    internal class CarTruck_Parking : AtributesParking
     {
-
         [Column("Numero_Vagas_C")]
-        public override int NumeroVagas { get; set; }
+        private int _numeroVagasCarros;
+        [Column("Vagas_Disponíveis_C")]
+        private int _numeroVagasDisponiveisCarros;
 
-        [Column ("Vagas_Disponíveis_C")]
-        public override int NumeroVagasDisp { get; set; }
-      
-        public override void AlterarNumeroVagas(int novoNumero, int id)
+        public override int NumeroVagas
         {
-            Console.WriteLine($"\nDigite o novo numero de vagas para o estacionamento de Motos:");
-            if (!int.TryParse(Console.ReadLine(), out novoNumero) || novoNumero <)
+            get => _numeroVagasCarros;
+            set => _numeroVagasCarros = value;
+        }
+
+        public override int NumeroVagasDisp
+        {
+            get => _numeroVagasDisponiveisCarros;
+            set => _numeroVagasDisponiveisCarros = value;
+        }
+
+        public void AlterarNumeroVagasDisponiveis(int N_vagas, int id) { }//Atribuição de valores incrementando ou decrementando na varaivel de vagas disponíveis
+        
+            
+        
+        public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)//Admin
+        {
+            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == this.Id);
+            if (estacionamento != null)
             {
-                Console.WriteLine("\nValor fornecido deve");
+                estacionamento.NumeroVagas = novoNumero;
+                contexto.SaveChanges();
             }
-
-            AtributesClient aux= new AtributesClient();
-            Program.Main(aux.ref);
-
-            Console.WriteLine($"Número de vagas para carros ajustado para: {NumeroVagas}");
         }
     }
 }
+

@@ -12,16 +12,9 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class Venancies : CarTruck_Parking, IFeature_Parking
     { 
-        public virtual void Exibition_Venancies(Tipo_Veiculo veiculo)
+        public virtual void Validation_Venancies(Tipo_Veiculo veiculo)
         {
-            if (veiculo.Equals(Tipo_Veiculo.Carro) || veiculo.Equals(Tipo_Veiculo.Caminhão))
-            {
-                ExibirNumeroVagas_Disp(Tipo_Veiculo.Carro);
-            }
-            else if (veiculo.Equals(Tipo_Veiculo.Moto))
-            {
-                ExibirNumeroVagas_Disp(Tipo_Veiculo.Moto);
-            }
+           
            Program.Main(AtributesClient.ref_args);
         }
     }

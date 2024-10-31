@@ -11,28 +11,43 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Estacionamento")]
-    internal abstract class AtributesParking
+    internal abstract class AtributesParking : MyDbContext
     {
         [Column("Id")]
-        public int Id { get; set; } // 1 ou 2
+        public int Id { get; set; }
+
+        // Propriedades abstratas, mas sem mapeamento específico
         public abstract int NumeroVagas { get; set; }
         public abstract int NumeroVagasDisp { get; set; }
-    
-        public virtual void AlterarNumeroVagas(int novoNumero, int id)
+
+        // Métodos virtuais para validação e manipulação de vagas
+        public virtual bool ValidarVagaDisponivel()
         {
-            try 
+            return NumeroVagasDisp > 0;
+        }
+        public abstract void AlterarNumeroVagas(int novoNumero, MyDbContext contexto);
+        public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)
+        {
+            using (var contexto = new MyDbContext())
             {
-                using (var contexto_update=new MyDbContext()) 
+                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == id);
+
+                if (estacionamento != null)
                 {
-                    var Parking = contexto_update.Estacionamento.Where(x => x.Id.Equals(id)).FirstOrDefault();
-
-                    Parking.NumeroVagas= novoNumero;
-
-                    contexto_update.SaveChanges();
+                    
+                    estacionamento.NumeroVagasDisp += N_vagas;
+                    if (estacionamento.NumeroVagasDisp < 0)
+                    {
+                        estacionamento.NumeroVagasDisp = 0;
+                      
+                    }
+                        contexto.SaveChanges();
                 }
             }
-            catch (Exception ex) { Console.WriteLine($"Ocorreu um erro inesperado: \n{ex.Message}"); }
         }
-        public virtual void ExibirNumeroVagas_Disp(){}
+    }
+}
+       
+
     }
 }

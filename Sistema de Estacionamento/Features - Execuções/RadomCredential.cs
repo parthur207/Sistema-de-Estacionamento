@@ -23,7 +23,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
                 for (int i = 0; i < 3; i++)
                 {
-                    char letraAleatoria = (char)Aux_random.Next(65, 91);//ASCII
+                    char letraAleatoria = (char)Aux_random.Next(65, 91);//ASCII (A - Z)
                     Credencial += letraAleatoria.ToString();
                 }
                
@@ -38,13 +38,11 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
                 if (validacao==true)
                 {
-                    
-                    return CredentialRadom();
+                    return CredentialRadom(); //recursividade (loop)
                 }
                 else
                 {
                     random = false;   
-                    
                 }
             }
             return Credencial;

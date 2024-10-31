@@ -51,12 +51,6 @@ namespace Sistema_de_Estacionamento.Main
                 switch (op)
                 {
                     case 1:
-                        aux_C.S_Name();
-                        aux_V.S_VehicleType();
-                        aux_V.S_VehicleName();
-                        aux_V.S_VehiclePlate();
-                        aux_V.S_VehicleColor();
-                        aux_C.S_CheckIn();
                         Aux_ins.Insert_EF();
                         break;
 

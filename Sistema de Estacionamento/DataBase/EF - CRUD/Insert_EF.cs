@@ -8,6 +8,7 @@ using Sistema_de_Estacionamento.System___Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -20,9 +21,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         public void Insert_EF()
         {
             int id_vehicle;
+
             string nomeCliente = S_Name();
             DateTime entrada=S_CheckIn();
-
             string credencialAcesso = CredentialRadom();
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
@@ -38,7 +39,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             {
                 id_vehicle = 2;
             }
-            
+
+            CarTruck_Parking parkingCC= new CarTruck_Parking();
+            parkingCC.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
+            //if(existencia de vagas disponiveis)
             try
             {
                 using (var contextoIns_C = new MyDbContext())
@@ -70,8 +74,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     
                     var vaga=contextoIns_V.Estacionamento.FirstOrDefault(x=>x.Id.Equals(id_vehicle));
                     CarTruck_Parking aux=new CarTruck_Parking();
-                    var aux1=aux.NumeroVagasDisp; 
-                    vaga.NumeroVagasDisp -= 1;
+                    AlterarNu
                 }
                 Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
             }
@@ -80,10 +83,14 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
                 Program.Main(ref_args);
             }
+            //else{ CW: N a vagas.  Program.Main(ref_args);
+            
         }
 
         public void Insert_CheckOut() 
         {
+
+            int id_vehicle;
             FinalValue auxPg= new FinalValue();
 
             var Resultado = S_CheckOut();//Resultado.Item1= INICIO |  Resultado.Item2= FINAL |  Resultado.Item3=CREDENCIAL
@@ -97,8 +104,14 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
 
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
-                    
-                    var vaga= contextoIns_checkout.Estacionamento.FirstOrDefault(x=>x.)
+
+                    CarTruck_Parking carParking = new CarTruck_Parking();
+                    carParking.Id = 1;
+
+                    int N = -1;
+                    carParking.AlterarNumeroVagasDisponiveis(N, contextoIns_checkout);
+
+                    Console.WriteLine("Número de vagas atualizado com sucesso.");
                     if (cliente != null && veiculo != null)
                     {
                         cliente.Saida = Resultado.Item2;

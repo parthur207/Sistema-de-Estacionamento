@@ -7,6 +7,7 @@ using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,10 +15,9 @@ namespace Sistema_de_Estacionamento.Storage
 {
     internal class StorageClient : AtributesClient, IStorage_Client
     {
-        Period_CheckOut_ aux_CO = new Period_CheckOut_();
-        QueryCredential aux_Q = new QueryCredential();
-        ValidacaoCredendital aux_VAL= new ValidacaoCredendital();
-        FinalValue aux_PG = new FinalValue();
+        QueryCredential aux_Q = new QueryCredential(); //Consulta dos dados cliente e veiculo pela credencial
+        ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)
+   
         public string S_Name()
         {
             bool aux1 = true;
@@ -58,7 +58,7 @@ namespace Sistema_de_Estacionamento.Storage
             while (validacao1)
             {
                 Console.WriteLine("\nInforme a credencial do cliente:");
-              Credencial = Console.ReadLine().TrimStart().TrimEnd();
+                Credencial = Console.ReadLine().TrimStart().TrimEnd();
 
                 if (string.IsNullOrEmpty(Credencial))
                 {
@@ -68,7 +68,7 @@ namespace Sistema_de_Estacionamento.Storage
                 {
                     validacao1 = false;
 
-                    bool val= aux_VAL.ValidacaoCredencial_EF(Credencial);
+                    bool val= aux_VAL.ValidacaoCredencial_EF(Credencial); //Verifica a existencia da credencial
                     if (val == false)
                     {
                         validacao2 = false;
@@ -91,22 +91,22 @@ namespace Sistema_de_Estacionamento.Storage
                 var Atributos_cliente=aux_Q.dadosQuery_c;
                 var Atributos_Veiculo = aux_Q.dadosQuery_v;
 
-                var cliente = Atributos_cliente.FirstOrDefault();
+                var cliente = Atributos_cliente.Tabela_Clientes.FirstOrDefault();
                 Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
                 Console.WriteLine($"Entrada: {cliente.Entrada}");
 
                 _Entrada = cliente.Entrada;
 
-                var cliente_v=Atributos_Veiculo.FirstOrDefault();
-                Console.WriteLine($"Nome do veículo: {cliente_v.Nome_Veiculo}");
+                var cliente_v=Atributos_Veiculo.Tabela_Veiculos.FirstOrDefault();
+                Console.WriteLine($"\nNome do veículo: {cliente_v.Nome_Veiculo}");
                 Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
                 Console.WriteLine($"Placa: {cliente_v.Placa}");
                 Console.WriteLine($"Cor: {cliente_v.Cor}");
 
                 
                 Console.WriteLine("============================================");
-                Console.WriteLine("\nDeseja confirmar o check-out? ");
+                Console.WriteLine("\nContinuar:");
                 Console.WriteLine("\n1. Sim");
                 Console.WriteLine("2. Não");
                 Console.WriteLine("============================================");
