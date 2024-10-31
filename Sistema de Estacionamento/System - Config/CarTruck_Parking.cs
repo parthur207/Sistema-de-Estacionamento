@@ -30,9 +30,8 @@ namespace Sistema_de_Estacionamento.System___Config
             set => _numeroVagasDisponiveisCarros = value;
         }
 
-        public void AlterarNumeroVagasDisponiveis(int N_vagas, int id) { }//Atribuição de valores incrementando ou decrementando na varaivel de vagas disponíveis
-        
-            
+        public override void AlterarNumeroVagasDisponiveis(int N_vagas, int id) { }//Atribuição de valores incrementando ou decrementando na varaivel de vagas disponíveis
+
         
         public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)//Admin
         {

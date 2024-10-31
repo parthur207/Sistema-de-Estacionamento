@@ -31,18 +31,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string cor= S_VehicleColor();
             string placa= S_VehiclePlate();
 
+
+            //if(existencia de vagas disponiveis conforme o tipo de veículo){
             if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo== Tipo_Veiculo.Caminhão)
             {
                 id_vehicle = 1;
+                var parking = new CarTruck_Parking();
+                parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
             }
             else
             {
                 id_vehicle = 2;
+                var parking = new MotocycleParking();
+                parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
             }
-
-            CarTruck_Parking parkingCC= new CarTruck_Parking();
-            parkingCC.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
-            //if(existencia de vagas disponiveis)
+            
             try
             {
                 using (var contextoIns_C = new MyDbContext())
@@ -73,8 +76,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     contextoIns_V.SaveChanges();
                     
                     var vaga=contextoIns_V.Estacionamento.FirstOrDefault(x=>x.Id.Equals(id_vehicle));
-                    CarTruck_Parking aux=new CarTruck_Parking();
-                    AlterarNu
+                 
                 }
                 Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
             }
@@ -83,8 +85,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
                 Program.Main(ref_args);
             }
-            //else{ CW: N a vagas.  Program.Main(ref_args);
-            
+            //}
+            //else{ Console.WriteLine($"Não há vagas disponíveis para {tipoVeiculo}");  Program.Main(ref_args);
+
         }
 
         public void Insert_CheckOut() 
@@ -105,13 +108,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
 
-                    CarTruck_Parking carParking = new CarTruck_Parking();
-                    carParking.Id = 1;
+                    if (veiculo.TipoVeiculo==Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhão)
+                    {
+                        id_vehicle = 1;
+                        var parking = new CarTruck_Parking();
+                        parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                    }
+                    else
+                    {
+                        id_vehicle = 2;
+                        var parking = new MotocycleParking();
+                        parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                    }
 
-                    int N = -1;
-                    carParking.AlterarNumeroVagasDisponiveis(N, contextoIns_checkout);
+                    Console.WriteLine("Número de vagas disponíveis atualizado.");
 
-                    Console.WriteLine("Número de vagas atualizado com sucesso.");
                     if (cliente != null && veiculo != null)
                     {
                         cliente.Saida = Resultado.Item2;
