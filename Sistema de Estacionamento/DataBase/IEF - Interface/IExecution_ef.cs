@@ -16,6 +16,7 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
         void QueryCredential_EF(string Credencial) { }
         void QueryPlate_EF(string Plate) { }
 
+        void Query_parked() { }
         void Update_EF() { }
 
 

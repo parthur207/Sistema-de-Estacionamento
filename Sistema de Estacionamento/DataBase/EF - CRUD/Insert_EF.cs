@@ -33,7 +33,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
             Venancies v = new Venancies();
 
-            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo == Tipo_Veiculo.Caminhão)
+            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo == Tipo_Veiculo.Caminhao)
             {
                 id_vehicle = 1;
                 var hávagas = v.Validation_Venancies(id_vehicle);
@@ -142,7 +142,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     }
                     else
                     {
-                        if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhão)
+                        if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
                         {
                             id_vehicle = 1;
                             var parking = new CarTruck_Parking();

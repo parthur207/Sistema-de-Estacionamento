@@ -165,5 +165,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                 Console.WriteLine($"\nOcorreu um erro inesperado. \nErro: {ex.Message}");
             }
         }
+
+        public (AtributesClient, AtributesVehicle) GetDadosQuery()
+        {
+            return (dadosQuery_c,dadosQuery_v);
+        }
     }
 }

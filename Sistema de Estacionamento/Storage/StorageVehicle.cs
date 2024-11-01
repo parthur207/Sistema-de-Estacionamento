@@ -30,7 +30,7 @@ namespace Sistema_de_Estacionamento.Storage
                 else if (Type_V == "a")
                 {
                     aux2 = false;
-                    tipoVeiculo = Tipo_Veiculo.Caminhão;
+                    tipoVeiculo = Tipo_Veiculo.Caminhao;
                 }
                 else if (Type_V == "b")
                 {
