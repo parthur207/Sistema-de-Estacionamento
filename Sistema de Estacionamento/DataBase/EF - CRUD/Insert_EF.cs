@@ -36,9 +36,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo == Tipo_Veiculo.Caminhão)
             {
                 id_vehicle = 1;
-                bool hávagas = v.Validation_Venancies(id_vehicle);
+                var hávagas = v.Validation_Venancies(id_vehicle);
 
-                if (hávagas == true)
+                if (hávagas.Item1 == true)
                 {
                     var parking = new CarTruck_Parking();
                     parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
@@ -52,9 +52,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             else
             {
                 id_vehicle = 2;
-                bool hávagas = v.Validation_Venancies(id_vehicle);
+                var hávagas = v.Validation_Venancies(id_vehicle);
 
-                if (hávagas == true)
+                if (hávagas.Item1 == true)
                 {
                     var parking = new CarTruck_Parking();
                     parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);

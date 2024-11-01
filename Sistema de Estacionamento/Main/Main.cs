@@ -21,7 +21,7 @@ namespace Sistema_de_Estacionamento.Main
 
             Insert_ef Aux_ins = new Insert_ef();
 
-            QueryVenancies_D Aux_q = new QueryVenancies_D();
+            Venancies Aux_q = new Venancies();
 
             #endregion
 
@@ -60,7 +60,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 3:
-                        Aux_q.();
+                        Aux_q.Vacancy_check();
                         break;
 
                     case 4:

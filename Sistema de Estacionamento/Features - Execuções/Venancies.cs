@@ -13,7 +13,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class Venancies : IFeature_Parking
     { 
-        public bool Validation_Venancies(int id_veiculo)
+        public (bool, int) Validation_Venancies(int id_veiculo)
         {
             using (var contexto_vagas= new MyDbContext())
             {
@@ -23,14 +23,25 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
                 if (numero <= 0)
                 {
-                    return false;
+                    return (false, 0);
 
                 }
                 else
                 {
-                    return true;
+                    return (true,numero);
                 }
             }
         }
+
+        public void Vacancy_check()
+        {
+            var VagasCarros = Validation_Venancies(1);
+
+            Console.WriteLine($"\nNumero de vagas disponíveis para carros {VagasCarros}.");
+         
+            var VagasMotos= Validation_Venancies(2);
+            Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos}.");
+        }
+
     }
 }

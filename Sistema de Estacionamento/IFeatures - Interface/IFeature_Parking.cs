@@ -15,10 +15,12 @@ namespace Sistema_de_Estacionamento.IFeatures
             return TimeSpan.MaxValue;
         }
 
-        bool Validation_Venancies(int id) { return true; }
+        (bool, int) Validation_Venancies(int id) { return (true, int.MaxValue); }
 
         string CredentialRadom() { return string.Empty; }
 
         double Pagamento(TimeSpan Periodo) { return 0; }
+
+        void Vacancy_check() { }
     }
 }
