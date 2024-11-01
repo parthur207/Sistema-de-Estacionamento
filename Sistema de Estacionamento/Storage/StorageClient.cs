@@ -15,7 +15,7 @@ namespace Sistema_de_Estacionamento.Storage
 {
     internal class StorageClient : AtributesClient, IStorage_Client
     {
-        QueryCredential aux_Q = new QueryCredential(); //Consulta dos dados cliente e veiculo pela credencial
+        QueryCredentialOrPlate aux_Q = new QueryCredentialOrPlate(); //Consulta dos dados cliente e veiculo pela credencial
         ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)
    
         public string S_Name()

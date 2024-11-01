@@ -22,7 +22,8 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 {
                     
 
-                    //Lista das credenciais que o carro ainda está estacionado
+                    //Lista das credenciais que o carro ainda está
+                    //
                     var List_credencial_true = context_vagas.Tabela_Clientes
                         .Where(x=>x.Estacionado.Equals(true))
                         .Select(x=>x.Credencial_Acesso)

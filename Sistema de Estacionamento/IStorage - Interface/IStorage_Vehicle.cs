@@ -14,5 +14,6 @@ namespace Sistema_de_Estacionamento.IStorage___Interface
         string S_VehicleName();
         string S_VehicleColor();
         string S_VehiclePlate();
+        void Storage_Query() { }
     }
 }

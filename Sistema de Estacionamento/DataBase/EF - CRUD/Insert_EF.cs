@@ -16,27 +16,27 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF
 {
-    internal class Insert_ef: RandomCredential, IExecution_ef
+    internal class Insert_ef : RandomCredential, IExecution_ef
     {
         public void Insert_EF()
         {
             int id_vehicle;
 
             string nomeCliente = S_Name();
-            DateTime entrada=S_CheckIn();
+            DateTime entrada = S_CheckIn();
             string credencialAcesso = CredentialRadom();
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
-            string nomeVeiculo=S_VehicleName();
-            string cor= S_VehicleColor();
-            string placa= S_VehiclePlate();
+            string nomeVeiculo = S_VehicleName();
+            string cor = S_VehicleColor();
+            string placa = S_VehiclePlate();
 
             Venancies v = new Venancies();
-        
-            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo== Tipo_Veiculo.Caminhão)
+
+            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo == Tipo_Veiculo.Caminhão)
             {
                 id_vehicle = 1;
-                bool hávagas=v.Validation_Venancies(id_vehicle);
+                bool hávagas = v.Validation_Venancies(id_vehicle);
 
                 if (hávagas == true)
                 {
@@ -65,7 +65,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     Program.Main(ref_args);
                 }
             }
-            
+
             try
             {
                 using (var contextoIns_C = new MyDbContext())
@@ -77,7 +77,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
                         Estacionado = true,
-                        Placa=placa
+                        Placa = placa
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -87,17 +87,17 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     var novoVeiculo = new AtributesVehicle
                     {
                         TipoVeiculo = tipoVeiculo,
-                        Nome_Veiculo= nomeVeiculo,
-                        Cor= cor,
-                        Placa= placa,
-                        Credencial_Acesso= credencialAcesso,
+                        Nome_Veiculo = nomeVeiculo,
+                        Cor = cor,
+                        Placa = placa,
+                        Credencial_Acesso = credencialAcesso,
                     };
 
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
                     contextoIns_V.SaveChanges();
-                    
-                    var vaga=contextoIns_V.Estacionamento.FirstOrDefault(x=>x.Id.Equals(id_vehicle));
-                 
+
+                    var vaga = contextoIns_V.Estacionamento.FirstOrDefault(x => x.Id.Equals(id_vehicle));
+
                 }
                 Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
             }
@@ -106,16 +106,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
                 Program.Main(ref_args);
             }
-            //}
-            //else{ Console.WriteLine($"Não há vagas disponíveis para {tipoVeiculo}");  Program.Main(ref_args);
-
         }
 
-        public void Insert_CheckOut() 
+        public void Insert_CheckOut()
         {
 
             int id_vehicle;
-            FinalValue auxPg= new FinalValue();
+            FinalValue auxPg = new FinalValue();
 
             var Resultado = S_CheckOut();//Resultado.Item1= INICIO |  Resultado.Item2= FINAL |  Resultado.Item3=CREDENCIAL
             TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
@@ -129,51 +126,56 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
 
-                    if (veiculo.TipoVeiculo==Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhão)
+                    Console.WriteLine("\nCheckOut:");
+
+                    Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
+                    Console.WriteLine("============================================");
+                    Console.WriteLine("\nDeseja confirmar o checkout?\nn(1. Sim | 2. Não)");
+                    if (int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
                     {
-                        id_vehicle = 1;
-                        var parking = new CarTruck_Parking();
-                        parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                        Console.WriteLine("\nOpção inválida. É necessário digitar (1 - sim) ou (2 - Não).");
+                        Program.Main(ref_args);
+                    }
+                    else if (op != 1)
+                    {
+                        Program.Main(ref_args);
                     }
                     else
                     {
-                        id_vehicle = 2;
-                        var parking = new MotocycleParking();
-                        parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
-                    }
-
-                    Console.WriteLine("Número de vagas disponíveis atualizado.");
-
-                    if (cliente != null && veiculo != null)
-                    {
-                        cliente.Saida = Resultado.Item2;
-                        cliente.Periodo = periodo;
-                        cliente.Valor = preco;
-                        cliente.Estacionado = false;
-
+                        if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhão)
+                        {
+                            id_vehicle = 1;
+                            var parking = new CarTruck_Parking();
+                            parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                        }
+                        else
+                        {
+                            id_vehicle = 2;
+                            var parking = new MotocycleParking();
+                            parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                        }
+                        AtributesClient atributesVehicle = new AtributesClient
+                        {
+                            Saida = Resultado.Item2,
+                            Periodo= periodo,
+                            Valor=preco,
+                            Estacionado =false,
+                        };
+                        cliente.Tabela_Clientes.Add(atributesVehicle);
                         contextoIns_checkout.SaveChanges();
-                        Console.WriteLine("\nCheckOut:");
-                        Console.WriteLine("============================================");
-                        Console.WriteLine("Dados do cliente:");
-                        Console.WriteLine($"Nome do cliente: {cliente.Nome_Cliente} | Credencial: {cliente.Credencial_Acesso} | Entrada: {cliente.Entrada} | Saida: {cliente.Saida} | Periodo: {cliente.Periodo}");
-                        Console.WriteLine("\nDados do veículo:");
-                        Console.WriteLine($"Nome do veículo: {veiculo.Nome_Veiculo} | Tipo de veículo: {veiculo.TipoVeiculo} | Cor: {veiculo.Cor} | Placa: {veiculo.Placa}");
-
-                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
-                        Console.WriteLine("============================================");
+                        Console.WriteLine("\nCheckout concluído.");
+                        Console.WriteLine("Número de vagas disponíveis atualizado.");
                     }
-                    else
-                    {
-                        Console.WriteLine("\nRegistro não encontrado para a credencial especificada.");
-                    } 
-                } 
+                }
                 Program.Main(ref_args);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}");
                 Program.Main(ref_args);
-                
+
             }
         }
     }
+}
+    

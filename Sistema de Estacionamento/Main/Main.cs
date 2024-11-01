@@ -55,7 +55,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 2:
-                        aux_C.S_CheckOut();
+                       
                         Aux_ins.Insert_CheckOut();
                         break;
 
