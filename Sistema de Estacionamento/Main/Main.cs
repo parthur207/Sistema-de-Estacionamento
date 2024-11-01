@@ -1,5 +1,6 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.DataBase.EF;
+using Sistema_de_Estacionamento.DataBase.EF___CRUD;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
 
@@ -22,6 +23,8 @@ namespace Sistema_de_Estacionamento.Main
             Insert_ef Aux_ins = new Insert_ef();
 
             Venancies Aux_q = new Venancies();
+
+            DeleteRecord_EF Aux_dlt = new DeleteRecord_EF();
 
             #endregion
 
@@ -64,7 +67,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 4:
-                        //Incremento de direcionamento ao método
+                        Aux_dlt.Delete_EF();
                         break;
 
                     case 5:
@@ -78,10 +81,13 @@ namespace Sistema_de_Estacionamento.Main
                     case 7:
                         //Incremento de direcionamento ao método
                         break;
-
+                       
                     case 8:
+                        //Incremento de direcionamento ao método
+                        break;
 
-                        //encerrar todas as reservas de veículos.
+                    case 9:
+                        Console.WriteLine("\nPrograma Encerrado.");
                         return;
                 }
 
