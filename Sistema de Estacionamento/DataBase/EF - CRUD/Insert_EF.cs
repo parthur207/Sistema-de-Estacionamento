@@ -31,19 +31,39 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string cor= S_VehicleColor();
             string placa= S_VehiclePlate();
 
-
-            //if(existencia de vagas disponiveis conforme o tipo de veículo){
+            Venancies v = new Venancies();
+        
             if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo== Tipo_Veiculo.Caminhão)
             {
                 id_vehicle = 1;
-                var parking = new CarTruck_Parking();
-                parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
+                bool hávagas=v.Validation_Venancies(id_vehicle);
+
+                if (hávagas == true)
+                {
+                    var parking = new CarTruck_Parking();
+                    parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
+                }
+                else
+                {
+                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.");
+                    Program.Main(ref_args);
+                }
             }
             else
             {
                 id_vehicle = 2;
-                var parking = new MotocycleParking();
-                parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
+                bool hávagas = v.Validation_Venancies(id_vehicle);
+
+                if (hávagas == true)
+                {
+                    var parking = new CarTruck_Parking();
+                    parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
+                }
+                else
+                {
+                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.");
+                    Program.Main(ref_args);
+                }
             }
             
             try
@@ -56,7 +76,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Nome_Cliente = nomeCliente,
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
-                        Estacionado = true
+                        Estacionado = true,
+                        Placa=placa
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -156,4 +177,3 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             }
         }
     }
-}

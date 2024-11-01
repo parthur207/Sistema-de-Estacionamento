@@ -15,7 +15,7 @@ namespace Sistema_de_Estacionamento.IFeatures
             return TimeSpan.MaxValue;
         }
 
-        void Validation_Venancies(int id) { }
+        bool Validation_Venancies(int id) { return true; }
 
         string CredentialRadom() { return string.Empty; }
 

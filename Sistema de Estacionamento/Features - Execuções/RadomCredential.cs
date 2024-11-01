@@ -11,7 +11,6 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class RandomCredential : Period_CheckOut_, IFeature_Parking
     {
-
         private readonly Random Aux_random = new Random();
         public string CredentialRadom()
         {
@@ -20,11 +19,10 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
             while (random)
             {
-
                 for (int i = 0; i < 3; i++)
                 {
                     char letraAleatoria = (char)Aux_random.Next(65, 91);//ASCII (A - Z)
-                    Credencial += letraAleatoria.ToString();
+                    Credencial += letraAleatoria.ToString().ToUpper();
                 }
                
                 for (int i = 3; i < 6; i++)

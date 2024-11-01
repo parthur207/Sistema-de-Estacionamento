@@ -31,5 +31,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                 Console.WriteLine($"\nOcorreu um erro inesperado. \nErro: {ex.Message}");
             }
         }
+
+        public void QueryCredential_(string Placa)
+        {
+            try
+            {
+                using (var contextoQuery_Credential = new MyDbContext())
+                {
+                    dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+                    dadosQuery_v = contextoQuery_Credential.Tabela_Veiculos.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nOcorreu um erro inesperado. \nErro: {ex.Message}");
+            }
+        }
     }
 }

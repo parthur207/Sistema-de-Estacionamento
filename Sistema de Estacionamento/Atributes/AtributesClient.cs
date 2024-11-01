@@ -11,7 +11,6 @@ namespace Sistema_de_Estacionamento.Atributes
     [Table("Clientes")]
     internal class AtributesClient : AtributesVehicle
     {
-        public static string[] ref_args { get; private set; }
 
         [Key]
         [Column("Credencial_Acesso")]
@@ -34,5 +33,8 @@ namespace Sistema_de_Estacionamento.Atributes
 
         [Column("Estacionado")]
         public bool Estacionado { get; set; }
+
+        [ForeignKey("Placa")]
+        public string Placa { get; set; }
     }
 }

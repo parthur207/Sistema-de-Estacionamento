@@ -60,7 +60,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 3:
-                        Aux_q.ExibirNumeroVagas_Disp();
+                        Aux_q.();
                         break;
 
                     case 4:
