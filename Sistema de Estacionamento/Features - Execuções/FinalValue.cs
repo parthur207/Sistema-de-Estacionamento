@@ -14,7 +14,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
         {
             double Preco;
             // Calculo padrão do valor a ser pago: VALOR A PAGAR = (0.10 * minutos)
-            if (Periodo.TotalMinutes >= 480 && Periodo.TotalMinutes<= 720) //480 minutos, equivalente a 8 horas
+            if (Periodo.TotalMinutes >= 480 && Periodo.TotalMinutes<= 720) //PREÇO FIXO: 480 minutos, equivalente a 8 horas | 720 minutos, equivalente a 12 horas
             {
                 Preco = 50.00;
             }
