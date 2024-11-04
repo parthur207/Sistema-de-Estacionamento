@@ -12,7 +12,6 @@ namespace Sistema_de_Estacionamento.Main
         {
 
             #region Instanciações
-            StorageClient aux_C = new StorageClient();
 
             MyDbContext conexao = new MyDbContext();
 
@@ -22,11 +21,14 @@ namespace Sistema_de_Estacionamento.Main
 
             Insert_ef Aux_ins = new Insert_ef();
 
-            Venancies Aux_q = new Venancies();
+            Venancies Aux_qv= new Venancies();
 
             DeleteRecord_EF Aux_dlt = new DeleteRecord_EF();
 
             Tariffs Aux_t = new Tariffs();
+
+            QueryAll_EF Aux_Q = new QueryAll_EF();
+
 
             #endregion
 
@@ -42,11 +44,12 @@ namespace Sistema_de_Estacionamento.Main
                 Console.WriteLine("2. Registrar Saída de Veículo/Moto");
                 Console.WriteLine("3. Consultar Vagas Disponíveis");
                 Console.WriteLine("4. Deletar Registro");
-                Console.WriteLine("5. Ver Histórico de Veículos");
-                Console.WriteLine("6. Exibir Tarifas");
-                Console.WriteLine("7. Relatórios Gerenciais (Admin)");
-                Console.WriteLine("8. Configurações do Sistema (Admin)");
-                Console.WriteLine("9. Sair");
+                Console.WriteLine("5. Ver Histórico de todos os Clientes/Veículos");
+                Console.WriteLine("6. Realizar consulta específica (cliente/veículo)");
+                Console.WriteLine("7. Exibir Tarifas");
+                Console.WriteLine("8. Relatórios Gerenciais (Admin)");
+                Console.WriteLine("9. Configurações do Sistema (Admin)");
+                Console.WriteLine("11. Sair");
                 Console.WriteLine("============================================");
                 Console.WriteLine("Escolha uma opção:");
                 while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 9)
@@ -65,7 +68,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 3:
-                        Aux_q.Vacancy_check();
+                        Aux_qv.Vacancy_check();
                         break;
 
                     case 4:
@@ -73,22 +76,26 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 5:
-                        //Incremento de direcionamento ao método
+                        Aux_Q.Query_All();
                         break;
 
                     case 6:
-                        Aux_t.Exibition_tariffs();
+                        //
                         break;
 
                     case 7:
-                        //Incremento de direcionamento ao método
-                        break;
-                       
-                    case 8:
-                        //Incremento de direcionamento ao método
+                        Aux_t.Exibition_tariffs();
                         break;
 
                     case 9:
+                        //Incremento de direcionamento ao método
+                        break;
+                       
+                    case 10:
+                        //Incremento de direcionamento ao método
+                        break;
+
+                    case 11:
                         Console.WriteLine("\nPrograma Encerrado.");
                         return;
                 }

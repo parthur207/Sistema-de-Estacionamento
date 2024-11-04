@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using Sistema_de_Estacionamento.IFeatures;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
-    internal class QueryAll_EF : IFeature_Parking
+    internal class QueryAll_EF : IExecution_ef
     {
         public void Query_All()
         {
