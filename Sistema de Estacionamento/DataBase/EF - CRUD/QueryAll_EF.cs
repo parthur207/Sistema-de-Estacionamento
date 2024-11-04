@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-S
+
 namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
     internal class QueryAll_EF : IFeature_Parking
