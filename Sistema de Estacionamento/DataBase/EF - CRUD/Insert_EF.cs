@@ -99,12 +99,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     var vaga = contextoIns_V.Estacionamento.FirstOrDefault(x => x.Id.Equals(id_vehicle));
 
                 }
-                Console.WriteLine("\nCliente e veiculo inclusos com sucesso.");
+                Console.WriteLine("\nCliente e veiculo inclusos com sucesso."); 
+                Program.Main(ref_args);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"\nOcorre um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
-                Program.Main(ref_args);
+               
             }
         }
 

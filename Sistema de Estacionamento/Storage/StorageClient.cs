@@ -15,7 +15,7 @@ namespace Sistema_de_Estacionamento.Storage
 {
     internal class StorageClient : AtributesClient, IStorage_Client
     {
-        QueryCredentialOrPlate aux_Q = new QueryCredentialOrPlate(); //Consulta dos dados cliente e veiculo pela credencial
+        QueryCredentialOrPlate_EF aux_Q = new QueryCredentialOrPlate_EF(); //Consulta dos dados cliente e veiculo pela credencial
         ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)
    
         public string S_Name()
@@ -88,10 +88,11 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine("============================================");
 
                 aux_Q.QueryCredential_EF(Credencial);
-                var Atributos_cliente=aux_Q.dadosQuery_c;
-                var Atributos_Veiculo = aux_Q.dadosQuery_v;
+                var ATB = aux_Q.GetDadosQuery();
+                var Atributos_Cliente = ATB.Item1;
+                var Atributos_Veiculo = ATB.Item2;
 
-                var cliente = Atributos_cliente.Tabela_Clientes.FirstOrDefault();
+                var cliente = Atributos_Cliente.Tabela_Clientes.FirstOrDefault();
                 Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
                 Console.WriteLine($"Entrada: {cliente.Entrada}");

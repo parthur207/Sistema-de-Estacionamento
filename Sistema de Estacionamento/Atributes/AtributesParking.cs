@@ -16,15 +16,10 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Id")]
         public int Id { get; set; }
 
-        // Propriedades abstratas, mas sem mapeamento específico
+        // Propriedades abstratas
         public abstract int NumeroVagas { get; set; }
         public abstract int NumeroVagasDisp { get; set; }
 
-        // Métodos virtuais para validação e manipulação de vagas
-        public virtual bool ValidarVagaDisponivel()
-        {
-            return NumeroVagasDisp > 0;
-        }
         public abstract void AlterarNumeroVagas(int novoNumero, MyDbContext contexto);
         public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)
         {
@@ -47,7 +42,4 @@ namespace Sistema_de_Estacionamento.Atributes
         }
     }
 }
-       
-
-    }
-}
+      

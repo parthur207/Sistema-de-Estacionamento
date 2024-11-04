@@ -1,5 +1,6 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
 using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.IFeatures;
 using Sistema_de_Estacionamento.Main;
 using Sistema_de_Estacionamento.System___Config;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class Venancies : IFeature_Parking
+    internal class Venancies : ValidacaoCredendital, IFeature_Parking
     { 
         public (bool, int) Validation_Venancies(int id_veiculo)
         {
@@ -41,6 +42,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
          
             var VagasMotos= Validation_Venancies(2);
             Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos}.");
+            Program.Main(ref_args);
         }
 
     }
