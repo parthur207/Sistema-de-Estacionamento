@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
 {
@@ -16,9 +17,11 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
         void QueryCredential_EF(string Credencial) { }
         void QueryPlate_EF(string Plate) { }
 
-
+        void Query_all() { }
         void Query_parked() { }
         void Update_EF() { }
+
+        
 
 
     }

@@ -30,8 +30,8 @@ namespace Sistema_de_Estacionamento.Atributes
 
     public enum Tipo_Veiculo
     {
-        Caminhao=2,
-        Carro=2,
-        Moto=1
+        Caminhao=1,
+        Carro=1,
+        Moto=2
     }
 }

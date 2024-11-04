@@ -17,8 +17,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
     internal class QueryCredentialOrPlate_EF : ValidacaoCredendital, IExecution_ef, IStorage_Vehicle
     {
-        public  AtributesClient dadosQuery_c { get; private set; }
-        public AtributesVehicle dadosQuery_v { get; private set; }
+        protected  AtributesClient dadosQuery_c { get; private set; }
+        protected AtributesVehicle dadosQuery_v { get; private set; }
 
 
         public void Storage_Query()

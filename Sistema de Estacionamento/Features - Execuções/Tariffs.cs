@@ -1,4 +1,5 @@
-﻿using Sistema_de_Estacionamento.Main;
+﻿using Sistema_de_Estacionamento.IFeatures;
+using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class Tariffs : FinalValue
+    internal class Tariffs : FinalValue , IFeature_Parking
     {
         public void Exibition_tariffs() 
         {
@@ -19,7 +20,6 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             Console.WriteLine("- Exemplo 2: Para um período de 10 horas (600 minutos), o valor cobrado será fixo de R$ 50,00.");
             Console.WriteLine("- Exemplo 3: Com 13 horas de uso (780 minutos), o valor será 780 * 0,10 = R$ 78,00.");
             Program.Main(ref_args);
-        
         }
     }
 

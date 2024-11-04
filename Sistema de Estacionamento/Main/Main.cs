@@ -26,6 +26,8 @@ namespace Sistema_de_Estacionamento.Main
 
             DeleteRecord_EF Aux_dlt = new DeleteRecord_EF();
 
+            Tariffs Aux_t = new Tariffs();
+
             #endregion
 
             int op = 1;
@@ -75,7 +77,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 6:
-                        //Incremento de direcionamento ao método
+                        Aux_t.Exibition_tariffs();
                         break;
 
                     case 7:

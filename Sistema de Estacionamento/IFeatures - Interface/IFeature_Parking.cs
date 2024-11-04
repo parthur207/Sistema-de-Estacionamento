@@ -22,5 +22,7 @@ namespace Sistema_de_Estacionamento.IFeatures
         double Pagamento(TimeSpan Periodo) { return 0; }
 
         void Vacancy_check() { }
+
+        void Exibition_tariffs() { }
     }
 }
