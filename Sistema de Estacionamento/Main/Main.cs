@@ -11,7 +11,7 @@ namespace Sistema_de_Estacionamento.Main
         public static void Main(string[] args)
         {
 
-            #region Instancições
+            #region Instanciações
             StorageClient aux_C = new StorageClient();
 
             MyDbContext conexao = new MyDbContext();

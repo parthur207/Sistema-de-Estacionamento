@@ -1,4 +1,5 @@
-﻿using Sistema_de_Estacionamento.IFeatures;
+﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+using Sistema_de_Estacionamento.IFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class FinalValue : IFeature_Parking
+    internal class FinalValue : MyDbContext, IFeature_Parking
     {
         protected double Preco_Minuto { get; set; } = 0.10;
         public double Pagamento(TimeSpan Periodo)
