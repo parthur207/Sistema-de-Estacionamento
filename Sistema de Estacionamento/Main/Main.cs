@@ -87,10 +87,14 @@ namespace Sistema_de_Estacionamento.Main
                         Aux_t.Exibition_tariffs();
                         break;
 
+                    case 8:
+                        //Incremento de direcionamento ao método
+                        break;
+
                     case 9:
                         //Incremento de direcionamento ao método
                         break;
-                       
+
                     case 10:
                         //Incremento de direcionamento ao método
                         break;

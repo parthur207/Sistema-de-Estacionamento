@@ -24,5 +24,8 @@ namespace Sistema_de_Estacionamento.IFeatures
         void Vacancy_check() { }
 
         void Exibition_tariffs() { }
+
+        void NumberVehicles() { }
+        void AveragePeriod() { }
     }
 }
