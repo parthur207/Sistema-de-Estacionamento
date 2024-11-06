@@ -29,7 +29,7 @@ namespace Sistema_de_Estacionamento.Main
 
             QueryAll_EF Aux_Q = new QueryAll_EF();
 
-
+            Query_specific_EF Aux_QE = new Query_specific_EF();
             #endregion
 
             int op = 1;
@@ -80,7 +80,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 6:
-                        //
+                        Aux_QE.Query_specific();
                         break;
 
                     case 7:
