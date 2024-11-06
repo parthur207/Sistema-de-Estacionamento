@@ -21,7 +21,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             Console.WriteLine("2. Realizar Consulta por (Nome do veículo)");
             Console.WriteLine("3. Realiza consulta por (Tipo de veículo)");
             Console.WriteLine("4. Voltar ao menu principal");
-            while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4){
+            while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4)
+            {
                 Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
             } 
                 switch (op)
