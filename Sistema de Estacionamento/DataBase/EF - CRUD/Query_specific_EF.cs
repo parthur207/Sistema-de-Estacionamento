@@ -24,27 +24,27 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4)
             {
                 Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
-            } 
-                switch (op)
-                {
-                    case 1:
-                        categoria = 1;
-                        Console.WriteLine("\nDigite a data específica da consulta:");
-                        atributo = Console.ReadLine().Trim();
-                        string formato = "dd/MM/yyyy";
-                        
+            }
+            switch (op)
+            {
+                case 1:
+                    categoria = 1;
+                    Console.WriteLine("\nDigite a data específica da consulta:");
+                    atributo = Console.ReadLine().Trim();
+                    string formato = "dd/MM/yyyy";
 
-                        if (!DateOnly.TryParseExact(atributo, formato, null, System.Globalization.DateTimeStyles.None, out Data))
-                        {
-                            Console.WriteLine("\nDigite uma data no formato válido (DD/MM/YYYY):");
-                        }
-                        else
-                        {
-                            Query_exe(categoria, atributo);
-                        }
-                        break;
+                    if (!DateOnly.TryParseExact(atributo, formato, null, System.Globalization.DateTimeStyles.None, out Data))
+                    {
+                        Console.WriteLine("\nA data informada não está no formato correto (DD/MM/YYYY).");
+                    }
+                    else
+                    {
+                        Query_exe(categoria, atributo);
+                    }
+                    break;
+
                     case 2:
-
+                    categoria=2;
                         break;
                     case 3:
                         break;
@@ -53,13 +53,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         break;
                 }
             }
-        }
+        
 
         private void Query_exe(int categoria, string atributo)
         {
-            if (categoria == "data")
+            if (categoria ==1)
             {
                 
+            }
+            else if (categoria == 2)
+            {
+
+            }
+            else
+            {
+
             }
         }
     }
