@@ -23,7 +23,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             Console.WriteLine("4. Voltar ao menu principal");
             while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4){
                 Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
-            }
+            } 
                 switch (op)
                 {
                     case 1:
@@ -54,9 +54,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             }
         }
 
-        private void Query_exe(int categoria, int atributo)
+        private void Query_exe(int categoria, string atributo)
         {
-            if (atributo == "data")
+            if (categoria == "data")
             {
                 
             }
