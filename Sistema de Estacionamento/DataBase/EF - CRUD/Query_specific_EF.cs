@@ -13,7 +13,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
     {
         public void Query_specific()
         {
-            int categoria;
+            int categoria, op;
             string atributo=" ";
             DateOnly Data = DateOnly.FromDateTime(DateTime.Now);// Introduzido com um valor por não poder ser nulo.
 
@@ -21,19 +21,17 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             Console.WriteLine("2. Realizar Consulta por (Nome do veículo)");
             Console.WriteLine("3. Realiza consulta por (Tipo de veículo)");
             Console.WriteLine("4. Voltar ao menu principal");
-            while (!int.TryParse(Console.ReadLine(),out int op) || op<1 || op>4){
+            while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4){
                 Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
             }
-            else
-            {
                 switch (op)
                 {
                     case 1:
                         categoria = 1;
                         Console.WriteLine("\nDigite a data específica da consulta:");
-                        string atributo = Console.ReadLine().Trim();
+                        atributo = Console.ReadLine().Trim();
                         string formato = "dd/MM/yyyy";
-                        DateTimn
+                        
 
                         if (!DateOnly.TryParseExact(atributo, formato, null, System.Globalization.DateTimeStyles.None, out Data))
                         {
