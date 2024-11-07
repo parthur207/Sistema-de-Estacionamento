@@ -59,7 +59,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 var qnt_Periodos = context_Average.Tabela_Clientes.Count();
                 var totalPeriodo = context_Average.Tabela_Clientes
                                 .Select(x => x.Periodo)
-                                .Aggregate(TimeSpan.Zero, (soma, periodo) => soma + periodo);
+                                .Aggregate(TimeSpan.Zero, (soma, periodo) => soma + periodo);//Soma de todos os períodos da tabela
 
                 var PeriodoEmMinutos= totalPeriodo.TotalMinutes;
                 var PeriodoEmHoras=totalPeriodo.TotalHours;
@@ -67,27 +67,41 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 var MediaMinutos = PeriodoEmMinutos / qnt_Periodos;
                 var MediaHoras= PeriodoEmHoras / qnt_Periodos;
 
-                if(qnt_Periodos==null)
-                else { 
-                Console.WriteLine("============================================");
-                Console.WriteLine("Relatório do período médio total de veículos estacionados:");
-                Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
-                Console.WriteLine($"Horas Totais: {PeriodoEmHoras}");
+                if (qnt_Periodos == null)
+                {
+                    Console.WriteLine("\nSem registros no momento.");
+                }
+                else 
+                { 
+                    Console.WriteLine("============================================");
+                    Console.WriteLine("Relatório do período médio total de veículos estacionados:");
+                    Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
+                    Console.WriteLine($"Horas Totais: {PeriodoEmHoras}");
 
-                Console.WriteLine($"Media de minutos: {MediaMinutos}");
-                Console.WriteLine($"Media de horas: {MediaHoras}");
-                Console.WriteLine("============================================");
-                        }
+                    Console.WriteLine($"Media de minutos: {MediaMinutos}");
+                    Console.WriteLine($"Media de horas: {MediaHoras}");
+                    Console.WriteLine("============================================");
+                }
             }
         }
 
-        public void income()
+        public void Income()
         {
-            using (var Context_TotalValue=new MyDbContext())
+            string[] meses = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+            using (var Context_TotalValue = new MyDbContext())
             {
                 var receita = Context_TotalValue.Tabela_Clientes.Sum(x => x.Valor);
+                Console.WriteLine("============================================");
                 Console.WriteLine($"\nReceita total acumulada: R$ {(receita)}");
+                
+                for (int mes = 1; mes <= 12; mes++)
+                {
+                    using (var con = new MyDbContext()) {
+                        var ValorMes = con.Tabela_Clientes.Sum(x => x.Valor).Where(x=>x.Entrada.Month.equals(mes));
 
+                Console.WriteLine($"{meses[mes]}: {ValorMes}");
+            }
+                }
                 Console.WriteLine("\nReceitas mensais: ");
             }
         }

@@ -5,6 +5,7 @@ using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             DateOnly Data = DateOnly.FromDateTime(DateTime.Now);// Introduzido com um valor por não poder ser nulo.
             do {
                 Console.WriteLine("\n1. Realizar consulta por (data)");
-                Console.WriteLine("2. Realizar Consulta por (Nome do veículo)");
-                Console.WriteLine("3. Realiza consulta por (Tipo de veículo)");
-                Console.WriteLine("4. Voltar ao menu principal");
+                Console.WriteLine("2. Realizar consulta por (mês)");
+                Console.WriteLine("3. Realizar Consulta por (Nome do veículo)");
+                Console.WriteLine("4. Realiza consulta por (Tipo de veículo)");
+                Console.WriteLine("5. Voltar ao menu principal");
             }
             while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 4)
             {
@@ -48,6 +50,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     break;
 
                     case 2:
+                        Console.WriteLine("\nDigite o digito correspondente ao mês (Exeplo: Janeiro = 1 | Fevereiro = 2):");
+                        if(!int.TryParse(Console.ReadLine(), out int mes) || op<1 || op>12)
+                        break;
+
+                    case 3:
 
                         categoria=2;
                         Console.WriteLine("\nDigite o nome do veículo:");
@@ -64,7 +71,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                         break;
 
-                    case 3:
+                    case 4:
 
                         categoria = 3;
                         Console.WriteLine("\nInforme o número correspondente ao tipo da consulta:");
@@ -84,7 +91,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                        
                         break;
 
-                    case 4:
+                    case 5:
                         Program.Main(ref_args);
                         break;
                 }
