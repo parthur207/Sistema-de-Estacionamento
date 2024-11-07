@@ -16,20 +16,29 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
     {
         public void Query_specific()
         {
+            bool val = true;
             int categoria, op;
-            string atributo=" ";
+            string atributo = " ";
             DateOnly Data = DateOnly.FromDateTime(DateTime.Now);// Introduzido com um valor por não poder ser nulo.
-            do {
+            do
+            {
                 Console.WriteLine("\n1. Realizar consulta por (data)");
                 Console.WriteLine("2. Realizar consulta por (mês)");
                 Console.WriteLine("3. Realizar Consulta por (Nome do veículo)");
                 Console.WriteLine("4. Realiza consulta por (Tipo de veículo)");
                 Console.WriteLine("5. Voltar ao menu principal");
+
+                if (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 5)
+                {
+                    Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 5.");
+                }
+                else
+                {
+                    val = false;
+                }
             }
-            while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 4)
-            {
-                Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
-            }
+            while (val);
+            
             switch (op)
             {
                 case 1:
@@ -51,7 +60,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     case 2:
                         Console.WriteLine("\nDigite o digito correspondente ao mês (Exeplo: Janeiro = 1 | Fevereiro = 2):");
-                        if(!int.TryParse(Console.ReadLine(), out int mes) || op<1 || op>12)
+                        if(!int.TryParse(Console.ReadLine(), out int mes) || op<1 || op > 12) 
+                        {
+                        Console.WriteLine("");
+                        }
                         break;
 
                     case 3:
