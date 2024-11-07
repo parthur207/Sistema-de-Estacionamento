@@ -30,6 +30,8 @@ namespace Sistema_de_Estacionamento.Main
             QueryAll_EF Aux_Q = new QueryAll_EF();
 
             Query_specific_EF Aux_QE = new Query_specific_EF();
+
+            Reports Aux_R=new Reports();
             #endregion
 
             int op = 1;
@@ -49,7 +51,7 @@ namespace Sistema_de_Estacionamento.Main
                 Console.WriteLine("7. Exibir Tarifas");
                 Console.WriteLine("8. Relatórios Gerenciais (Admin)");
                 Console.WriteLine("9. Configurações do Sistema (Admin)");
-                Console.WriteLine("11. Sair");
+                Console.WriteLine("10. Sair");
                 Console.WriteLine("============================================");
                 Console.WriteLine("Escolha uma opção:");
                 while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 9)
@@ -88,7 +90,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 8:
-                        //Incremento de direcionamento ao método
+                        Aux_R.S_Reports();
                         break;
 
                     case 9:
@@ -96,10 +98,6 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 10:
-                        //Incremento de direcionamento ao método
-                        break;
-
-                    case 11:
                         Console.WriteLine("\nPrograma Encerrado.");
                         return;
                 }

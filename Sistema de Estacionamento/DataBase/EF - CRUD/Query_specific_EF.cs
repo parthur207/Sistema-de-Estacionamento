@@ -18,12 +18,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             int categoria, op;
             string atributo=" ";
             DateOnly Data = DateOnly.FromDateTime(DateTime.Now);// Introduzido com um valor por não poder ser nulo.
-
-            Console.WriteLine("\n1. Realizar consulta por (data)");
-            Console.WriteLine("2. Realizar Consulta por (Nome do veículo)");
-            Console.WriteLine("3. Realiza consulta por (Tipo de veículo)");
-            Console.WriteLine("4. Voltar ao menu principal");
-            while (!int.TryParse(Console.ReadLine(),out op) || op<1 || op>4)
+            do {
+                Console.WriteLine("\n1. Realizar consulta por (data)");
+                Console.WriteLine("2. Realizar Consulta por (Nome do veículo)");
+                Console.WriteLine("3. Realiza consulta por (Tipo de veículo)");
+                Console.WriteLine("4. Voltar ao menu principal");
+            }
+            while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 4)
             {
                 Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 4.");
             }
@@ -88,16 +89,17 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         break;
                 }
             }
-        
-
+       
         private void Query_exe(int categoria, string atributo)
-        {
-            if (categoria == 1)
+        {   
+            if (categoria == 1)//Por data
             {
                 using (var context_QueryDT = new MyDbContext())
                 {
-                    var listaCredenciais = context_QueryDT.Tabela_Clientes.Where(x => x.Entrada.Equals(atributo))
-                        .Select(x => x.Credencial_Acesso).ToList();
+                    var listaCredenciais = context_QueryDT.Tabela_Clientes
+                    .Where(x => x.Entrada.Date == DateTime.ParseExact(atributo, "dd/MM/yyyy", null))
+                    .Select(x => x.Credencial_Acesso)
+                    .ToList();
 
                     foreach (var credencial in listaCredenciais)
                     {
@@ -126,11 +128,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     Program.Main(ref_args);
                 }
             }
-            else if (categoria == 2)
+            else if (categoria == 2)//Por nome do veículo
             {
                 using (var context_QueryV = new MyDbContext())
                 {
-                    var listaCredenciais = context_QueryV.Tabela_Veiculos.Where(x => x.Nome_Veiculo.Equals(atributo))
+                    var listaCredenciais = context_QueryV.Tabela_Veiculos.Where(x => x.Nome_Veiculo.Equals(atributo, StringComparison.OrdinalIgnoreCase))
                         .Select(x => x.Credencial_Acesso).ToList();
                     Console.WriteLine($"\nRegistros vinculados ao veículo ({atributo}):");
 
@@ -160,7 +162,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     Program.Main(ref_args);
                 }
             }
-            else
+            else//Por tipo do veículo
             {
                 string tipo_veículo;
                 if (atributo == "1")

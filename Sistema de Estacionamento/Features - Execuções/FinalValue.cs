@@ -10,7 +10,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class FinalValue : MyDbContext, IFeature_Parking
     {
-        protected double Preco_Minuto { get; set; } = 0.10;
+        protected double Preco_Minuto { get; private set; } = 0.10;
         public double Pagamento(TimeSpan Periodo)
         {
             double Preco;

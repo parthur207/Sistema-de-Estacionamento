@@ -29,6 +29,6 @@ namespace Sistema_de_Estacionamento.IFeatures
 
         void AveragePeriod() { }
 
-        void TotalValue() { }
+        void Income() { }
     }
 }

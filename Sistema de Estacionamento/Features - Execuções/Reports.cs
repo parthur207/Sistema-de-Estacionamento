@@ -10,6 +10,23 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class Reports : Tariffs, IFeature_Parking
     {
+
+        public void S_Reports() 
+        {
+            do {
+                Console.WriteLine("============================================");
+                Console.WriteLine("Relatórios (Digite o número correspondente):");
+                Console.WriteLine("\n1. Número total/mês de clientes/veículos atendidos.");
+                Console.WriteLine("2. Tempo total/médio de permanência");
+                Console.WriteLine("3. Receita total/mês gerada");
+                Console.WriteLine("4. Voltar ao menu principal");
+                Console.WriteLine("============================================");
+            }
+            while (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 4)
+            {
+                Console.WriteLine("\nOpção inválida. É necessário escolher um número de 1 a 4.");
+            }    
+        }
         public void NumberVehicles()
         {
             int QntCarros, QntCaminhoes, QntMotos, qntTotal;
@@ -27,6 +44,11 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine($"Motos: {QntMotos}");
                 Console.WriteLine($"Total de veículos: {qntTotal}");
                 Console.WriteLine("============================================");
+
+                var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Clientes.Where(x => x.TipoVeiculo.Equals("Carro"))
+                    .Select(x => x.Credencial_Acesso).ToList();
+
+
             }
         }
 
@@ -45,6 +67,8 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 var MediaMinutos = PeriodoEmMinutos / qnt_Periodos;
                 var MediaHoras= PeriodoEmHoras / qnt_Periodos;
 
+                if(qnt_Periodos==null)
+                else { 
                 Console.WriteLine("============================================");
                 Console.WriteLine("Relatório do período médio total de veículos estacionados:");
                 Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
@@ -53,14 +77,18 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine($"Media de minutos: {MediaMinutos}");
                 Console.WriteLine($"Media de horas: {MediaHoras}");
                 Console.WriteLine("============================================");
+                        }
             }
         }
 
-        public void ReceitaTotal()
+        public void income()
         {
-            using (var )
+            using (var Context_TotalValue=new MyDbContext())
             {
+                var receita = Context_TotalValue.Tabela_Clientes.Sum(x => x.Valor);
+                Console.WriteLine($"\nReceita total acumulada: R$ {(receita)}");
 
+                Console.WriteLine("\nReceitas mensais: ");
             }
         }
 
