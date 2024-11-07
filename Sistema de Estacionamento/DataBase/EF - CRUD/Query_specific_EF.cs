@@ -58,13 +58,18 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     break;
 
-                    case 2:
-                        Console.WriteLine("\nDigite o digito correspondente ao mês (Exeplo: Janeiro = 1 | Fevereiro = 2):");
-                        if(!int.TryParse(Console.ReadLine(), out int mes) || op<1 || op > 12) 
-                        {
-                        Console.WriteLine("");
-                        }
-                        break;
+                case 2:
+                    categoria = 2;
+                    Console.WriteLine("\nDigite o digito correspondente ao mês (Exeplo: Janeiro = 1 | Fevereiro = 2):");
+                    if(!int.TryParse(Console.ReadLine(), out int mes) || op<1 || op > 12) 
+                    {
+                        Console.WriteLine("\nOpção inválida. É necessário informar um número de 1 a 12 correspondente aos meses.");
+                    }
+                    else
+                    {
+
+                    }
+                break;
 
                     case 3:
 
