@@ -26,6 +26,9 @@ namespace Sistema_de_Estacionamento.IFeatures
         void Exibition_tariffs() { }
 
         void NumberVehicles() { }
+
         void AveragePeriod() { }
+
+        void TotalValue() { }
     }
 }
