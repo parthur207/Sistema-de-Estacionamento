@@ -1,5 +1,6 @@
 ﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.IFeatures;
+using Sistema_de_Estacionamento.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace Sistema_de_Estacionamento.Features___Execuções
     internal class Reports : Tariffs, IFeature_Parking
     {
 
-        public void S_Reports() 
+        public void S_Reports()
         {
-            do {
+            bool val = true;
+            do
+            {
                 Console.WriteLine("============================================");
                 Console.WriteLine("Relatórios (Digite o número correspondente):");
                 Console.WriteLine("\n1. Número total/mês de clientes/veículos atendidos.");
@@ -21,12 +24,35 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine("3. Receita total/mês gerada");
                 Console.WriteLine("4. Voltar ao menu principal");
                 Console.WriteLine("============================================");
+                if (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 4)
+                {
+                    Console.WriteLine("\nOpção inválida. É necessário escolher um número de 1 a 4.");
+                }
+                else
+                {
+                    val = false;
+                }
+
+                switch (op)
+                {
+                    case 1:
+                        NumberVehicles();
+                        break;
+                    case 2:
+                        AveragePeriod();
+                        break;
+                    case 3:
+                        Income();
+                        break;
+                    case 4:
+                        Program.Main(ref_args);
+                        break;
+                 
+                }
             }
-            while (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 4)
-            {
-                Console.WriteLine("\nOpção inválida. É necessário escolher um número de 1 a 4.");
-            }    
+            while (val);
         }
+
         public void NumberVehicles()
         {
             int QntCarros, QntCaminhoes, QntMotos, qntTotal;
@@ -47,8 +73,6 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
                 var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Clientes.Where(x => x.TipoVeiculo.Equals("Carro"))
                     .Select(x => x.Credencial_Acesso).ToList();
-
-
             }
         }
 
@@ -93,16 +117,18 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 var receita = Context_TotalValue.Tabela_Clientes.Sum(x => x.Valor);
                 Console.WriteLine("============================================");
                 Console.WriteLine($"\nReceita total acumulada: R$ {(receita)}");
-                
+
+                Console.WriteLine("\nReceitas mensais: ");
+
                 for (int mes = 1; mes <= 12; mes++)
                 {
-                    using (var con = new MyDbContext()) {
-                        var ValorMes = con.Tabela_Clientes.Sum(x => x.Valor).Where(x=>x.Entrada.Month.equals(mes));
+                    using (var Context_ValueMonth = new MyDbContext()) 
+                    {
+                        var ValorMes = Context_ValueMonth.Tabela_Clientes.Where(x => x.Entrada.Month.Equals(mes)).Sum(x=>x.Valor);
 
-                Console.WriteLine($"{meses[mes]}: {ValorMes}");
-            }
-                }
-                Console.WriteLine("\nReceitas mensais: ");
+                        Console.WriteLine($"{meses[mes-1]}: {ValorMes}");
+                    }
+                } 
             }
         }
 
