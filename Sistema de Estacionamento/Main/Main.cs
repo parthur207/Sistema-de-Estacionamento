@@ -3,6 +3,7 @@ using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.DataBase.EF___CRUD;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
+using Sistema_de_Estacionamento.System___Config;
 
 namespace Sistema_de_Estacionamento.Main
 {
@@ -32,6 +33,9 @@ namespace Sistema_de_Estacionamento.Main
             Query_specific_EF Aux_QE = new Query_specific_EF();
 
             Reports Aux_R=new Reports();
+
+            Storage_Config Aux_s=new Storage_Config();
+
             #endregion
 
             int op = 1;
@@ -65,7 +69,6 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 2:
-                       
                         Aux_ins.Insert_CheckOut();
                         break;
 
@@ -94,7 +97,7 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 9:
-                        //Incremento de direcionamento ao método
+                        Aux_s.Settings_Menu();
                         break;
 
                     case 10:

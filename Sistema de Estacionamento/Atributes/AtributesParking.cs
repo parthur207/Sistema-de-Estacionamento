@@ -26,7 +26,8 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column ("Taxa_Minuto")]
         public double Taxa_Minuto { get; set; }
 
-        public abstract void AlterarNumeroVagas(int novoNumero);
+        public abstract void AlterarNumeroVagas(int novoNumero);//Admin
+
         public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)
         {
             using (var contexto = new MyDbContext())
@@ -43,6 +44,7 @@ namespace Sistema_de_Estacionamento.Atributes
                       
                     }
                         contexto.SaveChanges();
+                        Program.Main(ref_args);
                 }
             }
         }

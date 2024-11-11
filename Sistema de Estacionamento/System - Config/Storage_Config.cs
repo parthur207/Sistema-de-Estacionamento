@@ -13,7 +13,7 @@ namespace Sistema_de_Estacionamento.System___Config
     internal sealed class Storage_Config : FinalValue
     {
 
-        private void Settings_Menu()
+        public void Settings_Menu()
         {
 
             MotocycleParking Aux_MT= new MotocycleParking();
