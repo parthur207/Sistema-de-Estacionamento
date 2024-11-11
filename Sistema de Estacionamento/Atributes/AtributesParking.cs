@@ -16,9 +16,15 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Id")]
         public int Id { get; set; }
 
-        // Propriedades abstratas
+        // Propriedades abstratas com associação as colunas do db
+        [Column("Numero_Vagas")]
         public abstract int NumeroVagas { get; set; }
+
+        [Column("Vagas_Disponiveis")]
         public abstract int NumeroVagasDisp { get; set; }
+
+        [Column ("Preco_Minuto")]
+        public double Preco_Minuto { get; set; }
 
         public abstract void AlterarNumeroVagas(int novoNumero, MyDbContext contexto);
         public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)

@@ -96,8 +96,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
                     contextoIns_V.SaveChanges();
 
-                    var vaga = contextoIns_V.Estacionamento.FirstOrDefault(x => x.Id.Equals(id_vehicle));
-
                 }
                 Console.WriteLine("\nCliente e veiculo inclusos com sucesso."); 
                 Program.Main(ref_args);

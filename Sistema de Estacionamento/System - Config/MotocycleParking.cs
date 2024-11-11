@@ -12,15 +12,15 @@ namespace Sistema_de_Estacionamento.System___Config
 {
     internal class MotocycleParking : AtributesParking
     {
-        [Column("Numero_Vagas_M")]
+       
         private int _numeroVagasMotos;
-        [Column("Vagas_Disponíveis_M")]
+        
         private int _numeroVagasDisponiveisMotos;
 
         public override int NumeroVagas
         { 
             get => _numeroVagasMotos;
-            set => _numeroVagasDisponiveisMotos = value;
+            set => _numeroVagasMotos = value;
         }
         public override int NumeroVagasDisp
         {

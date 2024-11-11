@@ -13,9 +13,8 @@ namespace Sistema_de_Estacionamento.System___Config
 {
     internal class CarTruck_Parking : AtributesParking
     {
-        [Column("Numero_Vagas_C")]
         private int _numeroVagasCarros;
-        [Column("Vagas_Disponíveis_C")]
+        
         private int _numeroVagasDisponiveisCarros;
 
         public override int NumeroVagas
