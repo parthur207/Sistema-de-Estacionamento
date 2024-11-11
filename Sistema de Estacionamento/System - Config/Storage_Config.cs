@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Main;
 using System;
@@ -9,11 +10,15 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class Storage_Config : FinalValue
+    internal sealed class Storage_Config : FinalValue
     {
 
         private void Settings_Menu()
         {
+
+            MotocycleParking Aux_MT= new MotocycleParking();
+            CarTruck_Parking Aux_CC= new CarTruck_Parking();
+
             bool val = true;
             int op;
             do
@@ -40,6 +45,38 @@ namespace Sistema_de_Estacionamento.System___Config
             switch (op)
             {
                 case 1:
+
+                   
+
+                    Console.WriteLine("\nSelecione o número correspondente:");
+                    Console.WriteLine("1. Carros/Caminhões.");
+                    Console.WriteLine("2. Motos");
+                    if(!int.TryParse(Console.ReadLine(), out int id) || id < 1 || id > 2)
+                    {
+                        Console.WriteLine("\nOpção inválida. É necessário informar 1, ou 2.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nInforme a nova capacidade de vagas para o estacionamento:");
+                        if (!int.TryParse(Console.ReadLine(), out int NovaCapacidade) || id<0)
+                        {
+                            Console.WriteLine("\nValor inválido. Repita o processo novamente.");
+                        }
+                        else
+                        {
+                            if (id==1) 
+                            { 
+                                MyDbContext _context;
+                                Aux_CC.AlterarNumeroVagas(NovaCapacidade, _contexto);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+
+
                     break;
                 case 2:
                     break;

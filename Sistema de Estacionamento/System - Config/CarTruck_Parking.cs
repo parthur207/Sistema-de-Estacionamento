@@ -31,7 +31,7 @@ namespace Sistema_de_Estacionamento.System___Config
 
         public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)//Admin
         {
-            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == this.Id);
+            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id ==1);
             if (estacionamento != null)
             {
                 estacionamento.NumeroVagas = novoNumero;

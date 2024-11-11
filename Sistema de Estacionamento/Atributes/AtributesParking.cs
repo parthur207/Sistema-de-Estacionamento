@@ -23,8 +23,8 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Vagas_Disponiveis")]
         public abstract int NumeroVagasDisp { get; set; }
 
-        [Column ("Preco_Minuto")]
-        public double Preco_Minuto { get; set; }
+        [Column ("Taxa_Minuto")]
+        public double Taxa_Minuto { get; set; }
 
         public abstract void AlterarNumeroVagas(int novoNumero, MyDbContext contexto);
         public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)
