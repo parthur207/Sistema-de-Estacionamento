@@ -18,9 +18,11 @@ namespace Sistema_de_Estacionamento.System___Config
 
             MotocycleParking Aux_MT= new MotocycleParking();
             CarTruck_Parking Aux_CC= new CarTruck_Parking();
+            FixedRate Aux_set= new FixedRate();
 
             bool val = true;
             int op;
+
             do
             {
                 Console.WriteLine("============================================");
@@ -46,8 +48,6 @@ namespace Sistema_de_Estacionamento.System___Config
             {
                 case 1:
 
-                   
-
                     Console.WriteLine("\nSelecione o número correspondente:");
                     Console.WriteLine("1. Carros/Caminhões.");
                     Console.WriteLine("2. Motos");
@@ -66,19 +66,27 @@ namespace Sistema_de_Estacionamento.System___Config
                         {
                             if (id==1) 
                             { 
-                                MyDbContext _context;
-                                Aux_CC.AlterarNumeroVagas(NovaCapacidade, _contexto);
+                                Aux_CC.AlterarNumeroVagas(NovaCapacidade);
                             }
-                            else
+                            else if(id==2)
                             {
-
+                                Aux_MT.AlterarNumeroVagas(NovaCapacidade);
                             }
                         }
                     }
-
-
                     break;
+
                 case 2:
+
+                    Console.WriteLine("\nInforme o novo valor da tarifa (NovoValor X minutos): ");
+                    if(!double.TryParse(Console.ReadLine(), out double novaTarifa) || novaTarifa < 0)
+                    {
+                        Console.WriteLine("\nValor inválido. É necessário digitar um número, sendo maior que 0.");
+                    }
+                    else
+                    {
+                        Aux_set.SetTaxa(novaTarifa);
+                    }
                     break;
                 case 3:
                     Program.Main(ref_args);

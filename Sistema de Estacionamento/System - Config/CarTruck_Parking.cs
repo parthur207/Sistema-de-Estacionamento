@@ -29,13 +29,17 @@ namespace Sistema_de_Estacionamento.System___Config
             set => _numeroVagasDisponiveisCarros = value;
         }
 
-        public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)//Admin
+        public override void AlterarNumeroVagas(int novoNumero)//Admin
         {
-            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id ==1);
-            if (estacionamento != null)
+            using (var contexto = new MyDbContext())
             {
-                estacionamento.NumeroVagas = novoNumero;
-                contexto.SaveChanges();
+                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == 1);
+                if (estacionamento != null)
+                {
+                    estacionamento.NumeroVagas = novoNumero;
+                    contexto.SaveChanges();
+                    Console.WriteLine($"\nNumero de vagas para Carros/Caminhões atualizado com sucesso.\nNova capacidadde: {novoNumero}");
+                }
             }
         }
     }

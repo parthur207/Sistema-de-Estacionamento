@@ -29,14 +29,17 @@ namespace Sistema_de_Estacionamento.System___Config
         }
 
         public override void AlterarNumeroVagasDisponiveis(int N_vagas, int id) { }//Atribuição de valores incrementando ou decrementando na varaivel de vagas disponíveis
-        public override void AlterarNumeroVagas(int novoNumero, MyDbContext contexto)
+        public override void AlterarNumeroVagas(int novoNumero)
         {
-            var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == 2);
+            using (var contexto=new MyDbContext()) {
+                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == 2);
 
-            if (estacionamento != null)
-            {
-                estacionamento.NumeroVagas = novoNumero;
-                contexto.SaveChanges();
+                if (estacionamento != null)
+                {
+                    estacionamento.NumeroVagas = novoNumero;
+                    contexto.SaveChanges();
+                    Console.WriteLine($"\nNumero de vagas para Motos atualizado com sucesso.\nNova capacidadde: {novoNumero}");
+                }
             }
         }
     }

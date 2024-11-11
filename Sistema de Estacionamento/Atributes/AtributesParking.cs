@@ -26,7 +26,7 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column ("Taxa_Minuto")]
         public double Taxa_Minuto { get; set; }
 
-        public abstract void AlterarNumeroVagas(int novoNumero, MyDbContext contexto);
+        public abstract void AlterarNumeroVagas(int novoNumero);
         public virtual void AlterarNumeroVagasDisponiveis(int N_vagas, int id)
         {
             using (var contexto = new MyDbContext())
