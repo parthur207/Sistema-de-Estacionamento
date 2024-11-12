@@ -92,18 +92,18 @@ namespace Sistema_de_Estacionamento.Storage
                 var Atributos_Cliente = ATB.Item1;
                 var Atributos_Veiculo = ATB.Item2;
 
-                var cliente = Atributos_Cliente.Tabela_Clientes.FirstOrDefault();
-                Console.WriteLine($"\nNome do cliente: {cliente.Nome_Cliente}");
-                Console.WriteLine($"Credencial de acesso: {cliente.Credencial_Acesso}");
-                Console.WriteLine($"Entrada: {cliente.Entrada}");
+                
+                Console.WriteLine($"\nNome do cliente: {Atributos_Cliente.Nome_Cliente}");
+                Console.WriteLine($"Credencial de acesso: {Atributos_Cliente.Credencial_Acesso}");
+                Console.WriteLine($"Entrada: {Atributos_Cliente.Entrada}");
 
-                _Entrada = cliente.Entrada;
+                _Entrada = Atributos_Cliente.Entrada;
 
-                var cliente_v=Atributos_Veiculo.Tabela_Veiculos.FirstOrDefault();
-                Console.WriteLine($"\nNome do veículo: {cliente_v.Nome_Veiculo}");
-                Console.WriteLine($"Tipo de veiculo: {cliente_v.TipoVeiculo}");
-                Console.WriteLine($"Placa: {cliente_v.Placa}");
-                Console.WriteLine($"Cor: {cliente_v.Cor}");
+                
+                Console.WriteLine($"\nNome do veículo: {Atributos_Veiculo.Nome_Veiculo}");
+                Console.WriteLine($"Tipo de veiculo: {Atributos_Veiculo.TipoVeiculo}");
+                Console.WriteLine($"Placa: {Atributos_Veiculo.Placa}");
+                Console.WriteLine($"Cor: {Atributos_Veiculo.Cor}");
 
                 
                 Console.WriteLine("============================================");
