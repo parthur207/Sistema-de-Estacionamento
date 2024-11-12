@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
-    internal class QueryAll_EF : DeleteRecord_EF, IExecution_ef
+    internal class QueryAll_EF : IExecution_ef
     {
         public void Query_All()
         {

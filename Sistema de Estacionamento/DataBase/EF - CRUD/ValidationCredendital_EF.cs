@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF
 {
-    internal class ValidacaoCredendital : Insert_ef, IExecution_ef
+    internal class ValidacaoCredendital : IExecution_ef
     {
         public bool ValidacaoCredencial_EF(string Credencial)
         {

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
-    internal class QueryCredentialOrPlate_EF : ValidacaoCredendital, IExecution_ef, IStorage_Vehicle
+    internal class QueryCredentialOrPlate_EF : ValidacaoCredendital, IExecution_ef
     {
         protected  AtributesClient dadosQuery_c { get; private set; }
         protected AtributesVehicle dadosQuery_v { get; private set; }
@@ -50,7 +50,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
                         for (int i = 0; i < placa.Length; i++)
                         {
-                            if (!char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(Placa[5]) || !char.IsNumber(placa[6]))
+                            if (!char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
                             {
                                 Console.WriteLine("\nA placa informada não está nos padrões mercosul. Padrão exemplo: ABC1D23");
                                 break;

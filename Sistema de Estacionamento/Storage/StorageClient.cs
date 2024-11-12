@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Storage
 {
-    internal class StorageClient : AtributesClient, IStorage_Client
+    internal class StorageClient : StorageVehicle, IStorage_Client
     {
         QueryCredentialOrPlate_EF aux_Q = new QueryCredentialOrPlate_EF(); //Consulta dos dados cliente e veiculo pela credencial
         ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)

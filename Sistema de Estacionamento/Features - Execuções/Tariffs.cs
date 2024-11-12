@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class Tariffs : FinalValue , IFeature_Parking
+    internal class Tariffs : FinalValue, IFeature_Parking
     {
         public void Exibition_tariffs()
         {

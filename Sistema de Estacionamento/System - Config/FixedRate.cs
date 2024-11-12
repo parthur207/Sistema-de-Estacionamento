@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal class FixedRate : FinalValue
+    internal class FixedRate
     {
         public void SetTaxa(double novaTaxa)
         {

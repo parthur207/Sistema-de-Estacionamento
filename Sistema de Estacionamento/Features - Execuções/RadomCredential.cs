@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class RandomCredential : Period_CheckOut_, IFeature_Parking
+    internal class RandomCredential : IFeature_Parking
     {
         private readonly Random Aux_random = new Random();
         public string CredentialRadom()

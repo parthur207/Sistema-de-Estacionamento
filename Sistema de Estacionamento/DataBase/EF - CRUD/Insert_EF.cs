@@ -2,11 +2,12 @@
 using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using Sistema_de_Estacionamento.Features___Execuções;
+using Sistema_de_Estacionamento.Storage;
 using Sistema_de_Estacionamento.System___Config;
 
 namespace Sistema_de_Estacionamento.DataBase.EF
 {
-    internal class Insert_ef : RandomCredential, IExecution_ef
+    internal class Insert_ef : StorageClient , IExecution_ef
     {
         public void Insert_EF()
         {

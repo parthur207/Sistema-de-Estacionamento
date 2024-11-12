@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class Venancies : ValidacaoCredendital, IFeature_Parking
+    internal class Venancies : IFeature_Parking
     { 
         public (bool, int) Validation_Venancies(int id_veiculo)
         {

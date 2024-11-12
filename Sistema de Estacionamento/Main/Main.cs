@@ -11,9 +11,7 @@ namespace Sistema_de_Estacionamento.Main
     {
         static void Main(string[] args)
         {
-
-            // Variável para controle do loop do menu
-            bool continuar = true;
+            bool execucao=true;
 
             #region Instanciações
 
@@ -44,7 +42,7 @@ namespace Sistema_de_Estacionamento.Main
             int op = 1;
 
             bool validacao = conexao.ValidarConexao();
-            while (validacao && continuar)
+            while (validacao && execucao)
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("Sistema de Estacionamento");
@@ -105,7 +103,7 @@ namespace Sistema_de_Estacionamento.Main
 
                     case 10:
                         Console.WriteLine("\nPrograma Encerrado.");
-                        continuar = false;  // Define 'continuar' como falso para sair do loop
+                        execucao = false; 
                         break;
                 }
             }

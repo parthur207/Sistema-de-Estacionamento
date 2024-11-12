@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.System___Config
 {
-    internal sealed class Storage_Config : FinalValue
+    internal sealed class Storage_Config
     {
 
         public void Settings_Menu()

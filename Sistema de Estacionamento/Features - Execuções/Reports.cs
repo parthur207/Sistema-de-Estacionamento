@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class Reports : Tariffs, IFeature_Parking
+    internal class Reports : IFeature_Parking
     {
 
         public void S_Reports()

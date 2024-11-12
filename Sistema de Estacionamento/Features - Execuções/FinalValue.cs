@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Features___Execuções
 {
-    internal class FinalValue : MyDbContext, IFeature_Parking
+    internal class FinalValue : IFeature_Parking
     {
         public double Pagamento(TimeSpan Periodo)
         {

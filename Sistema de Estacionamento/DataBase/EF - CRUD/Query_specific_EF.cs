@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
-    internal class Query_specific_EF : QueryAll_EF, IExecution_ef
+    internal class Query_specific_EF : IExecution_ef
     {
         public void Query_specific()
         {

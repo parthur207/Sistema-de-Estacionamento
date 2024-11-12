@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.IStorage___Interface;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Storage
 {
-    internal class StorageVehicle : StorageClient, IStorage_Vehicle
+    internal class StorageVehicle : Period_CheckOut_ , IStorage_Vehicle
     {
         public Tipo_Veiculo S_VehicleType()
         {
@@ -76,7 +77,7 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine("\nDigite a cor do veículo:");
                 color = Console.ReadLine().Trim();
 
-                if (string.IsNullOrEmpty(Cor))
+                if (string.IsNullOrEmpty(color))
                 {
                     Console.WriteLine("\nEntrada inválida.");
                 }
@@ -101,7 +102,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 for (int i = 0; i < placa.Length; i++)
                 {
-                    if (!char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(Placa[5]) || !char.IsNumber(placa[6]))
+                    if (!char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
                     {
                         Console.WriteLine("\nA placa informada não está nos padrões mercosul. Padrão exemplo: ABC1D23");
                         break;
