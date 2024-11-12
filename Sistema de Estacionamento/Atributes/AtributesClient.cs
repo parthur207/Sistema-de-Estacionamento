@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Estacionamento.Atributes
 {
-    [Table("Clientes")]
+    [Table("Tabela_Clientes")]
     internal class AtributesClient : AtributesVehicle
     {
 
