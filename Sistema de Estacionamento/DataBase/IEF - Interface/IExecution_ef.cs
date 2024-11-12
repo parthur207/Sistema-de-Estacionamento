@@ -20,7 +20,6 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
         void Query_All() { }
         void Query_parked() { }
         void Query_specific() { }
-        void Update_EF() { }
 
     }
 }

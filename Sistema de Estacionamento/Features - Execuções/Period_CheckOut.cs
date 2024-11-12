@@ -13,7 +13,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
         public TimeSpan Period_CheckOut(DateTime Inicio, DateTime Final)
         {
 
-            TimeSpan Periodo_Estacionamento = Inicio - Final;
+            TimeSpan Periodo_Estacionamento = Final - Inicio;
             return Periodo_Estacionamento;
         }
     }
