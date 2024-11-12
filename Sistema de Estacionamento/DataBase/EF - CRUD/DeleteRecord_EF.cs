@@ -28,7 +28,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             if (validacao == false)
             {
                 Console.WriteLine("\nCredencial não encontrada.");
-                Program.Main(ref_args);
+                return;
             }
             else
             {
@@ -48,7 +48,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     if (senha != Senha)
                     {
                         Console.WriteLine("\nSenha incorreta.");
-                        Program.Main(ref_args);
+                        return;
                     }
                     else
                     {
@@ -78,8 +78,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             ContextDelete.Tabela_Veiculos.Remove(dados_delete.Item2);
                             ContextDelete.SaveChanges();
                             Console.WriteLine("\nExclusão efetuada com sucesso.");
-
-                            Program.Main(ref_args);
                         }
                     }
                 }

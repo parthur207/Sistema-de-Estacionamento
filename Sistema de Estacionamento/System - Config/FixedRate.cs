@@ -24,8 +24,6 @@ namespace Sistema_de_Estacionamento.System___Config
                 }
                 Program.Main(ref_args);
             }
-            
-
         }
     }
 }

@@ -67,7 +67,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     }
                     else
                     {
-
+                        atributo =mes.ToString().Trim();
+                        Query_exe(categoria, atributo);
                     }
                 break;
 
@@ -90,7 +91,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     case 4:
 
-                        categoria = 3;
+                        categoria = 4;
                         Console.WriteLine("\nInforme o número correspondente ao tipo da consulta:");
                         Console.WriteLine("1. Carro");
                         Console.WriteLine("2. Caminhão");
@@ -109,8 +110,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         break;
 
                     case 5:
-                        Program.Main(ref_args);
-                        break;
+                    return;
                 }
             }
        
@@ -149,7 +149,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
                         Console.WriteLine("======================================");
                     }
-                    Program.Main(ref_args);
                 }
             }
             else if (categoria == 2)//Por nome do veículo
@@ -183,7 +182,37 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
                         Console.WriteLine("======================================");
                     }
-                    Program.Main(ref_args);
+                }
+            }
+            else if (categoria==3)
+            {
+                using (var context_mes = new MyDbContext()) 
+                {
+                    var atributos_mes = context_mes.Tabela_Clientes.Where(x=>x.Entrada.Month.Equals(atributo)).Select(x=>x.Credencial_Acesso).ToList();
+
+                    foreach(var credencial in atributos_mes)
+                    {
+                        var atb_C = context_mes.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                        var atb_V = context_mes.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                        Console.WriteLine("======================================");
+                        Console.WriteLine("Dados do Cliente:");
+                        Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
+                        Console.WriteLine($"Entrada: {atb_C.Entrada}");
+                        Console.WriteLine($"Saída:{atb_C.Saida}");
+                        if (atb_C.Periodo != null) { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
+                        if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
+                        Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
+
+                        Console.WriteLine("___________________");
+
+                        Console.WriteLine("Dados do Veículo:");
+                        Console.WriteLine($"Nome do veículo: {atb_V.Nome_Veiculo}");
+                        Console.WriteLine($"Tipo de veículo: {atb_V.TipoVeiculo}");
+                        Console.WriteLine($"Cor: {atb_V.Cor}");
+                        Console.WriteLine($"Placa: {atb_V.Placa}");
+                        Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
+                        Console.WriteLine("======================================");
+                    }
                 }
             }
             else//Por tipo do veículo
@@ -230,7 +259,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
                         Console.WriteLine("======================================");
                     }
-                    Program.Main(ref_args);
                 }
             }
         }
