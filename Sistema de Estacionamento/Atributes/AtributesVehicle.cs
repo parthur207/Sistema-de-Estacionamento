@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Veiculos")]
-    internal class AtributesVehicle : MyDbContext
+    internal class AtributesVehicle
     {
         [Column("Tipo_Veiculo")]
         public Tipo_Veiculo TipoVeiculo { get; set; }

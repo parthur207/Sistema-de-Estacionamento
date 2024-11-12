@@ -10,7 +10,6 @@ namespace Sistema_de_Estacionamento.DataBase.Db_Context
 {
     internal class MyDbContext : DbContext
     { 
-        public static string[] ref_args { get; private set; }
 
         public DbSet<AtributesClient> Tabela_Clientes { get; set; }
 

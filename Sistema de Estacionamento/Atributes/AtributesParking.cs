@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Estacionamento")]
-    internal abstract class AtributesParking : MyDbContext
+    internal abstract class AtributesParking 
     {
         [Column("Id")]
         public int Id { get; set; }
