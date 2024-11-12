@@ -44,7 +44,7 @@ namespace Sistema_de_Estacionamento.Atributes
                       
                     }
                         contexto.SaveChanges();
-                        Program.Main(ref_args);
+                    return;
                 }
             }
         }

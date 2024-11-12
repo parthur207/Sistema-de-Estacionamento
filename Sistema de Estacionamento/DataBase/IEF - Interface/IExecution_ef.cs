@@ -22,9 +22,5 @@ namespace Sistema_de_Estacionamento.DataBase.IEF___Interface
         void Query_specific() { }
         void Update_EF() { }
 
-        
-
-
-
     }
 }

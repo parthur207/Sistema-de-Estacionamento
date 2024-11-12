@@ -89,8 +89,7 @@ namespace Sistema_de_Estacionamento.System___Config
                     }
                     break;
                 case 3:
-                    Program.Main(ref_args);
-                    break;
+                    return;
             }
         }
     }

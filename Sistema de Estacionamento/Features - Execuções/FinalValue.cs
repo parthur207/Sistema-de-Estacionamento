@@ -11,8 +11,6 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 {
     internal class FinalValue : MyDbContext, IFeature_Parking
     {
-      
-
         public double Pagamento(TimeSpan Periodo)
         {
             double Preco;

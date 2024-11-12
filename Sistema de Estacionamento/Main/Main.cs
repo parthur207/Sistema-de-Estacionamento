@@ -7,9 +7,9 @@ using Sistema_de_Estacionamento.System___Config;
 
 namespace Sistema_de_Estacionamento.Main
 {
-    internal class Program
+    internal sealed class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
 
             // Variável para controle do loop do menu

@@ -45,8 +45,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                         Income();
                         break;
                     case 4:
-                        Program.Main(ref_args);
-                        break;
+                        return;
                  
                 }
             }
@@ -131,6 +130,5 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 } 
             }
         }
-
     }
 }

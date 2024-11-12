@@ -41,8 +41,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             Console.WriteLine($"\nNumero de vagas disponíveis para carros {VagasCarros}.");
          
             var VagasMotos= Validation_Venancies(2);
-            Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos}.");
-            Program.Main(ref_args);
+            Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos}.");           
         }
 
     }

@@ -22,7 +22,7 @@ namespace Sistema_de_Estacionamento.System___Config
                     context_SetTaxa.SaveChanges();
                     Console.WriteLine($"\nNova taxa por minuto atualizada para: {novaTaxa}");
                 }
-                Program.Main(ref_args);
+                return;
             }
         }
     }

@@ -25,9 +25,9 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
 
                         var atb_c = context_All.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(credencial))
-                            .SingleOrDefault();
+                            .FirstOrDefault();
                         var atb_v = context_All.Tabela_Veiculos.Where(x => x.Credencial_Acesso.Equals(credencial))
-                            .SingleOrDefault();
+                            .FirstOrDefault();
 
                         Console.WriteLine("======================================");
                         Console.WriteLine("Dados do Cliente:");
@@ -47,7 +47,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"Placa: {atb_v.Placa}");
                         Console.WriteLine($"Credencial de acesso: {atb_v.Credencial_Acesso}");
                         Console.WriteLine("======================================");
-                        Program.Main(ref_args);
                     }
                 }
             }

@@ -72,8 +72,8 @@ namespace Sistema_de_Estacionamento.Storage
                     if (val == false)
                     {
                         validacao2 = false;
-                        Console.WriteLine("\nA credencial não foi encontrada."); 
-                        Program.Main(ref_args);
+                        Console.WriteLine("\nA credencial não foi encontrada.");
+                        break;
                     }
                     else 
                     {
@@ -124,8 +124,6 @@ namespace Sistema_de_Estacionamento.Storage
                 else if (op.Equals(2))
                 {
                     validacao2 = false;
-
-                    Program.Main(ref_args);
 
                 }   
             }

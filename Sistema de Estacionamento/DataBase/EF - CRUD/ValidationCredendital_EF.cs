@@ -32,7 +32,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             catch (Exception ex)
             {
                 Console.WriteLine($"Ocorreu um erro inesperado.\nErro: {ex.Message}");
-                Program.Main(ref_args);
             }
                 return validacao;
         }

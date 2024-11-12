@@ -20,33 +20,33 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
         protected  AtributesClient dadosQuery_c { get; private set; }
         protected AtributesVehicle dadosQuery_v { get; private set; }
 
-
         public void Storage_Query()
         {
             Console.WriteLine("\nDigite o número correspondente a consulta:");
             Console.WriteLine("1) Placa");
             Console.WriteLine("2) Credencial");
 
-            if (!int.TryParse(Console.ReadLine(), out int numero) || numero<1 || numero>2)
+            if (!int.TryParse(Console.ReadLine(), out int numero) || numero < 1 || numero > 2)
             {
                 Console.WriteLine("\nÉ necessário digitar um numero. Sendo 1 ou 2.");
-                Program.Main(ref_args);
+                return;
             }
             else
             {
-                if (numero == 1) {
+                if (numero == 1)
+                {
                     Console.WriteLine("\nDigite a placa do veículo:");
                     string placa = Console.ReadLine().Trim().ToUpper();
 
-                    
+
 
                     //Placa padrão mercosul: ABC1D23
-                    if (string.IsNullOrEmpty(placa) || placa.Length!=7)
+                    if (string.IsNullOrEmpty(placa) || placa.Length != 7)
                     {
                         Console.WriteLine("\nO conjunto de caracteres informado não equivale a 7.");
-                        Program.Main(ref_args);
+                        return;
                     }
-                    else 
+                    else
                     {
                         for (int i = 0; i < placa.Length; i++)
                         {
@@ -67,27 +67,25 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     Console.WriteLine("Digite a credencial:");
                     string credencial = Console.ReadLine().Trim().ToUpper();
 
-                    if (string.IsNullOrEmpty(credencial) || credencial.Length!=6) 
+                    if (string.IsNullOrEmpty(credencial) || credencial.Length != 6)
                     {
 
                         Console.WriteLine("\nValor inválido.");
                     }
                     else
                     {
-                        bool v=ValidacaoCredencial_EF(credencial);
+                        bool v = ValidacaoCredencial_EF(credencial);
                         if (v == false)
                         {
                             Console.WriteLine("\nA credencial informada não foi encontrada.");
                         }
                         else
                         {
-                           QueryCredential_EF(credencial);
+                            QueryCredential_EF(credencial);
                         }
                     }
                 }
             }
-
-            
         }
       
         public void QueryPlate_EF(string Placa)
@@ -131,7 +129,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
         public void QueryCredential_EF(string Credencial)
         {
            
-            try {
+            try 
+            {
                 using (var contextoQuery_Credential=new MyDbContext())
                 {
                       dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
