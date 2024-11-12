@@ -19,10 +19,12 @@ namespace Sistema_de_Estacionamento.DataBase.Db_Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("Server=127.0.0.1;Port=3306;Database=Parking;User ID=root;Password=Admin;", new MySqlServerVersion(new Version(8,0,36)));
+            optionsBuilder.UseMySql(
+                "Server=127.0.0.1;Port=3306;Database=Estacionamento;User ID=root;Password=123456;",
+                new MySqlServerVersion(new Version(8, 0, 39))
+            );
         }
-
-        public bool ValidarConexao()
+            public bool ValidarConexao()
         {
             try
             {

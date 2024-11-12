@@ -1,4 +1,5 @@
-﻿using Sistema_de_Estacionamento.DataBase.Db_Context;
+﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using Sistema_de_Estacionamento.Main;
@@ -64,13 +65,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                                 if (dados_delete.Item2.TipoVeiculo == Atributes.Tipo_Veiculo.Carro || dados_delete.Item2.TipoVeiculo == Atributes.Tipo_Veiculo.Caminhao)
                                 {
                                     id_vehicle = 1;
-                                    var parking = new CarTruck_Parking();
+                                    var parking = new AtributesParking();
                                     parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                                 }
                                 else
                                 {
                                     id_vehicle = 2;
-                                    var parking = new MotocycleParking();
+                                    var parking = new AtributesParking();
                                     parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                                 }
                             }

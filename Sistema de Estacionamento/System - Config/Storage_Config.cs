@@ -16,8 +16,8 @@ namespace Sistema_de_Estacionamento.System___Config
         public void Settings_Menu()
         {
 
-            MotocycleParking Aux_MT= new MotocycleParking();
-            CarTruck_Parking Aux_CC= new CarTruck_Parking();
+            AtributesParking Aux_MT = new AtributesParking();
+            AtributesParking Aux_CC = new AtributesParking();
             FixedRate Aux_set= new FixedRate();
 
             bool val = true;
@@ -66,11 +66,11 @@ namespace Sistema_de_Estacionamento.System___Config
                         {
                             if (id==1) 
                             { 
-                                Aux_CC.AlterarNumeroVagas(NovaCapacidade);
+                                Aux_CC.AlterarNumeroVagas(NovaCapacidade, id);
                             }
                             else if(id==2)
                             {
-                                Aux_MT.AlterarNumeroVagas(NovaCapacidade);
+                                Aux_MT.AlterarNumeroVagas(NovaCapacidade, id);
                             }
                         }
                     }

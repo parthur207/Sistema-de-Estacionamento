@@ -35,7 +35,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 }
                 else
                 {
-                    var parking = new CarTruck_Parking();
+                    var parking = new AtributesParking();
                     parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
                 }
             }
@@ -51,7 +51,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 }
                 else
                 {
-                    var parking = new CarTruck_Parking();
+                    var parking = new AtributesParking();
                     parking.AlterarNumeroVagasDisponiveis(-1, id_vehicle);
                 }
             }
@@ -127,13 +127,13 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
                         {
                             id_vehicle = 1;
-                            var parking = new CarTruck_Parking();
+                            var parking = new AtributesParking();
                             parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                         }
                         else
                         {
                             id_vehicle = 2;
-                            var parking = new MotocycleParking();
+                            var parking = new AtributesParking();
                             parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                         }
                         cliente.Saida = Resultado.Item2;
