@@ -61,7 +61,7 @@ namespace Sistema_de_Estacionamento.Main
                 Console.WriteLine("Escolha uma opção:");
                 while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 10)
                 {
-                    Console.WriteLine("\nOpção inválida. Digite um digito, sendo de 1 a 9.");
+                    Console.WriteLine("\nOpção inválida. Digite um digito, sendo de 1 a 10.");
                 }
                 switch (op)
                 {

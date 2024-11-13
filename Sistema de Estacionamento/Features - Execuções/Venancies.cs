@@ -42,11 +42,12 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             {
                 Console.WriteLine($"\nNumero de vagas disponíveis para carros {VagasCarros.Item2}.");
             }
-            else { Console.WriteLine("\Não há vagas disponíveis para carros.")}
+            else { Console.WriteLine("\nNão há vagas disponíveis para carros/caminhões."); }
             if (VagasMotos.Item1!=false)
             {
                 Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos.Item2}\n.");
             }
+            else { Console.WriteLine("\nNão há vagas disponíveis para motos."); }
         }
 
     }

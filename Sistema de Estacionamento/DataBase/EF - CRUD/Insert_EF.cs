@@ -96,10 +96,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF
         {
             int id_vehicle;
             FinalValue auxPg = new FinalValue();
-
+            double preco;
             var Resultado = S_CheckOut(); // Resultado.Item1 = INICIO | Resultado.Item2 = FINAL | Resultado.Item3 = CREDENCIAL
             TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-            double preco = auxPg.Pagamento(periodo);
+            
 
             try
             {
@@ -126,12 +126,14 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
                         {
                             id_vehicle = 1;
+                            preco = auxPg.Pagamento(periodo, id_vehicle);
                             var parking = new AtributesParking();
                             parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                         }
                         else
                         {
                             id_vehicle = 2;
+                            preco = auxPg.Pagamento(periodo, id_vehicle);
                             var parking = new AtributesParking();
                             parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
                         }

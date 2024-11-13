@@ -21,27 +21,36 @@ namespace Sistema_de_Estacionamento.Atributes
         public double Taxa_Minuto { get; set; }
 
 
-        public void AlterarNumeroVagas(int novoNumero, int Id)
+        public void AlterarNumeroVagas(int novoNumero, int id)//Admin
         {
+            string TipoVeiculo;
             using (var contexto = new MyDbContext())
             {
-                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == this.Id);
+                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == id);
 
                 if (estacionamento != null)
                 {
                     estacionamento.NumeroVagas = novoNumero;
                     estacionamento.NumeroVagasDisp = novoNumero;
                     contexto.SaveChanges();
-                    Console.WriteLine($"Numero de vagas atualizado com sucesso. Nova capacidade: {novoNumero}");
+                    if (id == 1)
+                    {
+                        TipoVeiculo = "Carros/Caminhoes";
+                    }
+                    else
+                    {
+                        TipoVeiculo = "Motos";
+                    }
+                    Console.WriteLine($"\nNumero de vagas atualizado com sucesso. Nova capacidade para {TipoVeiculo}: {novoNumero}\n");
                 }
             }
         }
 
-        public void AlterarNumeroVagasDisponiveis(int N_vagas, int Id)
+        public void AlterarNumeroVagasDisponiveis(int N_vagas, int id)//Processo de Checkin e Checkout
         {
             using (var contexto = new MyDbContext())
             {
-                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == this.Id);
+                var estacionamento = contexto.Estacionamento.FirstOrDefault(x => x.Id == id);
 
                 if (estacionamento != null)
                 {
