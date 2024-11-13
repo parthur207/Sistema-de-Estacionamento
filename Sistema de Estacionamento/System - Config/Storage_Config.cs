@@ -88,6 +88,7 @@ namespace Sistema_de_Estacionamento.System___Config
                             }
                             break;
                         case 3:
+                            Console.WriteLine();
                             return;
                     }
                 }
