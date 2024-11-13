@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Estacionamento.Atributes;
+using Sistema_de_Estacionamento.DataBase.Db_Context;
 using Sistema_de_Estacionamento.DataBase.EF;
 using Sistema_de_Estacionamento.DataBase.EF___CRUD;
 using Sistema_de_Estacionamento.Features___Execuções;
@@ -91,8 +92,8 @@ namespace Sistema_de_Estacionamento.Storage
                 var ATB = aux_Q.GetDadosQuery();
                 var Atributos_Cliente = ATB.Item1;
                 var Atributos_Veiculo = ATB.Item2;
+          
 
-                
                 Console.WriteLine($"\nNome do cliente: {Atributos_Cliente.Nome_Cliente}");
                 Console.WriteLine($"Credencial de acesso: {Atributos_Cliente.Credencial_Acesso}");
                 Console.WriteLine($"Entrada: {Atributos_Cliente.Entrada}");

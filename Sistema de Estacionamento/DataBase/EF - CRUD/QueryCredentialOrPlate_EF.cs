@@ -17,8 +17,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
     internal class QueryCredentialOrPlate_EF : ValidacaoCredendital, IExecution_ef
     {
-        protected  AtributesClient dadosQuery_c { get; private set; }
-        protected AtributesVehicle dadosQuery_v { get; private set; }
+        protected  AtributesClient dadosQuery_c { get;  set; }
+        protected AtributesVehicle dadosQuery_v { get; set; }
 
         public void Storage_Query()
         {
@@ -94,29 +94,32 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             {
                 using (var contextoQuery_Credential = new MyDbContext())
                 {
-                    dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
-                    dadosQuery_v = contextoQuery_Credential.Tabela_Veiculos.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+                    var atb_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+                    var atb_v = contextoQuery_Credential.Tabela_Veiculos.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+
+                    dadosQuery_c = atb_c;
+                    dadosQuery_v = atb_v;
 
                     Console.WriteLine("============================================");
                     Console.WriteLine("\nDados do cliente:");
-                    Console.WriteLine($"Nome:{dadosQuery_c.Nome_Cliente}");
-                    Console.WriteLine($"Credencial de acesso: {dadosQuery_c.Credencial_Acesso}");
-                    Console.WriteLine($"Entrada:{dadosQuery_c.Entrada}");
-                    if (dadosQuery_c.Saida != null)
+                    Console.WriteLine($"Nome:{atb_c.Nome_Cliente}");
+                    Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
+                    Console.WriteLine($"Entrada:{atb_c.Entrada}");
+                    if (atb_c.Saida != null)
                     {
-                        Console.WriteLine($"Saída: {dadosQuery_c.Saida}");
+                        Console.WriteLine($"Saída: {atb_c.Saida}");
                     }
-                    if (dadosQuery_c.Periodo != null)
+                    if (atb_c.Periodo != null)
                     {
-                        Console.WriteLine($"Periodo: {dadosQuery_c.Periodo}");
+                        Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
                     Console.WriteLine("============================================");
                     Console.WriteLine("\nDados do veículo:");
-                    Console.WriteLine($"Estacionado: {dadosQuery_c.Estacionado}");
-                    Console.WriteLine($"Nome veiculo: {dadosQuery_v.Nome_Veiculo}");
-                    Console.WriteLine($"Tipo de veículo: {dadosQuery_v.TipoVeiculo}");
-                    Console.WriteLine($"Cor:{dadosQuery_v.Cor}");
-                    Console.WriteLine($"Placa: {dadosQuery_v.Placa}");
+                    Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
+                    Console.WriteLine($"Nome veiculo: {atb_v.Nome_Veiculo}");
+                    Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
+                    Console.WriteLine($"Cor:{atb_v.Cor}");
+                    Console.WriteLine($"Placa: {atb_v.Placa}");
                     Console.WriteLine("============================================");
                 }
             }
@@ -128,35 +131,36 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
         
         public void QueryCredential_EF(string Credencial)
         {
-           
             try 
             {
                 using (var contextoQuery_Credential=new MyDbContext())
                 {
-                      dadosQuery_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
-                      dadosQuery_v = contextoQuery_Credential.Tabela_Veiculos.Where(x=>x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
+                    var atb_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
+                    var atb_v = contextoQuery_Credential.Tabela_Veiculos.Where(x=>x.Credencial_Acesso.Equals(Credencial)).FirstOrDefault();
 
-                    
-                        Console.WriteLine("============================================");
-                        Console.WriteLine("\nDados do cliente:");
-                        Console.WriteLine($"Nome:{dadosQuery_c.Nome_Cliente}");
-                        Console.WriteLine($"Credencial de acesso: {dadosQuery_c.Credencial_Acesso}");
-                        Console.WriteLine($"Entrada:{dadosQuery_c.Entrada}");
-                        if (dadosQuery_c.Saida !=null) {
-                            Console.WriteLine($"Saída: {dadosQuery_c.Saida}");
-                        }
-                        if (dadosQuery_c.Periodo != null) 
-                        {
-                            Console.WriteLine($"Periodo: {dadosQuery_c.Periodo}");
-                        }
-                        Console.WriteLine("============================================");
-                        Console.WriteLine("\nDados do veículo:");
-                        Console.WriteLine($"Estacionado: {dadosQuery_c.Estacionado}");
-                        Console.WriteLine($"Nome veiculo: {dadosQuery_v.Nome_Veiculo}");
-                        Console.WriteLine($"Tipo de veículo: {dadosQuery_v.TipoVeiculo}");
-                        Console.WriteLine($"Cor:{dadosQuery_v.Cor}");
-                        Console.WriteLine($"Placa: {dadosQuery_v.Placa}");
-                        Console.WriteLine("============================================");
+                    dadosQuery_c = atb_c;
+                    dadosQuery_v = atb_v;
+
+                    Console.WriteLine("============================================");
+                    Console.WriteLine("\nDados do cliente:");
+                    Console.WriteLine($"Nome:{atb_c.Nome_Cliente}");
+                    Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
+                    Console.WriteLine($"Entrada:{atb_c.Entrada}");
+                    if (atb_c.Saida !=null) {
+                        Console.WriteLine($"Saída: {atb_c.Saida}");
+                    }
+                    if (atb_c.Periodo != null) 
+                    {
+                        Console.WriteLine($"Periodo: {atb_c.Periodo}");
+                    }
+                    Console.WriteLine("============================================");
+                    Console.WriteLine("\nDados do veículo:");
+                    Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
+                    Console.WriteLine($"Nome veiculo: {atb_v.Nome_Veiculo}");
+                    Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
+                    Console.WriteLine($"Cor:{atb_v.Cor}");
+                    Console.WriteLine($"Placa: {atb_v.Placa}");
+                    Console.WriteLine("============================================");
                 }    
             }
             catch (Exception ex) 
