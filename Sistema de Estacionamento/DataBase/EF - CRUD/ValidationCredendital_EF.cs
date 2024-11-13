@@ -18,22 +18,16 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             {
                 using (var contextoValidacao_credential = new MyDbContext())
                 {
-                    var credencialExiste = contextoValidacao_credential.Tabela_Clientes.Any(x => x.Credencial_Acesso.Equals(Credencial));
-                    if (credencialExiste == true)
-                    {
-                        validacao = true;
-                    }
-                    else
-                    {
-                        validacao = false;
-                    }
+                    var credencialExiste = contextoValidacao_credential.Tabela_Clientes.Any(x => x.Credencial_Acesso.Equals(Credencial, StringComparison.OrdinalIgnoreCase));
+                    return validacao;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Ocorreu um erro inesperado.\nErro: {ex.Message}");
+                return false;
             }
-                return validacao;
+              
         }
     }
 }

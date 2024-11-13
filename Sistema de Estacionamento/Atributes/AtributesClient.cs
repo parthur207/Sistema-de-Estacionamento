@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Estacionamento.Atributes
 {
     [Table("Tabela_Clientes")]
-    internal class AtributesClient : AtributesVehicle
+    internal class AtributesClient
     {
 
         [Key]

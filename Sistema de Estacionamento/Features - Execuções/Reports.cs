@@ -70,7 +70,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine($"Total de veículos: {qntTotal}");
                 Console.WriteLine("============================================");
 
-                var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Clientes.Where(x => x.TipoVeiculo.Equals("Carro"))
+                var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Veiculos.Where(x => x.TipoVeiculo.Equals("Carro"))
                     .Select(x => x.Credencial_Acesso).ToList();
             }
         }

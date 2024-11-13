@@ -47,7 +47,7 @@ namespace Sistema_de_Estacionamento.Storage
             return entrada;
         }
 
-        public (DateTime,DateTime, string) S_CheckOut()
+        public (DateTime,DateTime, string, bool) S_CheckOut()
         {
             bool validacao1 = true;
             bool validacao2 = false;
@@ -61,9 +61,9 @@ namespace Sistema_de_Estacionamento.Storage
                 Console.WriteLine("\nInforme a credencial do cliente:");
                 Credencial = Console.ReadLine().TrimStart().TrimEnd();
 
-                if (string.IsNullOrEmpty(Credencial))
+                if (string.IsNullOrEmpty(Credencial) || Credencial.Length!=6)
                 {
-                    Console.WriteLine("\nO valor informado não pode ser nulo.");
+                    Console.WriteLine("\nCredencial inválida. A credencial deve possuir 6 caracteres.");
                 }
                 else
                 {
@@ -72,9 +72,8 @@ namespace Sistema_de_Estacionamento.Storage
                     bool val= aux_VAL.ValidacaoCredencial_EF(Credencial); //Verifica a existencia da credencial
                     if (val == false)
                     {
-                        validacao2 = false;
-                        Console.WriteLine("\nA credencial não foi encontrada.");
-                        break;
+                        validacao2 = false;                      
+                        return (_Entrada, saida, Credencial, val);
                     }
                     else 
                     {
@@ -125,10 +124,10 @@ namespace Sistema_de_Estacionamento.Storage
                 else if (op.Equals(2))
                 {
                     validacao2 = false;
-
+                    return (_Entrada, saida, Credencial, false);
                 }   
             }
-            return (_Entrada, saida, Credencial);
+            return (_Entrada, saida, Credencial, true);
         }
     }
 }

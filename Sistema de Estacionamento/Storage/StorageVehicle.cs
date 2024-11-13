@@ -18,8 +18,8 @@ namespace Sistema_de_Estacionamento.Storage
             bool aux2 = true;
             while (aux2)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nInforme o tipo de veículo:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Informe o tipo de veículo:");
                 Console.WriteLine("\na) Caminhão");
                 Console.WriteLine("b) Carro");
                 Console.WriteLine("c) Moto");
@@ -54,8 +54,8 @@ namespace Sistema_de_Estacionamento.Storage
             string nomeVeiculo = string.Empty;
             while (aux3)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nDigite o nome do veículo:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Digite o nome do veículo:");
                 nomeVeiculo = Console.ReadLine().Trim();
 
                 if (string.IsNullOrEmpty(nomeVeiculo))
@@ -76,8 +76,8 @@ namespace Sistema_de_Estacionamento.Storage
             bool aux4 = true;
             while (aux4)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nDigite a cor do veículo:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Digite a cor do veículo:");
                 color = Console.ReadLine().Trim();
 
                 if (string.IsNullOrEmpty(color))
@@ -98,25 +98,23 @@ namespace Sistema_de_Estacionamento.Storage
             string placa = string.Empty;
             while (aux5)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nDigite a placa do veículo:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Digite a placa do veículo:");
                 placa = Console.ReadLine().Trim();
 
                 //Placa padrão mercosul: ABC1D23
 
-                for (int i = 0; i < placa.Length; i++)
+
+                if (placa.Length != 7 || !char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
                 {
-                    if (placa.Length==0 || !char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
-                    {
-                        Console.WriteLine("\nA placa informada não está nos padrões mercosul. Padrão exemplo: ABC1D23");
-                        break;
-                    }
-                    else
-                    {
-                        aux5 = false;
-                    }
+                    Console.WriteLine("\nA placa informada não está nos padrões mercosul. Padrão exemplo: ABC1D23");
                 }
-            }
+                else
+                {
+                    aux5 = false;
+                }
+                }
+            
             return placa;
         }
     }

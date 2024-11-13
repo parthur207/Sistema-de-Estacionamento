@@ -4,6 +4,8 @@ using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using Sistema_de_Estacionamento.Features___Execuções;
 using Sistema_de_Estacionamento.Storage;
 using Sistema_de_Estacionamento.System___Config;
+using System.ComponentModel.Design;
+using System.Numerics;
 
 namespace Sistema_de_Estacionamento.DataBase.EF
 {
@@ -66,6 +68,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
                         Estacionado = true,
+                       
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -84,11 +87,12 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
                     contextoIns_V.SaveChanges();
                 }
-                Console.WriteLine("\nCliente e veículo inclusos com sucesso.");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Cliente e veículo inclusos com sucesso.\n");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nOcorreu um erro na tentativa de inserir os dados.\nErro: {ex.Message}\n");
+                Console.WriteLine($"\nOcorreu um erro na tentativa de inserir os dados.\nErro: {ex.ToString()}\n");
             }
         }
 
@@ -97,54 +101,60 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             int id_vehicle;
             FinalValue auxPg = new FinalValue();
             double preco;
-            var Resultado = S_CheckOut(); // Resultado.Item1 = INICIO | Resultado.Item2 = FINAL | Resultado.Item3 = CREDENCIAL
+            var Resultado = S_CheckOut(); // Resultado.Item1 = INICIO | Resultado.Item2 = FINAL | Resultado.Item3 = CREDENCIAL | Resultado.Item4 = True, ou false (existencia da credencial)
             TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-            
 
+             
             try
             {
-                using (var contextoIns_checkout = new MyDbContext())
-                {
-                    var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
-                    var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
-                    Console.WriteLine("============================================");
-                    Console.WriteLine("\nCheckOut:");
-                    Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
-                    Console.WriteLine("============================================");
-                    Console.WriteLine("\nDeseja confirmar o checkout?\n(1. Sim | 2. Não)");
-                    if (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
+                if (Resultado.Item4 == true) {
+                    using (var contextoIns_checkout = new MyDbContext())
                     {
-                        Console.WriteLine("\nOpção inválida. É necessário digitar (1 - sim) ou (2 - Não).");
-                        return;
-                    }
-                    else if (op != 1)
-                    {
-                        return; // Sai do método e retorna ao menu principal
-                    }
-                    else
-                    {
-                        if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
+                        var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
+                        var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
+                        Console.WriteLine("============================================");
+                        Console.WriteLine("\nCheckOut:");
+                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
+                        Console.WriteLine("============================================");
+                        Console.WriteLine("\nDeseja confirmar o checkout?\n(1. Sim | 2. Não)");
+                        if (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
                         {
-                            id_vehicle = 1;
-                            preco = auxPg.Pagamento(periodo, id_vehicle);
-                            var parking = new AtributesParking();
-                            parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                            Console.WriteLine("\nOpção inválida. É necessário digitar (1 - sim) ou (2 - Não).");
+                            return;
+                        }
+                        else if (op != 1)
+                        {
+                            return; // Sai do método e retorna ao menu principal
                         }
                         else
                         {
-                            id_vehicle = 2;
-                            preco = auxPg.Pagamento(periodo, id_vehicle);
-                            var parking = new AtributesParking();
-                            parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                            if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
+                            {
+                                id_vehicle = 1;
+                                preco = auxPg.Pagamento(periodo, id_vehicle);
+                                var parking = new AtributesParking();
+                                parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                            }
+                            else
+                            {
+                                id_vehicle = 2;
+                                preco = auxPg.Pagamento(periodo, id_vehicle);
+                                var parking = new AtributesParking();
+                                parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                            }
+                            cliente.Saida = Resultado.Item2;
+                            cliente.Periodo = periodo;
+                            cliente.Valor = preco;
+                            cliente.Estacionado = false;
+                            contextoIns_checkout.SaveChanges();
+                            Console.WriteLine("\nCheckout concluído.");
+                            Console.WriteLine("Número de vagas disponíveis atualizado.");
                         }
-                        cliente.Saida = Resultado.Item2;
-                        cliente.Periodo = periodo;
-                        cliente.Valor = preco;
-                        cliente.Estacionado = false;
-                        contextoIns_checkout.SaveChanges();
-                        Console.WriteLine("\nCheckout concluído.");
-                        Console.WriteLine("Número de vagas disponíveis atualizado.");
                     }
+                }
+                else
+                {
+                    Console.WriteLine("\nA credencial informada não existe.\n");
                 }
             }
             catch (Exception ex)

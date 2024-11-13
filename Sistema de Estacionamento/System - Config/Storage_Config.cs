@@ -51,7 +51,7 @@ namespace Sistema_de_Estacionamento.System___Config
                             Console.WriteLine("2. Motos");
                             if (!int.TryParse(Console.ReadLine(), out int id) || id < 1 || id > 2)
                             {
-                                Console.WriteLine("\nOpção inválida. É necessário informar 1, ou 2.");
+                                Console.WriteLine("\nOpção inválida. É necessário informar 1, ou 2.\n");
                             }
                             else
                             {
@@ -80,7 +80,7 @@ namespace Sistema_de_Estacionamento.System___Config
                             Console.WriteLine("\nInforme o novo valor da tarifa (NovoValor X minutos): ");
                             if (!double.TryParse(Console.ReadLine(), out double novaTarifa) || novaTarifa < 0)
                             {
-                                Console.WriteLine("\nValor inválido. É necessário digitar um número, sendo maior que 0.");
+                                Console.WriteLine("\nValor inválido. É necessário digitar um número, sendo maior que 0.\n");
                             }
                             else
                             {
