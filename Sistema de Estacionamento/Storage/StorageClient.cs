@@ -59,7 +59,7 @@ namespace Sistema_de_Estacionamento.Storage
             {
                 Console.WriteLine("============================================");
                 Console.WriteLine("\nInforme a credencial do cliente:");
-                Credencial = Console.ReadLine().TrimStart().TrimEnd();
+                Credencial = Console.ReadLine().TrimStart().TrimEnd().ToUpper();
 
                 if (string.IsNullOrEmpty(Credencial) || Credencial.Length!=6)
                 {
@@ -70,7 +70,7 @@ namespace Sistema_de_Estacionamento.Storage
                     validacao1 = false;
 
                     bool val= aux_VAL.ValidacaoCredencial_EF(Credencial); //Verifica a existencia da credencial
-                    if (val == false)
+                    if (val!= true)
                     {
                         validacao2 = false;                      
                         return (_Entrada, saida, Credencial, val);

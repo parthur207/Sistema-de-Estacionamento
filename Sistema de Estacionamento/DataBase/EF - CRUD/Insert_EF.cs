@@ -32,7 +32,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                 if (hávagas.Item1 == false)
                 {
-                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.");
+                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.\n");
                     return; // Retorna ao loop do Main, sem recursão
                 }
                 else
@@ -48,7 +48,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
 
                 if (hávagas.Item1 == false)
                 {
-                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.");
+                    Console.WriteLine($"\nNão há vagas disponíveis para {tipoVeiculo}.\n");
                     return;
                 }
                 else
@@ -113,7 +113,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                         var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                         Console.WriteLine("============================================");
-                        Console.WriteLine("\nCheckOut:");
+                        Console.WriteLine("CheckOut:");
                         Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
                         Console.WriteLine("============================================");
                         Console.WriteLine("\nDeseja confirmar o checkout?\n(1. Sim | 2. Não)");
