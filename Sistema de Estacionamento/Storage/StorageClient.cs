@@ -57,6 +57,7 @@ namespace Sistema_de_Estacionamento.Storage
 
             while (validacao1)
             {
+                Console.WriteLine("============================================");
                 Console.WriteLine("\nInforme a credencial do cliente:");
                 Credencial = Console.ReadLine().TrimStart().TrimEnd();
 

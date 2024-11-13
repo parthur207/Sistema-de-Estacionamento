@@ -30,6 +30,7 @@ namespace Sistema_de_Estacionamento.Atributes
                 if (estacionamento != null)
                 {
                     estacionamento.NumeroVagas = novoNumero;
+                    estacionamento.NumeroVagasDisp = novoNumero;
                     contexto.SaveChanges();
                     Console.WriteLine($"Numero de vagas atualizado com sucesso. Nova capacidade: {novoNumero}");
                 }

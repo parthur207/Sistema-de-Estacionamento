@@ -25,9 +25,9 @@ namespace Sistema_de_Estacionamento.System___Config
 
             do
             {
-                Console.WriteLine("============================================");
+                Console.WriteLine("\n============================================");
                 Console.WriteLine("Configurações do Sistema\n");
-                Console.WriteLine("\nInforme o número correspondente:\n");
+                Console.WriteLine("Informe o número correspondente:\n");
 
                 Console.WriteLine("1. Alterar o número de vagas disponibilizadas por veículo (Carros/Motos)");
                 Console.WriteLine("2. Alterar o valor da tarifa (Valor X Minutos)");

@@ -20,7 +20,9 @@ namespace Sistema_de_Estacionamento.System___Config
                 {
                     TaxaAtual.Taxa_Minuto = novaTaxa;
                     context_SetTaxa.SaveChanges();
+                    Console.WriteLine("============================================");
                     Console.WriteLine($"\nNova taxa por minuto atualizada para: {novaTaxa}");
+                    Console.WriteLine("============================================");
                 }
                 return;
             }

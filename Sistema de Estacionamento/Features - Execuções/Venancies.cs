@@ -37,11 +37,16 @@ namespace Sistema_de_Estacionamento.Features___Execuções
         public void Vacancy_check()
         {
             var VagasCarros = Validation_Venancies(1);
-
-            Console.WriteLine($"\nNumero de vagas disponíveis para carros {VagasCarros}.");
-         
-            var VagasMotos= Validation_Venancies(2);
-            Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos}.");           
+            var VagasMotos = Validation_Venancies(2);
+;            if (VagasCarros.Item1 !=false)
+            {
+                Console.WriteLine($"\nNumero de vagas disponíveis para carros {VagasCarros.Item2}.");
+            }
+            else { Console.WriteLine("\Não há vagas disponíveis para carros.")}
+            if (VagasMotos.Item1!=false)
+            {
+                Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos.Item2}\n.");
+            }
         }
 
     }

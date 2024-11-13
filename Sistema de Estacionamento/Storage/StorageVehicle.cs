@@ -18,13 +18,14 @@ namespace Sistema_de_Estacionamento.Storage
             bool aux2 = true;
             while (aux2)
             {
+                Console.WriteLine("============================================");
                 Console.WriteLine("\nInforme o tipo de veículo:");
                 Console.WriteLine("\na) Caminhão");
                 Console.WriteLine("b) Carro");
                 Console.WriteLine("c) Moto");
                 string Type_V = Console.ReadLine().Trim().ToLower();
 
-                if (string.IsNullOrEmpty(Type_V) || (Type_V != "a" || Type_V != "b" || Type_V != "c"))
+                if (string.IsNullOrEmpty(Type_V) || (Type_V != "a" && Type_V != "b" && Type_V != "c"))
                 {
                     Console.WriteLine("\nInforme uma alternativa válida.");
                 }
@@ -53,6 +54,7 @@ namespace Sistema_de_Estacionamento.Storage
             string nomeVeiculo = string.Empty;
             while (aux3)
             {
+                Console.WriteLine("============================================");
                 Console.WriteLine("\nDigite o nome do veículo:");
                 nomeVeiculo = Console.ReadLine().Trim();
 
@@ -74,6 +76,7 @@ namespace Sistema_de_Estacionamento.Storage
             bool aux4 = true;
             while (aux4)
             {
+                Console.WriteLine("============================================");
                 Console.WriteLine("\nDigite a cor do veículo:");
                 color = Console.ReadLine().Trim();
 
@@ -95,6 +98,7 @@ namespace Sistema_de_Estacionamento.Storage
             string placa = string.Empty;
             while (aux5)
             {
+                Console.WriteLine("============================================");
                 Console.WriteLine("\nDigite a placa do veículo:");
                 placa = Console.ReadLine().Trim();
 
@@ -102,7 +106,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 for (int i = 0; i < placa.Length; i++)
                 {
-                    if (!char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
+                    if (placa.Length==0 || !char.IsLetter(placa[0]) || !char.IsLetter(placa[1]) || !char.IsLetter(placa[2]) || !char.IsNumber(placa[3]) || !char.IsLetter(placa[4]) || !char.IsNumber(placa[5]) || !char.IsNumber(placa[6]))
                     {
                         Console.WriteLine("\nA placa informada não está nos padrões mercosul. Padrão exemplo: ABC1D23");
                         break;

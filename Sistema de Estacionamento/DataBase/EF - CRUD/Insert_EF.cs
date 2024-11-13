@@ -66,7 +66,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Entrada = entrada,
                         Credencial_Acesso = credencialAcesso,
                         Estacionado = true,
-                        Placa = placa
                     };
                     contextoIns_C.Tabela_Clientes.Add(novoCliente);
                     contextoIns_C.SaveChanges();
@@ -89,7 +88,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nOcorreu um erro na tentativa de inserir os dados.\nErro: {ex.Message}");
+                Console.WriteLine($"\nOcorreu um erro na tentativa de inserir os dados.\nErro: {ex.Message}\n");
             }
         }
 
@@ -108,7 +107,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 {
                     var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                     var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
-
+                    Console.WriteLine("============================================");
                     Console.WriteLine("\nCheckOut:");
                     Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
                     Console.WriteLine("============================================");
@@ -148,7 +147,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}");
+                Console.WriteLine($"\nOcorreu um erro inesperado ao executar a ação.\nErro: {ex.Message}\n");
             }
         }
     }

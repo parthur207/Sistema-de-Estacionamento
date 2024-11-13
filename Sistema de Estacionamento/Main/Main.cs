@@ -59,7 +59,7 @@ namespace Sistema_de_Estacionamento.Main
                 Console.WriteLine("10. Sair");
                 Console.WriteLine("============================================");
                 Console.WriteLine("Escolha uma opção:");
-                while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 9)
+                while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 10)
                 {
                     Console.WriteLine("\nOpção inválida. Digite um digito, sendo de 1 a 9.");
                 }
@@ -104,7 +104,7 @@ namespace Sistema_de_Estacionamento.Main
                     case 10:
                         Console.WriteLine("\nPrograma Encerrado.");
                         execucao = false; 
-                        break;
+                        return;
                 }
             }
         }

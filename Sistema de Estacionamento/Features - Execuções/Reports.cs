@@ -17,7 +17,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             bool val = true;
             do
             {
-                Console.WriteLine("============================================");
+                Console.WriteLine("\n============================================");
                 Console.WriteLine("Relatórios (Digite o número correspondente):");
                 Console.WriteLine("\n1. Número total/mês de clientes/veículos atendidos.");
                 Console.WriteLine("2. Tempo total/médio de permanência");
