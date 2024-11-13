@@ -23,7 +23,7 @@ namespace Sistema_de_Estacionamento.DataBase.Db_Context
                 new MySqlServerVersion(new Version(8, 0, 39))
             );
         }
-            public bool ValidarConexao()
+        public bool ValidarConexao()
         {
             try
             {

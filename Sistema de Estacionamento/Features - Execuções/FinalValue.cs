@@ -14,8 +14,14 @@ namespace Sistema_de_Estacionamento.Features___Execuções
         public double Pagamento(TimeSpan Periodo, int id)
         {
             double Preco;
-            // Calculo padrão do valor a ser pago: VALOR A PAGAR = (0.10 * minutos)
-            if (Periodo.TotalMinutes >= 480 && Periodo.TotalMinutes<= 720) //PREÇO FIXO: 480 minutos, equivalente a 8 horas | 720 minutos, equivalente a 12 horas
+            // Calculo padrão do valor a ser pago: VALOR A PAGAR = (taxa * minutos)
+
+            //PREÇO FIXO: 0 a 60 minutos
+            if (Periodo.TotalMinutes>=0 && Periodo.TotalMinutes<=60)
+            {
+                Preco = 8.50;
+            }
+            else if (Periodo.TotalMinutes >= 480 && Periodo.TotalMinutes<= 720) //PREÇO FIXO: 480 minutos, equivalente a 8 horas | 720 minutos, equivalente a 12 horas
             {
                 Preco = 50.00;
             }
