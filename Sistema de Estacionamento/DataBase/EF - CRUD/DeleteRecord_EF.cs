@@ -54,7 +54,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     else
                     {
 
-
                         var dados_delete = query.GetDadosQuery();
 
                         using (var ContextDelete = new MyDbContext())
