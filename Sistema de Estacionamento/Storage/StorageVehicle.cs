@@ -115,7 +115,7 @@ namespace Sistema_de_Estacionamento.Storage
                 }
                 }
             
-            return placa;
+            return placa.ToUpper();
         }
     }
 }

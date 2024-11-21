@@ -25,8 +25,8 @@ namespace Sistema_de_Estacionamento.Storage
             string nomeCliente=string.Empty;
             while (aux1)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nDigite o nome do cliente:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Digite o nome do cliente:");
                  nomeCliente = Console.ReadLine().TrimStart().TrimEnd();
 
                 if (string.IsNullOrEmpty(nomeCliente))
