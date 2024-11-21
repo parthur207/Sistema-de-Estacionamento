@@ -67,7 +67,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine($"\nCarros: {QntCarros}");
                 Console.WriteLine($"Caminhões: {QntCaminhoes}");
                 Console.WriteLine($"Motos: {QntMotos}");
-                Console.WriteLine($"Total de veículos: {qntTotal}");
+                Console.WriteLine($"\nTotal de veículos: {qntTotal}");
                 Console.WriteLine("============================================");
 
                 var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Veiculos.Where(x => x.TipoVeiculo.Equals("Carro"))

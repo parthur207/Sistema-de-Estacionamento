@@ -3,6 +3,7 @@ using Sistema_de_Estacionamento.DataBase.IEF___Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,13 +11,15 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 {
     internal class Query_Parkeds_EF : IExecution_ef
     {
+        
+        protected int Numero_Estacionados { get; set; }
         public void Query_parked()
         {
             try
             {
                 using (var context_parkeds = new MyDbContext())
                 {
-                    var Numero_Estacionados = context_parkeds.Tabela_Clientes.Count(x => x.Estacionado.Equals(true));
+                    Numero_Estacionados = context_parkeds.Tabela_Clientes.Count(x => x.Estacionado.Equals(true));
 
                     var Lista_credenciais = context_parkeds.Tabela_Clientes.Where(x => x.Estacionado.Equals(true))
                         .Select(x => x.Credencial_Acesso)
@@ -24,6 +27,8 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     Console.WriteLine("\n============================================");
                     Console.WriteLine("Clientes/Veículos estacionados:");
+
+                    Console.WriteLine($"\nNumero de veículos estacionados: {Numero_Estacionados}");
                     foreach (var credencial in Lista_credenciais)
                     {
                         var atb_c = context_parkeds.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(credencial)).FirstOrDefault();
@@ -56,6 +61,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             {
                 Console.WriteLine($"\nOcorreu um erro inesperado.\nErro: {ex.Message}");
             }
+        }
+
+        public int Get_NumbersParkeds()
+        {
+            return Numero_Estacionados;
         }
     }
 }

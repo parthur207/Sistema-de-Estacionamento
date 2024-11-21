@@ -18,7 +18,8 @@ namespace Sistema_de_Estacionamento.Storage
     {
         QueryCredentialOrPlate_EF aux_Q = new QueryCredentialOrPlate_EF(); //Consulta dos dados cliente e veiculo pela credencial
         ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)
-   
+        Query_Parkeds_EF aux_PK = new Query_Parkeds_EF();  
+
         public string S_Name()
         {
             bool aux1 = true;
@@ -56,6 +57,14 @@ namespace Sistema_de_Estacionamento.Storage
             string Credencial=string.Empty;
             DateTime _Entrada = DateTime.Now;
 
+            int Numero_Estacionados = aux_PK.Get_NumbersParkeds();
+
+            if (Numero_Estacionados<=0) 
+            {
+                Console.WriteLine("\nNenhum veículo estacionado no momento.");
+                validacao1 = false;
+                return (_Entrada, saida, Credencial, false);
+            }
             while (validacao1)
             {
                 Console.WriteLine("\n============================================");
@@ -71,7 +80,8 @@ namespace Sistema_de_Estacionamento.Storage
                     validacao1 = false;
 
                     bool val= aux_VAL.ValidacaoCredencial_EF(Credencial); //Verifica a existencia da credencial
-                    if (val!= true && )
+
+                    if (val!= true )
                     {
                         validacao2 = false;                      
                         return (_Entrada, saida, Credencial, val);
