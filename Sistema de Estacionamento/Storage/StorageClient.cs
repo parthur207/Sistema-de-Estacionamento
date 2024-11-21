@@ -104,7 +104,7 @@ namespace Sistema_de_Estacionamento.Storage
 
                 _Entrada = Atributos_Cliente.Entrada;
                 
-                Console.WriteLine("============================================");
+               
                 Console.WriteLine("\nContinuar:");
                 Console.WriteLine("\n1. Sim");
                 Console.WriteLine("2. Não");

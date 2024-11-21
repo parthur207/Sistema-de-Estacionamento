@@ -21,14 +21,14 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
         {
             
             int id_vehicle, op;
-            Console.WriteLine("Digite a credencial que deseja realizar a exclusão:");
+            Console.WriteLine("\nDigite a credencial que deseja realizar a exclusão:");
             string credencial = Console.ReadLine().ToUpper().Trim();
 
             bool validacao = ValidacaoCredencial_EF(credencial);
             
             if (validacao == false)
             {
-                Console.WriteLine("\nCredencial não encontrada.");
+                Console.WriteLine("\nCredencial não encontrada.\n");
                 return;
             }
             else
