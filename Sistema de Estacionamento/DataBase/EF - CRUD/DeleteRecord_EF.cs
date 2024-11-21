@@ -35,7 +35,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             {
                 query.QueryCredential_EF(credencial);
 
-                Console.WriteLine("\nDeseja prosseguir com a exclusão?\n1.Sim | 2.Não");
+                Console.WriteLine("Deseja prosseguir com a exclusão?\n1.Sim | 2.Não");
                 if (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 2)
                 {
                     Console.WriteLine("\nO valor fornecido é inválido. Digite (1) para 'Sim' ou (2) para 'Não'");
@@ -43,7 +43,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                 }
                 else if (op == 1)
                 {
-                    Console.WriteLine("Digite a senha de confirmação:");
+                    Console.WriteLine("\nDigite a senha de confirmação:");
                     string senha = Console.ReadLine().Trim();
 
                     if (senha != Senha)
@@ -78,7 +78,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             ContextDelete.Tabela_Clientes.Remove(dados_delete.Item1);
                             ContextDelete.Tabela_Veiculos.Remove(dados_delete.Item2);
                             ContextDelete.SaveChanges();
-                            Console.WriteLine("\nExclusão efetuada com sucesso.");
+                            Console.WriteLine("\nExclusão efetuada com sucesso.\n");
                         }
                     }
                 }
