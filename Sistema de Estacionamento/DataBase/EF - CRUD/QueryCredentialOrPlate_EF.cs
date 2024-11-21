@@ -111,7 +111,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
                         Console.WriteLine($"Saída: {atb_c.Saida}");
                     }
-                    if (atb_c.Periodo != null)
+                    if (atb_c.Periodo.ToString() != "00:00:00")
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
@@ -143,24 +143,24 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     dadosQuery_c = atb_c;
                     dadosQuery_v = atb_v;
 
-                    Console.WriteLine("============================================");
-                    Console.WriteLine("\nDados do cliente:");
-                    Console.WriteLine($"Nome:{atb_c.Nome_Cliente}");
+                    Console.WriteLine("\n============================================");
+                    Console.WriteLine("Dados do cliente:");
+                    Console.WriteLine($"\nNome:{atb_c.Nome_Cliente}");
                     Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
                     Console.WriteLine($"Entrada:{atb_c.Entrada}");
                     if (atb_c.Saida !=null) {
                         Console.WriteLine($"Saída: {atb_c.Saida}");
                     }
-                    if (atb_c.Periodo != null) 
+                    if (atb_c.Periodo.ToString() != "00:00:00") 
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
-                    Console.WriteLine("============================================");
-                    Console.WriteLine("\nDados do veículo:");
-                    Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
+                    Console.WriteLine("\n============================================");
+                    Console.WriteLine("Dados do veículo:");
+                    Console.WriteLine($"\nEstacionado: {atb_c.Estacionado}");
                     Console.WriteLine($"Nome veiculo: {atb_v.Nome_Veiculo}");
                     Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
-                    Console.WriteLine($"Cor:{atb_v.Cor}");
+                    Console.WriteLine($"Cor: {atb_v.Cor}");
                     Console.WriteLine($"Placa: {atb_v.Placa}");
                     Console.WriteLine("============================================");
                 }    

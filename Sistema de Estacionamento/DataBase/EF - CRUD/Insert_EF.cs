@@ -19,13 +19,15 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             string credencialAcesso = CredentialRadom();
 
             Tipo_Veiculo tipoVeiculo = S_VehicleType();
+            string tipoVeiculo_string= tipoVeiculo.ToString();
             string nomeVeiculo = S_VehicleName();
             string cor = S_VehicleColor();
+
             string placa = S_VehiclePlate();
 
             Venancies v = new Venancies();
 
-            if (tipoVeiculo == Tipo_Veiculo.Carro || tipoVeiculo == Tipo_Veiculo.Caminhao)
+            if (tipoVeiculo_string == "Carro" || tipoVeiculo_string == "Caminhao")
             {
                 id_vehicle = 1;
                 var hávagas = v.Validation_Venancies(id_vehicle);
@@ -76,7 +78,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                 {
                     var novoVeiculo = new AtributesVehicle
                     {
-                        TipoVeiculo = tipoVeiculo,
+                        TipoVeiculo = tipoVeiculo_string,
                         Nome_Veiculo = nomeVeiculo,
                         Cor = cor,
                         Placa = placa,
@@ -127,7 +129,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         }
                         else
                         {
-                            if (veiculo.TipoVeiculo == Tipo_Veiculo.Carro || veiculo.TipoVeiculo == Tipo_Veiculo.Caminhao)
+                            if (veiculo.TipoVeiculo == "Carro" || veiculo.TipoVeiculo == "Caminhao")
                             {
                                 id_vehicle = 1;
                                 preco = auxPg.Pagamento(periodo, id_vehicle);

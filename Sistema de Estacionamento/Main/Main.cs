@@ -33,6 +33,8 @@ namespace Sistema_de_Estacionamento.Main
 
             Query_specific_EF Aux_QE = new Query_specific_EF();
 
+            Query_Parkeds_EF Aux_PK=new Query_Parkeds_EF();
+
             Reports Aux_R=new Reports();
 
             Storage_Config Aux_s=new Storage_Config();
@@ -50,13 +52,14 @@ namespace Sistema_de_Estacionamento.Main
                 Console.WriteLine("1. Registrar Entrada de Veículo/Moto");
                 Console.WriteLine("2. Registrar Saída de Veículo/Moto");
                 Console.WriteLine("3. Consultar Vagas Disponíveis");
-                Console.WriteLine("4. Deletar Registro");
-                Console.WriteLine("5. Ver Histórico de todos os Clientes/Veículos");
-                Console.WriteLine("6. Realizar consulta específica (cliente/veículo)");
-                Console.WriteLine("7. Exibir Tarifas");
-                Console.WriteLine("8. Relatórios Gerenciais (Admin)");
-                Console.WriteLine("9. Configurações do Sistema (Admin)");
-                Console.WriteLine("10. Sair");
+                Console.WriteLine("4. Consultar veículos estacionados");
+                Console.WriteLine("5. Deletar Registro");
+                Console.WriteLine("6. Ver Histórico de todos os Clientes/Veículos");
+                Console.WriteLine("7. Realizar consulta específica (cliente/veículo)");
+                Console.WriteLine("8. Exibir Tarifas");
+                Console.WriteLine("9. Relatórios Gerenciais (Admin)");
+                Console.WriteLine("10. Configurações do Sistema (Admin)");
+                Console.WriteLine("11. Sair");
                 Console.WriteLine("============================================");
                 Console.WriteLine("Escolha uma opção:");
                 while (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 10)
@@ -78,30 +81,34 @@ namespace Sistema_de_Estacionamento.Main
                         break;
 
                     case 4:
-                        Aux_dlt.Delete_EF();
+                        Aux_PK.Query_parked();
                         break;
 
                     case 5:
-                        Aux_Q.Query_All();
+                        Aux_dlt.Delete_EF();
                         break;
 
                     case 6:
-                        Aux_QE.Query_specific();
+                        Aux_Q.Query_All();
                         break;
 
                     case 7:
-                        Aux_t.Exibition_tariffs();
+                        Aux_QE.Query_specific();
                         break;
 
                     case 8:
-                        Aux_R.S_Reports();
+                        Aux_t.Exibition_tariffs();
                         break;
 
                     case 9:
-                        Aux_s.Settings_Menu();
+                        Aux_R.S_Reports();
                         break;
 
                     case 10:
+                        Aux_s.Settings_Menu();
+                        break;
+
+                    case 11:
                         Console.WriteLine("\nPrograma Encerrado.");
                         execucao = false; 
                         return;

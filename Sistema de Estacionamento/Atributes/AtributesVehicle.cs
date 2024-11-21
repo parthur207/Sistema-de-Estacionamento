@@ -13,7 +13,7 @@ namespace Sistema_de_Estacionamento.Atributes
     internal class AtributesVehicle
     {
         [Column("Tipo_Veiculo")]
-        public Tipo_Veiculo TipoVeiculo { get; set; }
+        public string TipoVeiculo { get; set; }
 
         [Column("Nome_Veiculo")]
         public string Nome_Veiculo { get; set; }

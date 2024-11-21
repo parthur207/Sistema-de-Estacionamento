@@ -54,7 +54,7 @@ namespace Sistema_de_Estacionamento.Storage
             bool validacao2 = false;
             DateTime saida=DateTime.Now;
             string Credencial=string.Empty;
-            DateTime _Entrada=DateTime.Now;
+            DateTime _Entrada = DateTime.Now;
 
             while (validacao1)
             {
@@ -71,7 +71,7 @@ namespace Sistema_de_Estacionamento.Storage
                     validacao1 = false;
 
                     bool val= aux_VAL.ValidacaoCredencial_EF(Credencial); //Verifica a existencia da credencial
-                    if (val!= true)
+                    if (val!= true && )
                     {
                         validacao2 = false;                      
                         return (_Entrada, saida, Credencial, val);

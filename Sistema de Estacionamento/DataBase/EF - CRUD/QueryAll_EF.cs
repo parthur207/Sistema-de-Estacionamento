@@ -34,7 +34,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"\nNome cliente: {atb_c.Nome_Cliente}");
                         Console.WriteLine($"Entrada: {atb_c.Entrada}");
                         Console.WriteLine($"Saída:{atb_c.Saida}");
-                        if (atb_c.Periodo != null) { Console.WriteLine($"Periodo:{atb_c.Periodo}"); }
+                        if (atb_c.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_c.Periodo}"); }
                         if (atb_c.Valor != null) { Console.WriteLine($"Valor: R${atb_c.Valor}"); }
                         Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
 

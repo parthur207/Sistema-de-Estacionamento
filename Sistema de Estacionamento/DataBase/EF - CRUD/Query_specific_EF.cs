@@ -139,7 +139,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
                             Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo != null) { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
 
@@ -176,7 +176,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
                             Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo != null) { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
 
@@ -210,7 +210,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
                             Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo != null) { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
 
@@ -261,7 +261,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
                             Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo != null) { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
 

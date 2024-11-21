@@ -62,7 +62,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             if (dados_delete.Item1.Estacionado == true)
                             {
 
-                                if (dados_delete.Item2.TipoVeiculo == Atributes.Tipo_Veiculo.Carro || dados_delete.Item2.TipoVeiculo == Atributes.Tipo_Veiculo.Caminhao)
+                                if (dados_delete.Item2.TipoVeiculo == "Carro" || dados_delete.Item2.TipoVeiculo =="Caminhao")
                                 {
                                     id_vehicle = 1;
                                     var parking = new AtributesParking();
