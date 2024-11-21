@@ -21,7 +21,6 @@ namespace Sistema_de_Estacionamento.Atributes
         [Column("Cor")]
         public string Cor { get; set; }
 
-        [Key]
         [Column("Placa")]
         public string Placa { get; set; }
 
