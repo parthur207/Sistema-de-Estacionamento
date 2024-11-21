@@ -58,8 +58,8 @@ namespace Sistema_de_Estacionamento.Storage
 
             while (validacao1)
             {
-                Console.WriteLine("============================================");
-                Console.WriteLine("\nInforme a credencial do cliente:");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Informe a credencial do cliente:");
                 Credencial = Console.ReadLine().TrimStart().TrimEnd().ToUpper();
 
                 if (string.IsNullOrEmpty(Credencial) || Credencial.Length!=6)
@@ -85,8 +85,6 @@ namespace Sistema_de_Estacionamento.Storage
 
             while (validacao2)
             {
-                Console.WriteLine("\nDados do cliente e veículo:");
-                Console.WriteLine("============================================");
 
                 aux_Q.QueryCredential_EF(Credencial);
                 var ATB = aux_Q.GetDadosQuery();
@@ -94,18 +92,7 @@ namespace Sistema_de_Estacionamento.Storage
                 var Atributos_Veiculo = ATB.Item2;
           
 
-                Console.WriteLine($"\nNome do cliente: {Atributos_Cliente.Nome_Cliente}");
-                Console.WriteLine($"Credencial de acesso: {Atributos_Cliente.Credencial_Acesso}");
-                Console.WriteLine($"Entrada: {Atributos_Cliente.Entrada}");
-
                 _Entrada = Atributos_Cliente.Entrada;
-
-                
-                Console.WriteLine($"\nNome do veículo: {Atributos_Veiculo.Nome_Veiculo}");
-                Console.WriteLine($"Tipo de veiculo: {Atributos_Veiculo.TipoVeiculo}");
-                Console.WriteLine($"Placa: {Atributos_Veiculo.Placa}");
-                Console.WriteLine($"Cor: {Atributos_Veiculo.Cor}");
-
                 
                 Console.WriteLine("============================================");
                 Console.WriteLine("\nContinuar:");
