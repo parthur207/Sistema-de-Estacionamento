@@ -49,13 +49,13 @@ namespace Sistema_de_Estacionamento.Storage
             return entrada;
         }
 
-        public (DateTime,DateTime, string, bool) S_CheckOut()
+        public (DateTime?,DateTime?, string, bool) S_CheckOut()
         {
             bool validacao1 = true;
             bool validacao2 = false;
-            DateTime saida=DateTime.Now;
+            DateTime? saida=null;
             string Credencial=string.Empty;
-            DateTime _Entrada = DateTime.Now;
+            DateTime? _Entrada=null;
 
             int Numero_Estacionados = aux_PK.Get_NumbersParkeds();
 
@@ -95,16 +95,13 @@ namespace Sistema_de_Estacionamento.Storage
 
             while (validacao2)
             {
-
                 aux_Q.QueryCredential_EF(Credencial);
                 var ATB = aux_Q.GetDadosQuery();
                 var Atributos_Cliente = ATB.Item1;
                 var Atributos_Veiculo = ATB.Item2;
           
-
                 _Entrada = Atributos_Cliente.Entrada;
                 
-               
                 Console.WriteLine("\nContinuar:");
                 Console.WriteLine("\n1. Sim");
                 Console.WriteLine("2. Não");

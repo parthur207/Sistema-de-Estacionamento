@@ -104,7 +104,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             double preco;
             var Resultado = S_CheckOut(); // Resultado.Item1 = INICIO | Resultado.Item2 = FINAL | Resultado.Item3 = CREDENCIAL | Resultado.Item4 = True, ou false (existencia da credencial)
             TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-
              
             try
             {
@@ -113,7 +112,16 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     {
                         var cliente = contextoIns_checkout.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
                         var veiculo = contextoIns_checkout.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(Resultado.Item3));
-                        Console.WriteLine("============================================");
+                        if (veiculo.TipoVeiculo=="Carro" || veiculo.TipoVeiculo=="Caminhao") {
+                            id_vehicle = 1;
+                            preco = auxPg.Pagamento(periodo, id_vehicle);
+                        }
+                        else
+                        {
+                            id_vehicle = 2;
+                            preco = auxPg.Pagamento(periodo, id_vehicle);
+                        }
+                        Console.WriteLine("\n============================================");
                         Console.WriteLine("CheckOut:");
                         Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
                         Console.WriteLine("============================================");
@@ -125,34 +133,25 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         }
                         else if (op != 1)
                         {
+                            Console.WriteLine("\nAção de check-out cancelada.");
                             return; // Sai do método e retorna ao menu principal
                         }
                         else
                         {
-                            if (veiculo.TipoVeiculo == "Carro" || veiculo.TipoVeiculo == "Caminhao")
-                            {
-                                id_vehicle = 1;
-                                preco = auxPg.Pagamento(periodo, id_vehicle);
-                                var parking = new AtributesParking();
-                                parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
-                            }
-                            else
-                            {
-                                id_vehicle = 2;
-                                preco = auxPg.Pagamento(periodo, id_vehicle);
-                                var parking = new AtributesParking();
-                                parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
-                            }
-                            cliente.Saida = Resultado.Item2;
-                            cliente.Periodo = periodo;
-                            cliente.Valor = preco;
-                            cliente.Estacionado = false;
-                            contextoIns_checkout.SaveChanges();
-                            Console.WriteLine("\nCheckout concluído.");
-                            Console.WriteLine("Número de vagas disponíveis atualizado.");
+                            var parking = new AtributesParking();
+                            parking.AlterarNumeroVagasDisponiveis(1, id_vehicle);
+                     
+                        }
+                        cliente.Saida = Resultado.Item2;
+                        cliente.Periodo = periodo;
+                        cliente.Valor = preco;
+                        cliente.Estacionado = false;
+                        contextoIns_checkout.SaveChanges();
+                        Console.WriteLine("\nCheckout concluído.");
+                        Console.WriteLine("Número de vagas disponíveis atualizado.");
                         }
                     }
-                }
+                
                 else
                 {
                     Console.WriteLine("\nA credencial informada não existe.\n");

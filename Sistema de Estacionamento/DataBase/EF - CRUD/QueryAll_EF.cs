@@ -20,7 +20,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                 {
                     var Credencial_List = context_All.Tabela_Clientes.OrderBy(x=>x.Entrada)
                         .Select(x=>x.Credencial_Acesso).ToList();
-
+                    Console.WriteLine("\nTodos os registros:");
                     foreach (var credencial in Credencial_List)
                     {
 

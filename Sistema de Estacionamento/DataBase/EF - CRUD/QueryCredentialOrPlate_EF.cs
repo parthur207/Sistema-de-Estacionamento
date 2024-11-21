@@ -115,6 +115,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
+                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor}"); }
                     Console.WriteLine("============================================");
                     Console.WriteLine("\nDados do veículo:");
                     Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
@@ -155,6 +156,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
+                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor}"); }
                     Console.WriteLine("\n============================================");
                     Console.WriteLine("Dados do veículo:");
                     Console.WriteLine($"\nEstacionado: {atb_c.Estacionado}");

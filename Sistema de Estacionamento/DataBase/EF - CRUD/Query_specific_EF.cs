@@ -142,7 +142,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-
+                            if (atb_C.Valor>0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
                             Console.WriteLine("___________________");
 
                             Console.WriteLine("Dados do Veículo:");
@@ -179,7 +179,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
                             Console.WriteLine("___________________");
 
                             Console.WriteLine("Dados do Veículo:");
@@ -213,7 +213,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
                             Console.WriteLine("___________________");
 
                             Console.WriteLine("Dados do Veículo:");
@@ -264,7 +264,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
                             if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
                             Console.WriteLine("___________________");
 
                             Console.WriteLine("Dados do Veículo:");
