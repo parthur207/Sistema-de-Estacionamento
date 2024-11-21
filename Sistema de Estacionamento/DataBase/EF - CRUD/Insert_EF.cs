@@ -82,9 +82,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         Placa = placa,
                         Credencial_Acesso = credencialAcesso,
                     };
-                    var insert_fk_C = contextoIns_V.Tabela_Clientes.FirstOrDefault(x=>x.Credencial_Acesso.Equals(credencialAcesso));
-
-                    insert_fk_C.Placa = placa;
+                
                     contextoIns_V.Tabela_Veiculos.Add(novoVeiculo);
                     contextoIns_V.SaveChanges();
                 }

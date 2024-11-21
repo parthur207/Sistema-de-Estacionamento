@@ -23,7 +23,7 @@ namespace Sistema_de_Estacionamento.Atributes
         public DateTime Entrada { get; set; }
 
         [Column("Saida")]
-        public DateTime Saida { get; set; }
+        public DateTime? Saida { get; set; }
 
         [Column("Periodo")]
         public TimeSpan Periodo { get; set; }

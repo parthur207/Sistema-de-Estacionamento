@@ -94,9 +94,11 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             {
                 using (var contextoQuery_Credential = new MyDbContext())
                 {
-                    var atb_c = contextoQuery_Credential.Tabela_Clientes.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
+                   
                     var atb_v = contextoQuery_Credential.Tabela_Veiculos.Where(x => x.Placa.Equals(Placa)).FirstOrDefault();
 
+                    var atb_c = contextoQuery_Credential.Tabela_Clientes.FirstOrDefault(x=>x.Credencial_Acesso.Equals(atb_v.Credencial_Acesso));
+                    
                     dadosQuery_c = atb_c;
                     dadosQuery_v = atb_v;
 
