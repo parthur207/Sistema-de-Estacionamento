@@ -33,8 +33,5 @@ namespace Sistema_de_Estacionamento.Atributes
 
         [Column("Estacionado")]
         public bool Estacionado { get; set; }
-
-        [ForeignKey("Placa")]
-        public string Placa { get; set; }
     }
 }
