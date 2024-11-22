@@ -123,7 +123,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         }
                         Console.WriteLine("\n============================================");
                         Console.WriteLine("CheckOut:");
-                        Console.WriteLine($"\nValor final a ser pago: {cliente.Valor}");
+                        Console.WriteLine($"\nValor final a ser pago: {preco}");
                         Console.WriteLine("============================================");
                         Console.WriteLine("\nDeseja confirmar o checkout?\n(1. Sim | 2. Não)");
                         if (!int.TryParse(Console.ReadLine(), out int op) || op < 1 || op > 2)
