@@ -26,7 +26,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         .ToList();
                     if (numero_estacionados == 0)
                     {
-                        Console.WriteLine("\nNão a veículos estacionados no momento.");
+                        Console.WriteLine("\nNão a veículos estacionados no momento.\n");
                     }
                     else
                     {
