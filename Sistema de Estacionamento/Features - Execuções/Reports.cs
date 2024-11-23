@@ -67,8 +67,8 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 Console.WriteLine($"\nCarros: {QntCarros}");
                 Console.WriteLine($"Caminhões: {QntCaminhoes}");
                 Console.WriteLine($"Motos: {QntMotos}");
-                Console.WriteLine($"\nTotal de veículos: {qntTotal}");
-                Console.WriteLine("============================================");
+                Console.WriteLine($"\nTotal de veículos: {qntTotal}\n");
+               
 
                 var ListaCredenciais_MesCarros = context_QueryQnt.Tabela_Veiculos.Where(x => x.TipoVeiculo.Equals("Carro"))
                     .Select(x => x.Credencial_Acesso).ToList();
@@ -96,7 +96,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 }
                 else 
                 { 
-                    Console.WriteLine("============================================");
+                    Console.WriteLine("\n============================================");
                     Console.WriteLine("Relatório do período médio total de veículos estacionados:");
                     Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
                     Console.WriteLine($"Horas Totais: {PeriodoEmHoras}");
@@ -127,7 +127,8 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
                         Console.WriteLine($"{meses[mes-1]}: {ValorMes}");
                     }
-                } 
+                  
+                }   Console.Write("");
             }
         }
     }
