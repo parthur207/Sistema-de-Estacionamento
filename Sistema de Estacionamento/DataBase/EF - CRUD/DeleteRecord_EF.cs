@@ -43,17 +43,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                 }
                 else if (op == 1)
                 {
-                    Console.WriteLine("\nDigite a senha de confirmação:");
-                    string senha = Console.ReadLine().Trim();
-
-                    if (senha != Senha)
-                    {
-                        Console.WriteLine("\nSenha incorreta.");
-                        return;
-                    }
-                    else
-                    {
-
                         var dados_delete = query.GetDadosQuery();
 
                         using (var ContextDelete = new MyDbContext())
@@ -78,11 +67,15 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             ContextDelete.Tabela_Veiculos.Remove(dados_delete.Item2);
                             ContextDelete.SaveChanges();
                             Console.WriteLine("\nExclusão efetuada com sucesso.\n");
-                        }
                     }
+                }
+                else
+                {
+                    Console.WriteLine("\nNenhuma ação realizada.");
                 }
             }
         }
     }
 }
+
 

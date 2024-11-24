@@ -50,7 +50,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     if (!DateOnly.TryParseExact(atributo, formato, null, System.Globalization.DateTimeStyles.None, out Data))
                     {
-                        Console.WriteLine("\nA data informada não está no formato correto (DD/MM/YYYY).");
+                        Console.WriteLine("\nA data informada não está no formato correto (DD/MM/YYYY).\n");
                     }
                     else
                     {
@@ -125,7 +125,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     .Where(x => x.Entrada.Date == DateTime.ParseExact(atributo, "dd/MM/yyyy", null))
                     .Select(x => x.Credencial_Acesso)
                     .ToList();
-                    if (listaCredenciais == null) { Console.WriteLine("\nNão foram encontrados registros na data especificada."); }
+                    if (!listaCredenciais.Any()) { Console.WriteLine("\nNão foram encontrados registros na data especificada.\n"); }
                     else
                     {
                         Console.WriteLine($"\nRegistros da data ({atributo}):");
@@ -156,21 +156,19 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     }
                 }
             }
-            else if (categoria == 2)//Por nome do veículo
+          
+            else if (categoria==2)
             {
-                using (var context_QueryV = new MyDbContext())
+                using (var context_mes = new MyDbContext()) 
                 {
-                    var listaCredenciais = context_QueryV.Tabela_Veiculos.Where(x => x.Nome_Veiculo.Equals(atributo, StringComparison.OrdinalIgnoreCase))
-                        .Select(x => x.Credencial_Acesso).ToList();
-                    if (listaCredenciais == null) { Console.WriteLine($"\nNão foram encontrados registros de veículos com o nome ({atributo})."); }
+                    var atributos_mes = context_mes.Tabela_Clientes.Where(x=>x.Entrada.Month.Equals(atributo)).Select(x=>x.Credencial_Acesso).ToList();
+                    if (!atributos_mes.Any()) { Console.WriteLine("\nNão foram encontrados registros no mês informado.\n"); }
                     else
                     {
-                        Console.WriteLine($"\nRegistros vinculados ao veículo ({atributo}):");
-
-                        foreach (var credencial in listaCredenciais)
+                        foreach (var credencial in atributos_mes)
                         {
-                            var atb_C = context_QueryV.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
-                            var atb_V = context_QueryV.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                            var atb_C = context_mes.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                            var atb_V = context_mes.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
                             Console.WriteLine("======================================");
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
@@ -193,18 +191,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     }
                 }
             }
-            else if (categoria==3)
+            else if (categoria == 3)//Por nome do veículo
             {
-                using (var context_mes = new MyDbContext()) 
+                using (var context_QueryV = new MyDbContext())
                 {
-                    var atributos_mes = context_mes.Tabela_Clientes.Where(x=>x.Entrada.Month.Equals(atributo)).Select(x=>x.Credencial_Acesso).ToList();
-                    if (atributos_mes == null) { Console.WriteLine("\nNão foram encontrados registros no mês informado."); }
+                    var listaCredenciais = context_QueryV.Tabela_Veiculos.Where(x => x.Nome_Veiculo.Equals(atributo, StringComparison.OrdinalIgnoreCase))
+                        .Select(x => x.Credencial_Acesso).ToList();
+                    if (!listaCredenciais.Any()) { Console.WriteLine($"\nNão foram encontrados registros de veículos com o nome ({atributo}).\n"); }
                     else
                     {
-                        foreach (var credencial in atributos_mes)
+                        Console.WriteLine($"\nRegistros vinculados ao veículo ({atributo}):");
+
+                        foreach (var credencial in listaCredenciais)
                         {
-                            var atb_C = context_mes.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
-                            var atb_V = context_mes.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                            var atb_C = context_QueryV.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
+                            var atb_V = context_QueryV.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
                             Console.WriteLine("======================================");
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
@@ -247,7 +248,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     var listaCredenciais = context_QueryTp.Tabela_Veiculos.Where(x => x.TipoVeiculo.Equals(tipo_veículo))
                     .Select(x => x.Credencial_Acesso).ToList();
 
-                    if (listaCredenciais == null) { Console.WriteLine("\nNão foram encontrados registros no mês informado."); }
+                    if (!listaCredenciais.Any()) { Console.WriteLine($"\nNão foram encontrados registros de veículos do tipo ({tipo_veículo})\n"); }
                     else
                     {
 

@@ -62,7 +62,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                 QntCaminhoes = context_QueryQnt.Tabela_Veiculos.Count(x => x.TipoVeiculo.Equals("Caminhao"));
                 QntMotos = context_QueryQnt.Tabela_Veiculos.Count(x => x.TipoVeiculo.Equals("Moto"));
                 qntTotal=context_QueryQnt.Tabela_Veiculos.Count();
-                Console.WriteLine("============================================");
+                Console.WriteLine("\n============================================");
                 Console.WriteLine("Número total de veículos registrados no estacionamento por tipo:");
                 Console.WriteLine($"\nCarros: {QntCarros}");
                 Console.WriteLine($"Caminhões: {QntCaminhoes}");

@@ -45,7 +45,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             else { Console.WriteLine("\nNão há vagas disponíveis para carros/caminhões."); }
             if (VagasMotos.Item1!=false)
             {
-                Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos.Item2}\n.");
+                Console.WriteLine($"Número de vagas disponíveis para motos {VagasMotos.Item2}.\n");
             }
             else { Console.WriteLine("\nNão há vagas disponíveis para motos."); }
         }
