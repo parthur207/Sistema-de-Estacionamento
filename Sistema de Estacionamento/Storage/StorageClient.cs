@@ -18,7 +18,7 @@ namespace Sistema_de_Estacionamento.Storage
     {
         QueryCredentialOrPlate_EF aux_Q = new QueryCredentialOrPlate_EF(); //Consulta dos dados cliente e veiculo pela credencial
         ValidacaoCredendital aux_VAL= new ValidacaoCredendital(); //Validação da credencial (Evitar duplicidades)
-        Query_Parkeds_EF aux_PK = new Query_Parkeds_EF();  
+        Query_Parkeds_EF aux_NK = new Query_Parkeds_EF();  
 
         public string S_Name()
         {
@@ -57,12 +57,13 @@ namespace Sistema_de_Estacionamento.Storage
             string Credencial=string.Empty;
             DateTime _Entrada=DateTime.Now;
 
-            int Numero_Estacionados = aux_PK.Get_NumbersParkeds();
+            int Numero_Estacionados = aux_NK.Get_NumbersParkeds();
 
             if (Numero_Estacionados<=0) 
             {
-                Console.WriteLine("\nNenhum veículo estacionado no momento.");
+                Console.WriteLine("\nNenhum veículo estacionado no momento.\n");
                 validacao1 = false;
+                Credencial = "__";
                 return (_Entrada, saida, Credencial, false);
             }
             while (validacao1)
@@ -101,8 +102,7 @@ namespace Sistema_de_Estacionamento.Storage
                 var Atributos_Veiculo = ATB.Item2;
           
                 _Entrada = Atributos_Cliente.Entrada;
-                Console.WriteLine($"{_Entrada}");
-                Console.WriteLine("\nContinuar:");
+                Console.WriteLine("\nContinuar ([1] para 'Sim' e [2] para 'Não'):");
                 Console.WriteLine("\n1. Sim");
                 Console.WriteLine("2. Não");
                 Console.WriteLine("============================================");

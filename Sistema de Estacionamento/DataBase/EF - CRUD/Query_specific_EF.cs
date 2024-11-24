@@ -21,14 +21,16 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             int categoria, op;
             string atributo = " ";
             DateOnly Data = DateOnly.FromDateTime(DateTime.Now);// Introduzido com um valor por não poder ser nulo.
+           
             do
             {
-                Console.WriteLine("\n1. Realizar consulta por (data)");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("1. Realizar consulta por (data)");
                 Console.WriteLine("2. Realizar consulta por (mês)");
                 Console.WriteLine("3. Realizar Consulta por (Nome do veículo)");
                 Console.WriteLine("4. Realiza consulta por (Tipo de veículo)");
                 Console.WriteLine("5. Voltar ao menu principal");
-
+                Console.WriteLine("============================================");
                 if (!int.TryParse(Console.ReadLine(), out op) || op < 1 || op > 5)
                 {
                     Console.WriteLine("\nOpção inválida. É necessário digitar um número de 1 a 5.");
@@ -50,7 +52,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     if (!DateOnly.TryParseExact(atributo, formato, null, System.Globalization.DateTimeStyles.None, out Data))
                     {
-                        Console.WriteLine("\nA data informada não está no formato correto (DD/MM/YYYY).\n");
+                        Console.WriteLine("\nA data informada não está no formato correto (31/12/YYYY).\n");
                     }
                     else
                     {
@@ -116,19 +118,21 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
             }
        
         private void Query_exe(int categoria, string atributo)
-        {   
+        {
             if (categoria == 1)//Por data
             {
                 using (var context_QueryDT = new MyDbContext())
                 {
+                    
                     var listaCredenciais = context_QueryDT.Tabela_Clientes
-                    .Where(x => x.Entrada.Date == DateTime.ParseExact(atributo, "dd/MM/yyyy", null))
+                    .Where(x => x.Entrada.Date == DateTime.ParseExact(atributo, "dd/MM/yyyy", null).Date)
                     .Select(x => x.Credencial_Acesso)
                     .ToList();
+
                     if (!listaCredenciais.Any()) { Console.WriteLine("\nNão foram encontrados registros na data especificada.\n"); }
                     else
                     {
-                        Console.WriteLine($"\nRegistros da data ({atributo}):");
+                        Console.WriteLine($"\nRegistros do dia ({atributo}):");
                         foreach (var credencial in listaCredenciais)
                         {
                             var atb_C = context_QueryDT.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
@@ -138,30 +142,31 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
-                            Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
-                            if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
+                            if (atb_C.Estacionado == false) { Console.WriteLine($"Saída: {atb_C.Saida}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo: {atb_C.Periodo}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-                            if (atb_C.Valor>0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
+                            if (atb_C.Valor>0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor:F2}"); }
+                            Console.WriteLine();
                             Console.WriteLine("___________________");
 
-                            Console.WriteLine("Dados do Veículo:");
+                            Console.WriteLine("\nDados do Veículo:");
                             Console.WriteLine($"Nome do veículo: {atb_V.Nome_Veiculo}");
                             Console.WriteLine($"Tipo de veículo: {atb_V.TipoVeiculo}");
                             Console.WriteLine($"Cor: {atb_V.Cor}");
                             Console.WriteLine($"Placa: {atb_V.Placa}");
-                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
-                            Console.WriteLine("======================================");
+                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}\n");
+                            
                         }
                     }
                 }
             }
           
-            else if (categoria==2)
+            else if (categoria==2)//por mes
             {
                 using (var context_mes = new MyDbContext()) 
                 {
-                    var atributos_mes = context_mes.Tabela_Clientes.Where(x=>x.Entrada.Month.Equals(atributo)).Select(x=>x.Credencial_Acesso).ToList();
+                    int atributo_int = int.Parse(atributo);
+                    var atributos_mes = context_mes.Tabela_Clientes.Where(x=>x.Entrada.Month.Equals(atributo_int)).Select(x=>x.Credencial_Acesso).ToList();
                     if (!atributos_mes.Any()) { Console.WriteLine("\nNão foram encontrados registros no mês informado.\n"); }
                     else
                     {
@@ -169,24 +174,24 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         {
                             var atb_C = context_mes.Tabela_Clientes.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
                             var atb_V = context_mes.Tabela_Veiculos.FirstOrDefault(x => x.Credencial_Acesso.Equals(credencial));
-                            Console.WriteLine("======================================");
+                            Console.WriteLine("\n======================================");
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
-                            Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
-                            if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
+                            if (atb_C.Estacionado==false) { Console.WriteLine($"Saída: {atb_C.Saida}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo: {atb_C.Periodo}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor:F2}"); }
+                            Console.WriteLine();
                             Console.WriteLine("___________________");
 
-                            Console.WriteLine("Dados do Veículo:");
+                            Console.WriteLine("\nDados do Veículo:");
                             Console.WriteLine($"Nome do veículo: {atb_V.Nome_Veiculo}");
                             Console.WriteLine($"Tipo de veículo: {atb_V.TipoVeiculo}");
                             Console.WriteLine($"Cor: {atb_V.Cor}");
                             Console.WriteLine($"Placa: {atb_V.Placa}");
-                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
-                            Console.WriteLine("======================================");
+                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}\n");
+                           
                         }
                     }
                 }
@@ -210,20 +215,20 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
-                            Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
-                            if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
+                            if (atb_C.Estacionado == false) { Console.WriteLine($"Saída: {atb_C.Saida}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo: {atb_C.Periodo}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor:F2}"); }
+                            Console.WriteLine();
                             Console.WriteLine("___________________");
 
-                            Console.WriteLine("Dados do Veículo:");
+                            Console.WriteLine("\nDados do Veículo:");
                             Console.WriteLine($"Nome do veículo: {atb_V.Nome_Veiculo}");
                             Console.WriteLine($"Tipo de veículo: {atb_V.TipoVeiculo}");
                             Console.WriteLine($"Cor: {atb_V.Cor}");
                             Console.WriteLine($"Placa: {atb_V.Placa}");
-                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
-                            Console.WriteLine("======================================");
+                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}\n");
+                           
                         }
                     }
                 }
@@ -261,20 +266,20 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             Console.WriteLine("Dados do Cliente:");
                             Console.WriteLine($"\nNome cliente: {atb_C.Nome_Cliente}");
                             Console.WriteLine($"Entrada: {atb_C.Entrada}");
-                            Console.WriteLine($"Saída:{atb_C.Saida}");
-                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_C.Periodo}"); }
-                            if (atb_C.Valor != null) { Console.WriteLine($"Valor: R${atb_C.Valor}"); }
+                            if (atb_C.Estacionado == false) { Console.WriteLine($"Saída: {atb_C.Saida}"); }
+                            if (atb_C.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo: {atb_C.Periodo}"); }
                             Console.WriteLine($"Estacionado: {atb_C.Estacionado}");
-                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor}"); }
+                            if (atb_C.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_C.Valor:F2}"); }
+                            Console.WriteLine();
                             Console.WriteLine("___________________");
 
-                            Console.WriteLine("Dados do Veículo:");
+                            Console.WriteLine("\nDados do Veículo:");
                             Console.WriteLine($"Nome do veículo: {atb_V.Nome_Veiculo}");
                             Console.WriteLine($"Tipo de veículo: {atb_V.TipoVeiculo}");
                             Console.WriteLine($"Cor: {atb_V.Cor}");
                             Console.WriteLine($"Placa: {atb_V.Placa}");
-                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}");
-                            Console.WriteLine("======================================");
+                            Console.WriteLine($"Credencial de acesso: {atb_V.Credencial_Acesso}\n");
+                           
                         }
                     }
                 }

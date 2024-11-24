@@ -33,20 +33,20 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine("Dados do Cliente:");
                         Console.WriteLine($"\nNome cliente: {atb_c.Nome_Cliente}");
                         Console.WriteLine($"Entrada: {atb_c.Entrada}");
-                        Console.WriteLine($"Saída:{atb_c.Saida}");
-                        if (atb_c.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo:{atb_c.Periodo}"); }
-                        if (atb_c.Valor != null) { Console.WriteLine($"Valor: R${atb_c.Valor}"); }
-                        Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
-
+                        if (atb_c.Estacionado==false) { Console.WriteLine($"Saída: {atb_c.Saida}"); }
+                        if (atb_c.Periodo.ToString() != "00:00:00") { Console.WriteLine($"Periodo: {atb_c.Periodo}"); }
+                        if (atb_c.Valor > 0) { Console.WriteLine($"Valor: R${atb_c.Valor:F2}"); }
+                        Console.WriteLine($"Estacionado: {atb_c.Estacionado}\n");
+                        Console.WriteLine();
                         Console.WriteLine("___________________");
 
-                        Console.WriteLine("Dados do Veículo:");
+                        Console.WriteLine("\nDados do Veículo:");
                         Console.WriteLine($"Nome do veículo: {atb_v.Nome_Veiculo}");
                         Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
                         Console.WriteLine($"Cor: {atb_v.Cor}");
                         Console.WriteLine($"Placa: {atb_v.Placa}");
-                        Console.WriteLine($"Credencial de acesso: {atb_v.Credencial_Acesso}");
-                        Console.WriteLine("======================================");
+                        Console.WriteLine($"Credencial de acesso: {atb_v.Credencial_Acesso}\n");
+                        
                     }
                 }
             }

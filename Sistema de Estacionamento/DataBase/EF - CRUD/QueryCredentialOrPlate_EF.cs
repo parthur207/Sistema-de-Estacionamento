@@ -115,15 +115,16 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
-                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor}"); }
-                    Console.WriteLine("============================================");
+                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor:F2}"); }
+                    Console.WriteLine();
+                    Console.WriteLine("___________________");
                     Console.WriteLine("\nDados do veículo:");
                     Console.WriteLine($"Estacionado: {atb_c.Estacionado}");
                     Console.WriteLine($"Nome veiculo: {atb_v.Nome_Veiculo}");
                     Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
                     Console.WriteLine($"Cor:{atb_v.Cor}");
-                    Console.WriteLine($"Placa: {atb_v.Placa}");
-                    Console.WriteLine("============================================");
+                    Console.WriteLine($"Placa: {atb_v.Placa}\n");
+                    
                 }
             }
             catch (Exception ex)
@@ -149,22 +150,22 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     Console.WriteLine($"\nNome:{atb_c.Nome_Cliente}");
                     Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
                     Console.WriteLine($"Entrada:{atb_c.Entrada}");
-                    if (atb_c.Saida !=null) {
+                    if (atb_c.Estacionado==false) {
                         Console.WriteLine($"Saída: {atb_c.Saida}");
                     }
                     if (atb_c.Periodo.ToString() != "00:00:00") 
                     {
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
-                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor}"); }
-                    Console.WriteLine("\n============================================");
-                    Console.WriteLine("Dados do veículo:");
+                    if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor:F2}"); }
+                    Console.WriteLine();
+                    Console.WriteLine("___________________");
+                    Console.WriteLine("\nDados do veículo:");
                     Console.WriteLine($"\nEstacionado: {atb_c.Estacionado}");
                     Console.WriteLine($"Nome veiculo: {atb_v.Nome_Veiculo}");
                     Console.WriteLine($"Tipo de veículo: {atb_v.TipoVeiculo}");
                     Console.WriteLine($"Cor: {atb_v.Cor}");
-                    Console.WriteLine($"Placa: {atb_v.Placa}");
-                    Console.WriteLine("============================================");
+                    Console.WriteLine($"Placa: {atb_v.Placa}\n");
                 }    
             }
             catch (Exception ex) 

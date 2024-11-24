@@ -89,7 +89,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                     contextoIns_V.SaveChanges();
                 }
                 Console.WriteLine("\n============================================");
-                Console.WriteLine("Cliente e veículo inclusos com sucesso.\n");
+                Console.WriteLine("\nCliente e veículo inclusos com sucesso.\n");
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
             double preco;
             var Resultado = S_CheckOut(); // Resultado.Item1 = INICIO | Resultado.Item2 = FINAL | Resultado.Item3 = CREDENCIAL | Resultado.Item4 = True, ou false (existencia da credencial)
             TimeSpan periodo = Period_CheckOut(Resultado.Item1, Resultado.Item2);
-             
+            if (Resultado.Item3=="__") { return; }
             try
             {
                 if (Resultado.Item4 == true) {
@@ -148,7 +148,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF
                         cliente.Estacionado = false;
                         contextoIns_checkout.SaveChanges();
                         Console.WriteLine("\nCheckout concluído.");
-                        Console.WriteLine("Número de vagas disponíveis atualizado.");
+                        Console.WriteLine("Número de vagas disponíveis atualizado.\n");
                         }
                     }
                 

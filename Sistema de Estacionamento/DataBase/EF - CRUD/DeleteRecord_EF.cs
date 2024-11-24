@@ -16,7 +16,6 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
     {
 
         QueryCredentialOrPlate_EF query=new QueryCredentialOrPlate_EF();
-        private const string Senha = "Resiliencia2024";
         public void Delete_EF() 
         {
             
