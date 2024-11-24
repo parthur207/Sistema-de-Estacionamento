@@ -77,7 +77,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
 
                     case 3:
 
-                        categoria=2;
+                        categoria=3;
                         Console.WriteLine("\nDigite o nome do veículo:");
                         atributo= Console.ReadLine().TrimStart().TrimEnd();
 
