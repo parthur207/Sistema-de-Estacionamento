@@ -1,4 +1,4 @@
-# Sistema de Estacionamento - Conexão com Banco de Dados
+# Sistema de Estacionamento
 
 ## Descrição
 Este projeto é um sistema de gerenciamento de estacionamento desenvolvido em **C#** com integração ao banco de dados **MySQL**. O sistema permite registrar a entrada e saída de veículos, realizar consultas detalhadas, atualizar dados, excluir registros e gerar relatórios gerenciais. Ele também calcula automaticamente as tarifas de estacionamento com base na duração de permanência dos veículos.
