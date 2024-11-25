@@ -77,34 +77,32 @@ namespace Sistema_de_Estacionamento.Features___Execuções
 
         public void AveragePeriod()
         {
-            using(var context_Average = new MyDbContext())  
+            using (var context_Average = new MyDbContext())
             {
-                var qnt_Periodos = context_Average.Tabela_Clientes.Count();
-                var totalPeriodo = context_Average.Tabela_Clientes
-                                .Select(x => x.Periodo)
-                                .Aggregate(TimeSpan.Zero, (soma, periodo) => soma + periodo);//Soma de todos os períodos da tabela
+                var registros = context_Average.Tabela_Clientes
+                    .Select(x => x.Periodo)
+                    .ToList(); // Recupera todos os períodos na memória
 
-                var PeriodoEmMinutos= totalPeriodo.TotalMinutes;
-                var PeriodoEmHoras=totalPeriodo.TotalHours;
-
-                var MediaMinutos = PeriodoEmMinutos / qnt_Periodos;
-                var MediaHoras= PeriodoEmHoras / qnt_Periodos;
-
-                if (qnt_Periodos == null)
+                if (!registros.Any())
                 {
                     Console.WriteLine("\nSem registros no momento.");
+                    return;
                 }
-                else 
-                { 
-                    Console.WriteLine("\n============================================");
-                    Console.WriteLine("Relatório do período médio total de veículos estacionados:");
-                    Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
-                    Console.WriteLine($"Horas Totais: {PeriodoEmHoras}");
 
-                    Console.WriteLine($"Media de minutos: {MediaMinutos}");
-                    Console.WriteLine($"Media de horas: {MediaHoras}");
-                    Console.WriteLine("============================================");
-                }
+                var totalPeriodo = registros.Aggregate(TimeSpan.Zero, (soma, periodo) => soma + periodo); // Soma os períodos na memória
+
+                var PeriodoEmMinutos = totalPeriodo.TotalMinutes;
+                var PeriodoEmHoras = totalPeriodo.TotalHours;
+
+                var MediaMinutos = PeriodoEmMinutos / registros.Count;
+                var MediaHoras = PeriodoEmHoras / registros.Count;
+
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Relatório do período médio total de veículos estacionados:");
+                Console.WriteLine($"\nMinutos totais: {PeriodoEmMinutos}");
+                Console.WriteLine($"Horas Totais: {PeriodoEmHoras}");
+                Console.WriteLine($"\nMédia de minutos: {MediaMinutos}");
+                Console.WriteLine($"Média de horas: {MediaHoras}\n");
             }
         }
 
@@ -114,8 +112,8 @@ namespace Sistema_de_Estacionamento.Features___Execuções
             using (var Context_TotalValue = new MyDbContext())
             {
                 var receita = Context_TotalValue.Tabela_Clientes.Sum(x => x.Valor);
-                Console.WriteLine("============================================");
-                Console.WriteLine($"\nReceita total acumulada: R$ {(receita)}");
+                Console.WriteLine("\n============================================");
+                Console.WriteLine($"Receita total acumulada: R$ {(receita)}");
 
                 Console.WriteLine("\nReceitas mensais: ");
 
@@ -128,7 +126,7 @@ namespace Sistema_de_Estacionamento.Features___Execuções
                         Console.WriteLine($"{meses[mes-1]}: {ValorMes}");
                     }
                   
-                }   Console.Write("");
+                }   Console.WriteLine("");
             }
         }
     }
