@@ -149,7 +149,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                     Console.WriteLine("Dados do cliente:");
                     Console.WriteLine($"\nNome:{atb_c.Nome_Cliente}");
                     Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
-                    Console.WriteLine($"Entrada:{atb_c.Entrada}");
+                    Console.WriteLine($"Entrada: {atb_c.Entrada}");
                     if (atb_c.Estacionado==false) {
                         Console.WriteLine($"Saída: {atb_c.Saida}");
                     }
@@ -158,7 +158,7 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                         Console.WriteLine($"Periodo: {atb_c.Periodo}");
                     }
                     if (atb_c.Valor > 0) { Console.WriteLine($"Valor a pagar: {atb_c.Valor:F2}"); }
-                    Console.WriteLine();
+                    
                     Console.WriteLine("___________________");
                     Console.WriteLine("\nDados do veículo:");
                     Console.WriteLine($"\nEstacionado: {atb_c.Estacionado}");
