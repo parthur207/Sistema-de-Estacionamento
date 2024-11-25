@@ -39,11 +39,10 @@ namespace Sistema_de_Estacionamento.DataBase.EF___CRUD
                             var atb_c = context_parkeds.Tabela_Clientes.Where(x => x.Credencial_Acesso.Equals(credencial)).FirstOrDefault();
                             var atb_v = context_parkeds.Tabela_Veiculos.Where(x => x.Credencial_Acesso.Equals(credencial)).FirstOrDefault();
                             Console.WriteLine("___________________");
-                            Console.WriteLine("Dados do cliente:");
+                            Console.WriteLine("\nDados do cliente:");
                             Console.WriteLine($"\nNome: {atb_c.Nome_Cliente}");
                             Console.WriteLine($"Credencial de acesso: {atb_c.Credencial_Acesso}");
                             Console.WriteLine($"Entrada: {atb_c.Entrada}");
-                            
                             Console.WriteLine("___________________");
                             Console.WriteLine("\nDados do veículo:");
                             Console.WriteLine($"\nEstacionado: {atb_c.Estacionado}");
