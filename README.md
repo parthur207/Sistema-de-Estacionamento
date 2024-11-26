@@ -47,7 +47,7 @@ O sistema verifica se as tarefas pendentes (veículos estacionados) estão expir
 
 1. Clone o repositório do projeto:
     ```bash
-    git clone https://github.com/seu-repositorio/Sistema-de-Estacionamento.git
+    git clone [https://github.com/parthur207/Sistema-de-Estacionamento.git](https://github.com/parthur207/Sistema-de-Estacionamento)
     ```
 
 2. Abra o projeto em sua IDE e configure a string de conexão com o banco de dados MySQL. É necessário criar o banco de dados conforme o arquivo presente na branch Master 'MySql.txt'.
